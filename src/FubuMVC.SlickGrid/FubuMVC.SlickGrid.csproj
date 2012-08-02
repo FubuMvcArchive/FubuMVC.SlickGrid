@@ -41,7 +41,7 @@
       <HintPath>..\packages\FubuMVC.References.0.9.8.1052\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.JQueryUI">
-      <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.1\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.2\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.StructureMap">
       <HintPath>..\packages\FubuMVC.References.0.9.8.1052\lib\net40\FubuMVC.StructureMap.dll</HintPath>
@@ -81,7 +81,9 @@
   <ItemGroup>
     <None Include="packages.config" />
     <EmbeddedResource Include="pak-WebContent.zip" />
-    <None Include="slickgrid.asset.config" />
+    <None Include="slickgrid.asset.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Scripts\json2.js" />
