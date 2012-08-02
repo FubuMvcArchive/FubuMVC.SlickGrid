@@ -81,6 +81,9 @@ end
 
 desc "Compiles the app"
 task :compile => [:restore_if_missing, :clean, :version] do
+  FileUtils.rm_rf 'src/SlickGridHarness/fubu-content'
+  bottles("assembly-pak src/FubuMVC.SlickGrid")
+
   MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/FubuMVC.SlickGrid.sln', :clrversion => CLR_TOOLS_VERSION
 
   target = COMPILE_TARGET.downcase

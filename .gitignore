@@ -25,3 +25,5 @@ src/*/repositories.config
 results
 bottles.cmd
 fubu.cmd
+*.DotSettings.user
+src/FubuMVC.SlickGrid/pak-WebContent.zip
