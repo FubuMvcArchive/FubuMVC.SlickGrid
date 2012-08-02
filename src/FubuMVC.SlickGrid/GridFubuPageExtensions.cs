@@ -15,8 +15,8 @@ namespace FubuMVC.SlickGrid
             var div = new HtmlTag("div").Id(id).AddClass("slick-grid");
             div.Data("columns", grid.ToColumnJson());
 
-            page.Asset("diagnostics_styles", "diagnostics");
-            page.Asset("diagnostics/SlickGridActivator.js");
+            page.Asset("slickgrid_styles");
+            page.Asset("slickgrid/SlickGridActivator.js");
 
 
             var url = grid.SelectDataSourceUrl(page.Urls);

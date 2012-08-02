@@ -40,6 +40,9 @@
     <Reference Include="FubuMVC.Core, Version=0.9.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuMVC.References.0.9.8.1052\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
+    <Reference Include="FubuMVC.JQueryUI">
+      <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.1\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
+    </Reference>
     <Reference Include="FubuMVC.StructureMap">
       <HintPath>..\packages\FubuMVC.References.0.9.8.1052\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
@@ -64,6 +67,7 @@
     </Compile>
     <Compile Include="ColumnDefinition.cs" />
     <Compile Include="DiagnosticConstants.cs" />
+    <Compile Include="GridConfigurationExtension.cs" />
     <Compile Include="GridDefinition.cs" />
     <Compile Include="GridFubuPageExtensions.cs" />
     <Compile Include="GridRunner.cs" />
@@ -77,15 +81,15 @@
   <ItemGroup>
     <None Include="packages.config" />
     <EmbeddedResource Include="pak-WebContent.zip" />
+    <None Include="slickgrid.asset.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Scripts\jquery-1.7.min.js" />
     <Content Include="Content\Scripts\json2.js" />
+    <Content Include="Content\Scripts\slickgrid\jquery.event.drag-2.0.min.js" />
     <Content Include="Content\Scripts\slickgrid\slick.core.js" />
     <Content Include="Content\Scripts\slickgrid\slick.formatters.js" />
     <Content Include="Content\Scripts\slickgrid\slick.grid.js" />
     <Content Include="Content\Scripts\slickgrid\SlickGridActivator.js" />
-    <Content Include="Content\Scripts\underscore-min.js" />
     <Content Include="Content\Styles\slickgrid\examples.css" />
     <Content Include="Content\Styles\slickgrid\slick-default-theme.css" />
     <Content Include="Content\Styles\slickgrid\slick.grid.css" />
