@@ -7,6 +7,8 @@
 <content:main>
   <h1>FubuMVC.SlickGrid Demonstration</h1>
   <br></br>
+  
+  
 
   !{this.RenderGrid<ConcertsGrid>("concertGrid").Attr("style", "width:100%;height:500px;")}
   <script id="concertGrid-custom">
@@ -18,11 +20,24 @@
       },
       options: {
         enableColumnReorder: false
+      },
+      modify: function(grid, div){
+        grid.onDblClick.subscribe(function (e) {
+          $("#stuff").html('');
+          var cell = grid.getCellFromEvent(e);
+          var item = grid.getDataItem(cell.row);
+          
+          for (prop in item){
+            $('<p>' + prop + " = " + item[prop] + '</p>').appendTo('#stuff');
+          }
+          
+          
+        });
       }
     }
   </script>
 </content:main>
 
 <content:footer>
-  <h4>More stuff</h4>
+  <pre id="stuff"></pre>
 </content:footer>

@@ -3,33 +3,11 @@
     $.extend(true, window, {
         "Slick": {
             "Formatters": {
-                "StringArray": StringArray
+
             }
         }
     });
 
-    function StringArray(row, cell, value, columnDef, dataContext) {
-        if (value.length == 0) return "-";
-
-        var inner = value[0];
-        if (value.length > 1) {
-            inner += ' (' + value.length - 1 + ' more)';
-        }
-
-        var qtipContent = '';
-
-        var qtipContent = '<span class="qtip-text"><ul>';
-
-        for (var i = 0; i < value.length; i++) {
-            qtipContent += '<li>' + value[i] + '</li>';
-        }
-
-        qtipContent += '</ul></span>';
-
-        return '<span data-header="' + columnDef.name + '" class="drilldown ui-icon ui-icon-newwin">' + qtipContent + '</span>' + inner;
-
-
-    }
 })(jQuery);
 
 
@@ -52,6 +30,10 @@ function makeSlickGrid(div) {
     var url = $(div).data('url');
 
     var options = {};
+    var modification = function (grid, div) {
+        // Do nothing.
+    };
+
     var customJson = $('#' + div.id + "-custom").text().trim();
     if (customJson) {
 
@@ -73,6 +55,10 @@ function makeSlickGrid(div) {
         if (customizations.options) {
             options = customizations.options;
         }
+
+        if (customizations.modify) {
+            modification = customizations.modify;
+        }
         
     }
     
@@ -86,6 +72,8 @@ function makeSlickGrid(div) {
 
     var gridOptions = $.extend({}, defaultOptions, options);
     var grid = new Slick.Grid("#" + div.id, [], columns, gridOptions);
+
+    
 
     div.update = function (query) {
         if (query == null) {
@@ -103,23 +91,15 @@ function makeSlickGrid(div) {
                 grid.updateRowCount();
                 grid.render();
 
-                $('.drilldown', div).each(function (i, span) {
-                    var header = $(span).data('header');
-
-                    $(span).click(function () {
-                        $('.qtip-text', span).dialog({
-                            title: header
-                        });
-                    });
-
-
-
-
-                });
+                // TODO -- this is where we'll do other things to activate stuff that just 
+                // got rendered.
             }
 
 
         });
+
+
+        modification(grid, div);
     }
 
 
