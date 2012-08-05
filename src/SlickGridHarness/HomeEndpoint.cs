@@ -9,27 +9,18 @@ namespace SlickGridHarness
 {
     public class HomeEndpoint
     {
-        private readonly FubuHtmlDocument<HomeModel> _document;
-
-        public HomeEndpoint(FubuHtmlDocument<HomeModel> document)
+        public HomeViewModel Index()
         {
-            _document = document;
+            return new HomeViewModel();
         }
 
-        public HtmlDocument Index()
+        public HomeViewModel get_another()
         {
-            _document.Title = "FubuMVC.SlickGrid Demonstration";
-            _document.Add("h1").Text("FubuMVC.SlickGrid Demonstration");
-
-            _document.Add(doc => doc.RenderGrid<ConcertsGrid>("concertGrid").Attr("style", "width:100%;height:500px;"));
-
-            _document.WriteAssetsToHead();
-
-            return _document;
+            return new HomeViewModel();
         }
     }
 
-    public class HomeModel
+    public class HomeViewModel
     {
     }
 

@@ -1,4 +1,5 @@
 using FubuMVC.Core;
+using FubuMVC.Spark;
 
 namespace SlickGridHarness
 {
@@ -7,6 +8,7 @@ namespace SlickGridHarness
         public SlickGridHarnessRegistry()
         {
             Routes.HomeIs<HomeEndpoint>(x => x.Index());
+            Views.TryToAttachWithDefaultConventions();
         }
     }
 }

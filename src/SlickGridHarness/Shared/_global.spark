@@ -1,0 +1,5 @@
+﻿<use namespace="FubuCore" />
+﻿<use namespace="FubuMVC.Core.UI" />
+﻿<use namespace="SlickGridHarness" />
+﻿<use namespace="FubuMVC.SlickGrid" />
+<use namespace="System.Linq" />

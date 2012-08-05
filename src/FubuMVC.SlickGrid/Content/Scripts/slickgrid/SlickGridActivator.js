@@ -3,8 +3,7 @@
     $.extend(true, window, {
         "Slick": {
             "Formatters": {
-                "StringArray": StringArray,
-                "DotNetType": DotNetType
+                "StringArray": StringArray
             }
         }
     });
@@ -31,10 +30,6 @@
 
 
     }
-
-    function DotNetType(row, cell, value, columnDef, dataContext) {
-        //return '<span data-values="' + JSON.stringify(value) +
-    }
 })(jQuery);
 
 
@@ -60,6 +55,24 @@ function makeSlickGrid(div) {
         enableCellNavigation: true,
         enableColumnReorder: true
     };
+
+    var customJson = $('#' + div.id + "-custom").text().trim();
+    if (customJson) {
+
+        eval('var customizations = ' + customJson);
+        if (customizations.columns) {
+            var columnHash = {};
+            $(columns).each(function (i, col) {
+                columnHash[col.id] = col;
+            });
+        
+            for (var columnId in customizations.columns) {
+                var column = columnHash[columnId];
+                $.extend(column, customizations.columns[columnId]);
+            }
+        }
+        
+    }
 
     var grid = new Slick.Grid("#" + div.id, [], columns, options);
 

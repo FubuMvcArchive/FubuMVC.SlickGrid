@@ -1,0 +1,42 @@
+﻿<?xml version="1.0"?>
+<bindings>
+  <element name="Stylesheet">#this.Asset('@href');</element>
+  <element name="Script">#this.Asset('@src');</element>
+  <element name="SingleScript">this.SingleScript('@src')</element>
+  <element name="Scripts">this.WriteScriptTags()</element>
+  <element name="Styles">this.WriteCssTags()</element>
+  <element name="Image">this.ImageFor('@src')</element>
+  <element name="Partial">this.Partial&lt;@model&gt;()</element>
+  <element name="Form">
+    <start>this.FormFor&lt;@model&gt;().WithValidationSummary&lt;@model&gt;()</start>
+    <end>this.EndForm()</end>
+  </element>
+
+  <element name="ColumnFor">this.ColumnFor(m =&gt; m.@property)</element>
+  <element name="Label">this.LabelFor(m =&gt; m.@property)</element>
+  <element name="Display">this.DisplayFor(m =&gt; m.@property)</element>
+  <element name="Input">this.InputFor(m =&gt; m.@property)</element>
+  <element name="EditableDisplay">this.EditableDisplayFor(m =&gt; m.@property)</element>
+  <element name="InputWatermark">this.InputFor(m =&gt; m.@property).Attr("placeholder", "@placeholder")</element>
+  <element name="Hidden">this.HiddenFor(m =&gt; m.@property)</element>
+
+  <element name="LabelText">this.HeaderText(m =&gt; m.@property)</element>
+
+
+  <element name="InfoHeader">this.InfoHeader(m =&gt; m.@property)</element>
+  <element name="ColInfoHeader">this.ColInfoHeader(m =&gt; m.@property, "@localizationKey")</element>
+  <element name="InfoCell">this.InfoCell(m =&gt; m.@property)</element>
+  <element name="NotesCell">this.NotesCell(m =&gt; m.@property)</element>
+  <element name="EditCell">this.EditCell(m =&gt; m.@property)</element>
+
+  <element name="HelpImage">this.ImageFor("icon-help_sm.png")</element>
+
+  <element name="Setting">this.InlineSettingFor(m =&gt; m.@property)</element>
+
+  <element name="TemplateField">this.TemplateField(m =&gt; m.@property)</element>
+  <element name="Field">this.FieldFor(m =&gt; m.@property)</element>
+  <element name="ConditionalField">this.ConditionalFieldFor(m =&gt; m.@property)</element>
+
+	<element name="BackButton">this.BackButton()</element>
+
+</bindings>

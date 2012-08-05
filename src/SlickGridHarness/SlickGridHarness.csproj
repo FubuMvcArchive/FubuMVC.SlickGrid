@@ -84,6 +84,7 @@
     <Content Include="content\scripts\json2.js" />
     <Content Include="content\scripts\underscore-min.js" />
     <Content Include="Global.asax" />
+    <Content Include="Shared\bindings.xml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -110,7 +111,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="harness.asset.config" />
+    <Content Include="harness.asset.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Home.spark" />
+    <None Include="Shared\Application.spark" />
+    <None Include="Shared\_global.spark" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

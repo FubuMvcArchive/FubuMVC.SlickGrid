@@ -1,0 +1,25 @@
+﻿<viewdata model="SlickGridHarness.HomeViewModel"/>
+
+<content:title>FubuMVC.SlickGrid Demonstration</content:title>
+<content:head>
+
+</content:head>
+<content:main>
+  <h1>FubuMVC.SlickGrid Demonstration</h1>
+  <br></br>
+
+  !{this.RenderGrid<ConcertsGrid>("concertGrid").Attr("style", "width:100%;height:500px;")}
+  <script id="concertGrid-custom">
+    {
+      columns: {
+        Date: {width: 400},
+        Band: {width: 300},
+        Location: {width: 300}
+      }
+    }
+  </script>
+</content:main>
+
+<content:footer>
+  <h4>More stuff</h4>
+</content:footer>
