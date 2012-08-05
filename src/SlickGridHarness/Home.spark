@@ -15,6 +15,9 @@
         Date: {width: 400},
         Band: {width: 300},
         Location: {width: 300}
+      },
+      options: {
+        enableColumnReorder: false
       }
     }
   </script>

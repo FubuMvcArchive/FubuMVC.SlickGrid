@@ -51,15 +51,12 @@ function makeSlickGrid(div) {
 
     var url = $(div).data('url');
 
-    var options = {
-        enableCellNavigation: true,
-        enableColumnReorder: true
-    };
-
+    var options = {};
     var customJson = $('#' + div.id + "-custom").text().trim();
     if (customJson) {
 
         eval('var customizations = ' + customJson);
+
         if (customizations.columns) {
             var columnHash = {};
             $(columns).each(function (i, col) {
@@ -71,10 +68,24 @@ function makeSlickGrid(div) {
                 $.extend(column, customizations.columns[columnId]);
             }
         }
+
+        
+        if (customizations.options) {
+            options = customizations.options;
+        }
         
     }
+    
+    
+    var defaultOptions = {
+        enableCellNavigation: true,
+        enableColumnReorder: true
+    };
 
-    var grid = new Slick.Grid("#" + div.id, [], columns, options);
+
+
+    var gridOptions = $.extend({}, defaultOptions, options);
+    var grid = new Slick.Grid("#" + div.id, [], columns, gridOptions);
 
     div.update = function (query) {
         if (query == null) {

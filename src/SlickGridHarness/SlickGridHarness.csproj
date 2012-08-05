@@ -116,7 +116,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Home.spark" />
+    <None Include="Home.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Shared\Application.spark" />
     <None Include="Shared\_global.spark" />
   </ItemGroup>
