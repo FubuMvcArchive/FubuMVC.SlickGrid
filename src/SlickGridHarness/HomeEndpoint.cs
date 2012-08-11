@@ -29,6 +29,7 @@ namespace SlickGridHarness
         public DateTime Date { get; set; }
         public string Band { get; set; }
         public string Location { get; set; }
+        public string Genre { get; set; }
     }
 
     public class ConcertsSource : IGridDataSource<Concert>
@@ -38,19 +39,28 @@ namespace SlickGridHarness
             yield return new Concert{
                 Band = "Billy Joe Shaver",
                 Date = new Date(8, 4, 2012).Day,
-                Location = "Antones"
+                Location = "Antones",
+                Genre = "Texas Country"
             };
 
             yield return new Concert{
                 Band = "Joe Ely Band",
                 Date = new Date(8, 18, 2012).Day,
-                Location = "Antones"
+                Location = "Antones",
+                Genre = "Texas Country"
             };
 
             yield return new Concert{
                 Band = "Charlie Robison",
                 Date = new Date(9, 2, 2012).Day,
-                Location = "Greune Hall"
+                Location = "Greune Hall",
+                Genre = "Texas Country"
+            };
+            yield return new Concert{
+                Band = "Grace Potter and the Nocturnals",
+                Date = new Date(11, 13, 2012).Day,
+                Location = "Stubbs BBQ",
+                Genre = "Adult Alternative"
             };
         }
     }
@@ -64,6 +74,7 @@ namespace SlickGridHarness
             Column(x => x.Date);
             Column(x => x.Band);
             Column(x => x.Location);
+            Column(x => x.Genre);
         }
     }
 }

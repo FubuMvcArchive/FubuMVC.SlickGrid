@@ -1,14 +1,55 @@
 ﻿(function ($) {
+    var slickGridColumns = function (div) {
+        var columnJson = $(div).data('columns');
+        eval('var columns = ' + columnJson);
+
+        var columnHash = {};
+        $(columns).each(function (i, col) {
+            columnHash[col.id] = $.extend(col, { displayed: true });
+        });
+
+        this.applyCustomizations = function (customizations) {
+            if (customizations.columns) {
+                for (var columnId in customizations.columns) {
+                    var column = columnHash[columnId];
+                    $.extend(column, customizations.columns[columnId]);
+                }
+            }
+        }
+
+        this.determineColumns = function (grid) {
+            // TODO -- use the order of the columns displayed in the grid
+            // TODO - check if grid is null before you do anything
+
+            var columns = [];
+            for (var name in columnHash) {
+                var column = columnHash[name];
+                if (column.displayed) {
+                    columns.push(column);
+                }
+            }
+
+            return columns;
+        }
+
+        return this;
+    }
+
+
+
     // register namespace
     $.extend(true, window, {
         "Slick": {
             "Formatters": {
 
-            }
-        }
-    });
+        },
+        "GridColumns": slickGridColumns
+
+    }
+});
 
 })(jQuery);
+
 
 
 $(document).ready(function () {
@@ -23,9 +64,7 @@ $(document).ready(function () {
 
 
 function makeSlickGrid(div) {
-    var columnJson = $(div).data('columns');
-
-    eval('var columns = ' + columnJson);
+    var columns = Slick.GridColumns(div);
 
     var url = $(div).data('url');
 
@@ -38,19 +77,7 @@ function makeSlickGrid(div) {
     if (customJson) {
 
         eval('var customizations = ' + customJson);
-
-        if (customizations.columns) {
-            var columnHash = {};
-            $(columns).each(function (i, col) {
-                columnHash[col.id] = col;
-            });
-        
-            for (var columnId in customizations.columns) {
-                var column = columnHash[columnId];
-                $.extend(column, customizations.columns[columnId]);
-            }
-        }
-
+        columns.applyCustomizations(customizations);
         
         if (customizations.options) {
             options = customizations.options;
@@ -71,7 +98,7 @@ function makeSlickGrid(div) {
 
 
     var gridOptions = $.extend({}, defaultOptions, options);
-    var grid = new Slick.Grid("#" + div.id, [], columns, gridOptions);
+    var grid = new Slick.Grid("#" + div.id, [], columns.determineColumns(), gridOptions);
 
     
 

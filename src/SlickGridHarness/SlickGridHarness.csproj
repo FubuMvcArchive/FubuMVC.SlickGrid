@@ -45,7 +45,7 @@
       <HintPath>..\packages\FubuMVC.References.0.9.8.1092\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.JQueryUI">
-      <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.15\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.24\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Spark">
       <HintPath>..\packages\FubuMVC.Spark.0.9.8.1092\lib\net40\FubuMVC.Spark.dll</HintPath>

@@ -9,6 +9,8 @@ namespace FubuMVC.SlickGrid
         dataOnly
     }
 
+
+
     public interface IGridColumn<T>
     {
         void WriteColumn(StringBuilder builder);
