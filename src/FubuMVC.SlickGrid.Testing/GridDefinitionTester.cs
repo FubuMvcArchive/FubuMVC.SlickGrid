@@ -28,6 +28,20 @@ namespace FubuMVC.SlickGrid.Testing
         }
 
         [Test]
+        public void create_column_json_with_data_elements()
+        {
+            var grid = new TargetGrid();
+            grid.Column(x => x.Count);
+            grid.Data(x => x.IsCool);
+            grid.Column(x => x.Name);
+
+            var json = grid.As<IGridDefinition>().ToColumnJson();
+
+            json
+                .ShouldEqual("[{name: \"Count\", field: \"Count\", id: \"Count\", sortable: true}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true}]");
+        }
+
+        [Test]
         public void format_data_smoke_test()
         {
             var grid = new TargetGrid();

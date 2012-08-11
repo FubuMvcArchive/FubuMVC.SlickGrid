@@ -33,11 +33,13 @@ namespace FubuMVC.SlickGrid
 
     public class ColumnDefinition<T, TProp> : IGridColumn<T>
     {
+        private readonly FieldType _fieldType;
         private readonly Accessor _accessor;
         private readonly Cache<string, object> _cache;
 
-        public ColumnDefinition(Expression<Func<T, TProp>> property)
+        public ColumnDefinition(FieldType fieldType, Expression<Func<T, TProp>> property)
         {
+            _fieldType = fieldType;
             _cache = new Cache<string, object>();
 
             _accessor = ReflectionHelper.GetAccessor(property);
@@ -72,6 +74,11 @@ namespace FubuMVC.SlickGrid
 
             // TODO -- this'll get fancier later
             dictionary.Add(_cache["field"].As<string>(), JsonValueWriter.ConvertToJson(rawValue));
+        }
+
+        public FieldType FieldType
+        {
+            get { return _fieldType; }
         }
 
         /// <summary>

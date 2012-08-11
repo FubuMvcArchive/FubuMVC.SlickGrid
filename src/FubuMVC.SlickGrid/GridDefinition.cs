@@ -61,9 +61,10 @@ namespace FubuMVC.SlickGrid
             var builder = new StringBuilder();
             builder.Append("[");
 
-            for (var i = 0; i < _columns.Count - 1; i++)
+            var columns = _columns.Where(x => x.FieldType == FieldType.column).ToList();
+            for (var i = 0; i < columns.Count - 1; i++)
             {
-                var column = _columns[i];
+                var column = columns[i];
                 column.WriteColumn(builder);
                 builder.Append(", ");
             }
@@ -107,13 +108,19 @@ namespace FubuMVC.SlickGrid
 
         public ColumnDefinition<T, TProp> Column<TProp>(Expression<Func<T, TProp>> property)
         {
-            var column = new ColumnDefinition<T, TProp>(property);
+            var column = new ColumnDefinition<T, TProp>(FieldType.column, property);
             _columns.Add(column);
 
             return column;
         }
 
-        
+        public ColumnDefinition<T, TProp> Data<TProp>(Expression<Func<T, TProp>> property)
+        {
+            var column = new ColumnDefinition<T, TProp>(FieldType.dataOnly, property);
+            _columns.Add(column);
+
+            return column;
+        }
 
         void IFubuRegistryExtension.Configure(FubuRegistry registry)
         {
