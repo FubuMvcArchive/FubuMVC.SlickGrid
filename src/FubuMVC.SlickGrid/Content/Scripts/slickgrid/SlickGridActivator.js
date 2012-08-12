@@ -178,9 +178,6 @@ function makeSlickGrid(div) {
                 if (gridOptions.autoresize) {
                     grid.autosizeColumns();
                 }
-
-                // TODO -- this is where we'll do other things to activate stuff that just 
-                // got rendered.
             }
         });
 
