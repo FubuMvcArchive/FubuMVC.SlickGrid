@@ -20,7 +20,8 @@
         Genre: {displayed: false}
       },
       options: {
-        enableColumnReorder: true
+        enableColumnReorder: true,
+        //autoresize: true
       },
       modify: function(grid, div){
         grid.onDblClick.subscribe(function (e) {
