@@ -8,13 +8,14 @@
 
 
 (function ($) {
-    var slickGridColumns = function (div) {
-        var columnJson = $(div).data('columns');
-        eval('var columns = ' + columnJson);
-
+    var slickGridColumns = function (columns) {
         var columnHash = {};
         $(columns).each(function (i, col) {
-            columnHash[col.id] = $.extend(col, { displayed: true });
+            if (col.displayed == undefined){
+                col.displayed = true;
+            }
+
+            columnHash[col.id] = col;
         });
 
         this.applyCustomizations = function (customizations) {
@@ -26,7 +27,7 @@
             }
         }
 
-        this.getInitialColumns = function () {
+        this.getDisplayedColumns = function () {
             var columns = [];
             for (var name in columnHash) {
                 var column = columnHash[name];
@@ -99,7 +100,10 @@
 
 
 function makeSlickGrid(div) {
-    var columns = Slick.GridColumns(div);
+    var columnJson = $(div).data('columns');
+    eval('var columnData = ' + columnJson);
+
+    var columns = Slick.GridColumns(columnData);
 
     var url = $(div).data('url');
 
@@ -133,7 +137,7 @@ function makeSlickGrid(div) {
 
 
     var gridOptions = $.extend({}, defaultOptions, options);
-    var grid = new Slick.Grid("#" + div.id, [], columns.getInitialColumns(), gridOptions);
+    var grid = new Slick.Grid("#" + div.id, [], columns.getDisplayedColumns(), gridOptions);
 
     div.getAllColumns = function(){
         return columns.getAllColumns(grid);

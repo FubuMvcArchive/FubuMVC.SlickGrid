@@ -1,0 +1,6 @@
+include:FubuMVC.SlickGrid
+exclude:FubuMVC.SlickGrid\content\scripts\.idea
+exclude:.js___jb_bak___
+exclude:.js___jb_old___
+exclude:.coffee___jb_bak___
+exclude:.coffee___jb_old___
