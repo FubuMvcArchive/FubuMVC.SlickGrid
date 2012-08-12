@@ -1,4 +1,13 @@
-﻿(function ($) {
+﻿$(document).ready(function () {
+    $('.slick-grid').each(function (i, div) {
+        makeSlickGrid(div);
+
+        div.update({});
+    });
+});
+
+
+(function ($) {
     var slickGridColumns = function (div) {
         var columnJson = $(div).data('columns');
         eval('var columns = ' + columnJson);
@@ -17,16 +26,50 @@
             }
         }
 
-        this.determineColumns = function (grid) {
-            // TODO -- use the order of the columns displayed in the grid
-            // TODO - check if grid is null before you do anything
-
+        this.getInitialColumns = function () {
             var columns = [];
             for (var name in columnHash) {
                 var column = columnHash[name];
                 if (column.displayed) {
                     columns.push(column);
                 }
+            }
+
+            return columns;
+        }
+
+        this.getAllColumns = function(grid){
+            var allColumns = {displayed:[], hidden:[]};
+
+            var displayed = grid.getColumns();
+            $(displayed).each(function(i, col){
+                allColumns.displayed.push({id: col.id, name: col.name});
+            });
+
+            for (var name in columnHash){
+                var column = columnHash[name];
+                if (!column.displayed){
+                    allColumns.hidden.push({id: col.id, name: col.name});
+                }   
+            }
+
+
+            return allColumns;
+        }
+
+        this.displayColumns = function(names){
+            for (var name in columnHash) {
+                var column = columnHash[name];
+                column.displayed = false;
+            }
+            
+            var columns = [];
+
+            for (var i = 0; i < names.length; i++){
+                var column = columnHash[names[i]];
+                column.displayed = true;
+
+                columns.push(column);
             }
 
             return columns;
@@ -52,15 +95,7 @@
 
 
 
-$(document).ready(function () {
-    $('.slick-grid').each(function (i, div) {
-        makeSlickGrid(div);
 
-        div.update({});
-    });
-
-
-});
 
 
 function makeSlickGrid(div) {
@@ -98,9 +133,18 @@ function makeSlickGrid(div) {
 
 
     var gridOptions = $.extend({}, defaultOptions, options);
-    var grid = new Slick.Grid("#" + div.id, [], columns.determineColumns(), gridOptions);
+    var grid = new Slick.Grid("#" + div.id, [], columns.getInitialColumns(), gridOptions);
 
-    
+    div.getAllColumns = function(){
+        return columns.getAllColumns(grid);
+    }
+
+    div.setDisplayedColumns = function(names){
+        var displayed = columns.displayColumns(names);
+
+        grid.setColumns(displayed);
+        grid.render();
+    }
 
     div.update = function (query) {
         if (query == null) {
@@ -121,8 +165,6 @@ function makeSlickGrid(div) {
                 // TODO -- this is where we'll do other things to activate stuff that just 
                 // got rendered.
             }
-
-
         });
 
 

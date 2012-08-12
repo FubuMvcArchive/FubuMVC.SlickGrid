@@ -20,7 +20,7 @@
         Genre: {displayed: false}
       },
       options: {
-        enableColumnReorder: false
+        enableColumnReorder: true
       },
       modify: function(grid, div){
         grid.onDblClick.subscribe(function (e) {
@@ -34,11 +34,34 @@
           
           
         });
+        
+        grid.onColumnsReordered.subscribe(function(e){
+          $("#stuff").html('');
+          alert('reordering');
+          
+          var columns = grid.getColumns();
+          for (var i = 0; i < columns.length; i++){
+            alert(columns[i].id);
+          }
+        });
       }
     }
   </script>
 </content:main>
 
 <content:footer>
+  <button id="btn1">Show Bands, Genre</button>
+  <button id="btn2">Show Location, Time</button>
+  
   <pre id="stuff"></pre>
+  <script language="javascript">
+    $('#btn1').click(function(){
+      $('#concertGrid').get(0).setDisplayedColumns(['Band', 'Genre']);
+    });
+
+    $('#btn2').click(function(){
+      $('#concertGrid').get(0).setDisplayedColumns(['Location', 'Date']);
+    });
+
+  </script>
 </content:footer>
