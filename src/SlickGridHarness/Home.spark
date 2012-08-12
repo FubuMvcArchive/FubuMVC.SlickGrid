@@ -50,11 +50,22 @@
 </content:main>
 
 <content:footer>
+  
+  
+  
   <button id="btn1">Show Bands, Genre</button>
   <button id="btn2">Show Location, Time</button>
+  <button id="btn3">Show me what all the columns are</button>
   
   <pre id="stuff"></pre>
   <script language="javascript">
+    
+    $('#btn3').click(function(){
+      var allColumns = $('#concertGrid').get(0).getAllColumns();
+      $('#stuff').html(JSON.stringify(allColumns));
+    });
+    
+    
     $('#btn1').click(function(){
       $('#concertGrid').get(0).setDisplayedColumns(['Band', 'Genre']);
     });

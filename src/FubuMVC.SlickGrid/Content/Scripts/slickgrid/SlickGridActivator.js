@@ -47,8 +47,8 @@
             });
 
             for (var name in columnHash){
-                var column = columnHash[name];
-                if (!column.displayed){
+                var col = columnHash[name];
+                if (!col.displayed){
                     allColumns.hidden.push({id: col.id, name: col.name});
                 }   
             }
