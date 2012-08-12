@@ -86,15 +86,24 @@
         "Slick": {
             "Formatters": {
 
-        },
-        "GridColumns": slickGridColumns
+            },
+            "GridColumns": slickGridColumns
+        }
+    });
 
+    $.fn.updateSlickGrid = function(query){
+        this.get(0).update(query);
     }
-});
+
+    $.fn.setSlickGridDisplayedColumns = function(names){
+        this.get(0).setDisplayedColumns(names);
+    }
+
+    $.fn.getSlickGridColumns = function(){
+        return this.get(0).getAllColumns();
+    }
 
 })(jQuery);
-
-
 
 
 

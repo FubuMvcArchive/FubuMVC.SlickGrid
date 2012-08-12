@@ -62,17 +62,17 @@
   <script language="javascript">
     
     $('#btn3').click(function(){
-      var allColumns = $('#concertGrid').get(0).getAllColumns();
+      var allColumns = $('#concertGrid').getSlickGridColumns();
       $('#stuff').html(JSON.stringify(allColumns));
     });
     
     
     $('#btn1').click(function(){
-      $('#concertGrid').get(0).setDisplayedColumns(['Band', 'Genre']);
+      $('#concertGrid').setSlickGridDisplayedColumns(['Band', 'Genre']);
     });
 
     $('#btn2').click(function(){
-      $('#concertGrid').get(0).setDisplayedColumns(['Location', 'Date']);
+      $('#concertGrid').setSlickGridDisplayedColumns(['Location', 'Date']);
     });
 
   </script>
