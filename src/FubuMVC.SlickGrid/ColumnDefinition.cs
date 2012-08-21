@@ -170,5 +170,10 @@ namespace FubuMVC.SlickGrid
             _cache["formatter"] = formatter;
             return this;
         }
+
+        public override string ToString()
+        {
+            return string.Format("Accessor: {0}, FieldType: {1}", _accessor.PropertyNames.Join("."), _fieldType);
+        }
     }
 }

@@ -69,7 +69,7 @@ namespace FubuMVC.SlickGrid
                 builder.Append(", ");
             }
 
-            _columns.Last().WriteColumn(builder);
+            columns.Last().WriteColumn(builder);
 
             builder.Append("]");
 

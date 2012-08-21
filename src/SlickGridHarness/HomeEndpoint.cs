@@ -26,10 +26,17 @@ namespace SlickGridHarness
 
     public class Concert
     {
+        public Concert()
+        {
+            Url = Guid.NewGuid().ToString();
+        }
+
         public DateTime Date { get; set; }
         public string Band { get; set; }
         public string Location { get; set; }
         public string Genre { get; set; }
+
+        public string Url { get; set; }
     }
 
     public class ConcertsSource : IGridDataSource<Concert>
@@ -75,6 +82,8 @@ namespace SlickGridHarness
             Column(x => x.Band);
             Column(x => x.Location);
             Column(x => x.Genre);
+
+            Data(x => x.Url);
         }
     }
 }
