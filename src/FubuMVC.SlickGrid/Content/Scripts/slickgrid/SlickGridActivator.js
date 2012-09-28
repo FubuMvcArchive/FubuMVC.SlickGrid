@@ -148,6 +148,20 @@ function makeSlickGrid(div) {
     var gridOptions = $.extend({}, defaultOptions, options);
     var grid = new Slick.Grid("#" + div.id, [], columns.getDisplayedColumns(), gridOptions);
 
+    grid.onSort.subscribe(function(e, args) {
+      var defaultSorter = function (a, b) {
+        var x = a[sortcol], y = b[sortcol];
+        return sortdir * (x == y ? 0 : (x > y ? 1 : -1));
+      };
+
+      sortdir = args.sortAsc ? 1 : -1;
+      sortcol = args.sortCol.field;
+
+      args.grid.getData().sort(args.sortCol.sorter || defaultSorter, sortdir);
+      args.grid.invalidateAllRows();
+      args.grid.render();
+    }); 
+
     div.getAllColumns = function(){
         return columns.getAllColumns(grid);
     }
