@@ -46,6 +46,9 @@
     <Reference Include="FubuMVC.Core.Assets">
       <HintPath>..\packages\FubuMVC.Core.Assets.0.9.9.5\lib\net40\FubuMVC.Core.Assets.dll</HintPath>
     </Reference>
+    <Reference Include="FubuMVC.Core.UI">
+      <HintPath>..\packages\FubuMVC.Core.UI.0.9.9.5\lib\net40\FubuMVC.Core.UI.dll</HintPath>
+    </Reference>
     <Reference Include="FubuMVC.Core.View">
       <HintPath>..\packages\FubuMVC.Core.View.0.9.9.5\lib\net40\FubuMVC.Core.View.dll</HintPath>
     </Reference>
