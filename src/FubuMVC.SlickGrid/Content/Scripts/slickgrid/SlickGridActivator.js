@@ -6,6 +6,11 @@
     });
 });
 
+_.templateSettings = {
+    interpolate: /\{\{(.+?)\}\}/g
+};
+    
+
 
 (function ($) {
     var slickGridColumns = function (columns) {

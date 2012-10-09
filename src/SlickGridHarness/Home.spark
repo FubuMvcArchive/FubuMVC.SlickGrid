@@ -90,10 +90,7 @@
       alert(text);
     });
     
-    _.templateSettings = {
-      interpolate : /\{\{(.+?)\}\}/g
-    };
-    
+
 
 
 
