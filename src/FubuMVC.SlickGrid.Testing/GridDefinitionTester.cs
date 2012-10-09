@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using FubuMVC.Core.Urls;
+using FubuMVC.Media.Projections;
 using FubuTestingSupport;
 using NUnit.Framework;
 using FubuCore;
@@ -55,7 +56,17 @@ namespace FubuMVC.SlickGrid.Testing
                 new GridDefTarget{Count = 3, IsCool = true, Name = "Daphne"},
             };
 
-            var dicts = grid.As<IGridDefinition<GridDefTarget>>().FormatData(data);
+            IProjection<GridDefTarget> projection = grid.As<IGridDefinition<GridDefTarget>>().Projection.As<IProjection<GridDefTarget>>();
+            
+
+            var dicts = data.Select(x => {
+                var node = new DictionaryMediaNode();
+
+                projection.Write(new ProjectionContext<GridDefTarget>(new InMemoryServiceLocator(), x), node);
+
+                return node.Values;
+            });
+
             dicts.Select(x => x["Name"]).ShouldHaveTheSameElementsAs("Scooby", "Velma", "Daphne");
             dicts.Select(x => x["Count"]).ShouldHaveTheSameElementsAs(1, 2, 3);
         }

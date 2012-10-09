@@ -55,6 +55,9 @@
     <Reference Include="FubuMVC.JQueryUI">
       <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.105\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
     </Reference>
+    <Reference Include="FubuMVC.Media">
+      <HintPath>..\packages\FubuMVC.Media.0.9.5.194\lib\net40\FubuMVC.Media.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlTags">
       <HintPath>..\packages\HtmlTags.1.1.0.116\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>

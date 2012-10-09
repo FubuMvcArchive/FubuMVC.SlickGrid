@@ -9,6 +9,7 @@ using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.Routes;
 using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Urls;
+using FubuMVC.Media.Projections;
 
 namespace FubuMVC.SlickGrid
 {
@@ -17,6 +18,11 @@ namespace FubuMVC.SlickGrid
         private readonly IList<IGridColumn<T>> _columns = new List<IGridColumn<T>>();
         private Type _queryType;
         private Type _sourceType;
+
+        protected GridDefinition()
+        {
+            Projection = new Projection<T>();
+        } 
 
         /// <summary>
         /// Source type must implement either IGridDataSource<T> or IGridDataSource<T, TQuery>
@@ -95,20 +101,9 @@ namespace FubuMVC.SlickGrid
             get { return _sourceType; }
         }
 
-        IEnumerable<IDictionary<string, object>> IGridDefinition<T>.FormatData(IEnumerable<T> data)
-        {
-            return data.Select(x =>
-            {
-                var dictionary = new Dictionary<string, object>();
-                _columns.Each(col => col.WriteField(x, dictionary));
-
-                return dictionary;
-            });
-        }
-
         public ColumnDefinition<T, TProp> Column<TProp>(Expression<Func<T, TProp>> property)
         {
-            var column = new ColumnDefinition<T, TProp>(FieldType.column, property);
+            var column = new ColumnDefinition<T, TProp>(FieldType.column, property, Projection);
             _columns.Add(column);
 
             return column;
@@ -116,7 +111,7 @@ namespace FubuMVC.SlickGrid
 
         public ColumnDefinition<T, TProp> Data<TProp>(Expression<Func<T, TProp>> property)
         {
-            var column = new ColumnDefinition<T, TProp>(FieldType.dataOnly, property);
+            var column = new ColumnDefinition<T, TProp>(FieldType.dataOnly, property, Projection);
             _columns.Add(column);
 
             return column;
@@ -176,5 +171,7 @@ namespace FubuMVC.SlickGrid
                 return original;
             }
         }
+
+        public Projection<T> Projection { get; private set; }
     }
 }

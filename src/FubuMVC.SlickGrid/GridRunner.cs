@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using FubuMVC.Media.Projections;
+using System.Linq;
 
 namespace FubuMVC.SlickGrid
 {
@@ -9,17 +11,21 @@ namespace FubuMVC.SlickGrid
     {
         private readonly TGrid _grid;
         private readonly TDataSource _source;
+        private readonly IProjectionRunner<T> _runner;
 
-        public GridRunner(TGrid grid, TDataSource source)
+        public GridRunner(TGrid grid, TDataSource source, IProjectionRunner<T> runner)
         {
             _grid = grid;
             _source = source;
+            _runner = runner;
         }
 
         public IEnumerable<IDictionary<string, object>> Run()
         {
             var data = _source.GetData();
-            return _grid.FormatData(data);
+            return data.Select(x => {
+                return _runner.ProjectToJson(_grid.Projection, new SimpleValues<T>(x));
+            });
         }
     }
 
@@ -29,17 +35,22 @@ namespace FubuMVC.SlickGrid
     {
         private readonly TGrid _grid;
         private readonly TDataSource _source;
+        private readonly IProjectionRunner<T> _runner;
 
-        public GridRunner(TGrid grid, TDataSource source)
+        public GridRunner(TGrid grid, TDataSource source, IProjectionRunner<T> runner)
         {
             _grid = grid;
             _source = source;
+            _runner = runner;
         }
 
         public IEnumerable<IDictionary<string, object>> Run(TQuery query)
         {
             var data = _source.GetData(query);
-            return _grid.FormatData(data);
+            return data.Select(x =>
+            {
+                return _runner.ProjectToJson(_grid.Projection, new SimpleValues<T>(x));
+            });
         }
     }
 }

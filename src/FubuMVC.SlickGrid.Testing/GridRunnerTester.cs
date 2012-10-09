@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using FubuCore;
 using FubuMVC.Core.Urls;
+using FubuMVC.Media.Projections;
 using NUnit.Framework;
 using System.Linq;
 using FubuTestingSupport;
@@ -13,7 +15,7 @@ namespace FubuMVC.SlickGrid.Testing
         [Test]
         public void run_with_no_query()
         {
-            var runner = new GridRunner<Foo, FooGrid, FooSource>(new FooGrid(), new FooSource());
+            var runner = new GridRunner<Foo, FooGrid, FooSource>(new FooGrid(), new FooSource(), new ProjectionRunner<Foo>(new ProjectionRunner(new InMemoryServiceLocator())));
             var dicts = runner.Run();
 
             dicts.Select(x => x["name"]).ShouldHaveTheSameElementsAs("Scooby", "Shaggy", "Velma");
@@ -22,7 +24,7 @@ namespace FubuMVC.SlickGrid.Testing
         [Test]
         public void run_with_query()
         {
-            var runner = new GridRunner<Foo, FooGrid, FancyFooSource, FooQuery>(new FooGrid(), new FancyFooSource());
+            var runner = new GridRunner<Foo, FooGrid, FancyFooSource, FooQuery>(new FooGrid(), new FancyFooSource(), new ProjectionRunner<Foo>(new ProjectionRunner(new InMemoryServiceLocator())));
             var dicts = runner.Run(new FooQuery{Letter = "S"});
 
             dicts.Select(x => x["name"]).ShouldHaveTheSameElementsAs("Scooby", "Shaggy");
@@ -63,16 +65,6 @@ namespace FubuMVC.SlickGrid.Testing
 
     public class FooGrid : IGridDefinition<Foo>
     {
-        public IEnumerable<IDictionary<string, object>> FormatData(IEnumerable<Foo> data)
-        {
-            return data.Select(x =>
-            {
-                return new Dictionary<string, object>{
-                    {"name", x.Name}
-                };
-            });
-        }
-
         public string ToColumnJson()
         {
             throw new NotImplementedException();
@@ -81,6 +73,15 @@ namespace FubuMVC.SlickGrid.Testing
         public string SelectDataSourceUrl(IUrlRegistry urls)
         {
             throw new NotImplementedException();
+        }
+
+        public Projection<Foo> Projection { get
+        {
+            var projection = new Projection<Foo>();
+            projection.Value(x => x.Name).Name("name");
+
+            return projection;
+        }
         }
     }
 

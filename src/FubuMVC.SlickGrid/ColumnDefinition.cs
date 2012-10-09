@@ -5,6 +5,7 @@ using System.Text;
 using FubuCore;
 using FubuCore.Reflection;
 using FubuCore.Util;
+using FubuMVC.Media.Projections;
 
 namespace FubuMVC.SlickGrid
 {
@@ -36,13 +37,16 @@ namespace FubuMVC.SlickGrid
         private readonly FieldType _fieldType;
         private readonly Accessor _accessor;
         private readonly Cache<string, object> _cache;
+        private readonly AccessorProjection<T, TProp> _projection;
 
-        public ColumnDefinition(FieldType fieldType, Expression<Func<T, TProp>> property)
+        public ColumnDefinition(FieldType fieldType, Expression<Func<T, TProp>> property, Projection<T> projection)
         {
             _fieldType = fieldType;
             _cache = new Cache<string, object>();
 
             _accessor = ReflectionHelper.GetAccessor(property);
+
+            _projection = projection.Value(property);
 
             Title(_accessor.Name);
             Field(_accessor.Name);
@@ -50,6 +54,18 @@ namespace FubuMVC.SlickGrid
 
             Sortable(true);
         }
+
+        public ColumnDefinition<T, TProp> ProjectWith<TProjector>() where TProjector : IValueProjector<TProp>, new()
+        {
+            _projection.ProjectWith<TProjector>();
+            return this;
+        }
+
+        public ColumnDefinition<T, TProp> ProjectBy(Action<AccessorProjection<T, TProp>> configuration)
+        {
+            configuration(_projection);
+            return this;
+        } 
 
         void IGridColumn<T>.WriteColumn(StringBuilder builder)
         {
@@ -64,16 +80,6 @@ namespace FubuMVC.SlickGrid
 
             builder.Remove(builder.Length - 2, 2);
             builder.Append("}");
-        }
-
-
-
-        void IGridColumn<T>.WriteField(T target, IDictionary<string, object> dictionary)
-        {
-            var rawValue = _accessor.GetValue(target);
-
-            // TODO -- this'll get fancier later
-            dictionary.Add(_cache["field"].As<string>(), JsonValueWriter.ConvertToJson(rawValue));
         }
 
         public FieldType FieldType

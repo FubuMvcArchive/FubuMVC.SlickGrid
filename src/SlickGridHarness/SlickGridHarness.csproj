@@ -63,6 +63,9 @@
     <Reference Include="FubuMVC.JQueryUI">
       <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.105\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
     </Reference>
+    <Reference Include="FubuMVC.Media">
+      <HintPath>..\packages\FubuMVC.Media.0.9.5.194\lib\net40\FubuMVC.Media.dll</HintPath>
+    </Reference>
     <Reference Include="FubuMVC.OwinHost">
       <HintPath>..\packages\FubuKayak.0.9.9.13\lib\net40\FubuMVC.OwinHost.dll</HintPath>
     </Reference>
