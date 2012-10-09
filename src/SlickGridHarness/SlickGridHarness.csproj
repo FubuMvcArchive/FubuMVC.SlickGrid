@@ -135,9 +135,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="content\scripts\jquery-1.7.min.js" />
     <Content Include="content\scripts\json2.js" />
-    <Content Include="content\scripts\underscore-min.js" />
     <Content Include="Global.asax" />
     <Content Include="Shared\bindings.xml" />
     <Content Include="Web.config" />
@@ -164,11 +162,6 @@
       <Project>{A67A0CE1-E4C2-45FC-9019-829D434B2CC4}</Project>
       <Name>FubuMVC.SlickGrid</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="harness.asset.config">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="Home.spark">
