@@ -2,7 +2,7 @@
 
 <content:title>FubuMVC.SlickGrid Demonstration</content:title>
 <content:head>
-
+  <Script src="underscore" />
 </content:head>
 <content:main>
   <h1>FubuMVC.SlickGrid Demonstration</h1>
@@ -57,6 +57,14 @@
   <button id="btn1">Show Bands, Genre</button>
   <button id="btn2">Show Location, Time</button>
   <button id="btn3">Show me what all the columns are</button>
+  <button id="btn4">Do a template</button>
+
+  <div style="display:none">
+    <div data-subject="fake">
+      <div>{{name}} is {{age}} years old</div>
+    </div>
+    
+  </div>
   
   <pre id="stuff"></pre>
   <script language="javascript">
@@ -74,6 +82,53 @@
     $('#btn2').click(function(){
       $('#concertGrid').setSlickGridDisplayedColumns(['Location', 'Date']);
     });
+    
+    $('#btn4').click(function(){
+    alert(1);
+      var text = Slick.Templates.apply('fake', {name:'Jeremy', age:38});
+      alert(text);
+    });
+    
+    _.templateSettings = {
+      interpolate : /\{\{(.+?)\}\}/g
+    };
+    
+
+(function($){
+    var templates = {};
+  
+    var getTemplate = function (subject) {
+        if (templates[subject] == null) {
+            var html = $('[data-subject=' + subject + ']').html();
+            templates[subject] = _.template(html);
+        }
+                    
+        return templates[subject];
+    }
+  
+  
+    function UnderscoreTemplateFormatter(row, cell, value, columnDef, dataContext) {
+        var subject = columnDef.subject;
+
+        return "something";
+    }
+  
+    $.extend(true, window, {
+        "Slick": {
+            "Formatters": {
+                "UnderscoreTemplate": UnderscoreTemplateFormatter
+            },
+            "Templates": {
+                apply: function (subject, data) {
+                    return getTemplate(subject)(data);
+                }
+            }
+        }
+    });
+    
+    
+
+})(jQuery);
 
   </script>
 </content:footer>
