@@ -2,7 +2,6 @@
 
 <content:title>FubuMVC.SlickGrid Demonstration</content:title>
 <content:head>
-  <Script src="underscore" />
 </content:head>
 <content:main>
   <h1>FubuMVC.SlickGrid Demonstration</h1>
