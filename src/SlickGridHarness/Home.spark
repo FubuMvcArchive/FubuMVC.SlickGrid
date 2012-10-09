@@ -15,7 +15,7 @@
     {
       columns: {
         Date: {width: 400},
-        Band: {width: 300},
+        Band: {width: 300, subject:'band', formatter: Slick.Formatters.UnderscoreTemplate },
         Location: {width: 300},
         Genre: {displayed: false}
       },
@@ -63,7 +63,10 @@
     <div data-subject="fake">
       <div>{{name}} is {{age}} years old</div>
     </div>
-    
+
+    <div data-subject="band">
+      <i>{{Band}}</i>
+    </div>
   </div>
   
   <pre id="stuff"></pre>
@@ -84,7 +87,6 @@
     });
     
     $('#btn4').click(function(){
-    alert(1);
       var text = Slick.Templates.apply('fake', {name:'Jeremy', age:38});
       alert(text);
     });
@@ -94,41 +96,7 @@
     };
     
 
-(function($){
-    var templates = {};
-  
-    var getTemplate = function (subject) {
-        if (templates[subject] == null) {
-            var html = $('[data-subject=' + subject + ']').html();
-            templates[subject] = _.template(html);
-        }
-                    
-        return templates[subject];
-    }
-  
-  
-    function UnderscoreTemplateFormatter(row, cell, value, columnDef, dataContext) {
-        var subject = columnDef.subject;
 
-        return "something";
-    }
-  
-    $.extend(true, window, {
-        "Slick": {
-            "Formatters": {
-                "UnderscoreTemplate": UnderscoreTemplateFormatter
-            },
-            "Templates": {
-                apply: function (subject, data) {
-                    return getTemplate(subject)(data);
-                }
-            }
-        }
-    });
-    
-    
-
-})(jQuery);
 
   </script>
 </content:footer>
