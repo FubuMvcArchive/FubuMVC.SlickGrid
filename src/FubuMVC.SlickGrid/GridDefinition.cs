@@ -2,14 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
-using FubuCore;
 using FubuMVC.Core;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.Routes;
-using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Urls;
 using FubuMVC.Media.Projections;
+using FubuCore;
+using FubuMVC.Core.Resources.Conneg;
 
 namespace FubuMVC.SlickGrid
 {
@@ -22,55 +23,54 @@ namespace FubuMVC.SlickGrid
         protected GridDefinition()
         {
             Projection = new Projection<T>();
-        } 
-
-        /// <summary>
-        /// Source type must implement either IGridDataSource<T> or IGridDataSource<T, TQuery>
-        /// </summary>
-        /// <typeparam name="TSource"></typeparam>
-        public void SourceIs<TSource>()
-        {
-            var sourceType = typeof(TSource);
-            var templateType = sourceType.FindInterfaceThatCloses(typeof(IGridDataSource<>));
-            if (templateType != null)
-            {
-                if (templateType.GetGenericArguments().First() != typeof(T))
-                {
-                    throw new ArgumentOutOfRangeException("Wrong type as the argument to IGridDataSource<>");
-                }
-
-                _queryType = null;
-                _sourceType = sourceType;
-
-                return;
-            }
-
-            templateType = sourceType.FindInterfaceThatCloses(typeof(IGridDataSource<,>));
-            if (templateType != null)
-            {
-                if (templateType.GetGenericArguments().First() != typeof(T))
-                {
-                    throw new ArgumentOutOfRangeException("Wrong type as the argument to IGridDataSource<>");
-                }
-
-                _queryType = templateType.GetGenericArguments().Last();
-                _sourceType = sourceType;
-
-                return;
-            }
-
-            throw new ArgumentOutOfRangeException("TSource must be either IGridDataSource<T> or IGridDataSource<TQuery>");
         }
+
+        public Type SourceType
+        {
+            get { return _sourceType; }
+        }
+
+        public AddExpression Add
+        {
+            get { return new AddExpression(this); }
+        }
+
+        #region IFubuRegistryExtension Members
+
+        void IFubuRegistryExtension.Configure(FubuRegistry registry)
+        {
+            registry.Configure(graph => {
+                Type runnerType = DetermineRunnerType();
+
+
+                MethodInfo method = runnerType.GetMethod("Run");
+
+                var call = new ActionCall(runnerType, method);
+                var chain = new BehaviorChain();
+                chain.AddToEnd(call);
+                chain.Route = new RouteDefinition(DiagnosticConstants.UrlPrefix);
+                chain.Route.Append("_data");
+                chain.Route.Append(typeof (T).Name);
+
+                chain.MakeAsymmetricJson();
+
+                graph.AddChain(chain);
+            });
+        }
+
+        #endregion
+
+        #region IGridDefinition<T> Members
 
         string IGridDefinition.ToColumnJson()
         {
             var builder = new StringBuilder();
             builder.Append("[");
 
-            var columns = _columns.Where(x => x.FieldType == FieldType.column).ToList();
-            for (var i = 0; i < columns.Count - 1; i++)
+            List<IGridColumn<T>> columns = _columns.Where(x => x.FieldType == FieldType.column).ToList();
+            for (int i = 0; i < columns.Count - 1; i++)
             {
-                var column = columns[i];
+                IGridColumn<T> column = columns[i];
                 column.WriteColumn(builder);
                 builder.Append(", ");
             }
@@ -91,14 +91,51 @@ namespace FubuMVC.SlickGrid
                 return urls.UrlFor(_queryType);
             }
 
-            var runnerType = DetermineRunnerType();
+            Type runnerType = DetermineRunnerType();
 
             return urls.UrlFor(runnerType);
         }
 
-        public Type SourceType
+        public Projection<T> Projection { get; private set; }
+
+        #endregion
+
+        /// <summary>
+        /// Source type must implement either IGridDataSource<T> or IGridDataSource<T, TQuery>
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        public void SourceIs<TSource>()
         {
-            get { return _sourceType; }
+            Type sourceType = typeof (TSource);
+            var templateType = sourceType.FindInterfaceThatCloses(typeof (IGridDataSource<>));
+            if (templateType != null)
+            {
+                if (templateType.GetGenericArguments().First() != typeof (T))
+                {
+                    throw new ArgumentOutOfRangeException("Wrong type as the argument to IGridDataSource<>");
+                }
+
+                _queryType = null;
+                _sourceType = sourceType;
+
+                return;
+            }
+
+            templateType = sourceType.FindInterfaceThatCloses(typeof (IGridDataSource<,>));
+            if (templateType != null)
+            {
+                if (templateType.GetGenericArguments().First() != typeof (T))
+                {
+                    throw new ArgumentOutOfRangeException("Wrong type as the argument to IGridDataSource<>");
+                }
+
+                _queryType = templateType.GetGenericArguments().Last();
+                _sourceType = sourceType;
+
+                return;
+            }
+
+            throw new ArgumentOutOfRangeException("TSource must be either IGridDataSource<T> or IGridDataSource<TQuery>");
         }
 
         public ColumnDefinition<T, TProp> Column<TProp>(Expression<Func<T, TProp>> property)
@@ -117,43 +154,14 @@ namespace FubuMVC.SlickGrid
             return column;
         }
 
-        void IFubuRegistryExtension.Configure(FubuRegistry registry)
-        {
-            registry.Configure(graph =>
-            {
-                Type runnerType = DetermineRunnerType();
-
-
-                var method = runnerType.GetMethod("Run");
-
-                var call = new ActionCall(runnerType, method);
-                var chain = new BehaviorChain();
-                chain.AddToEnd(call);
-                chain.Route = new RouteDefinition(DiagnosticConstants.UrlPrefix);
-                chain.Route.Append("_data");
-                chain.Route.Append(typeof(T).Name);
-
-                chain.MakeAsymmetricJson();
-
-                graph.AddChain(chain);
-
-            });
-        }
-
         public Type DetermineRunnerType()
         {
             return _queryType == null
-                       ? typeof(GridRunner<,,>).MakeGenericType(typeof(T), GetType(), _sourceType)
-                       : typeof(GridRunner<,,,>).MakeGenericType(typeof(T), GetType(), _sourceType, _queryType);
+                       ? typeof (GridRunner<,,>).MakeGenericType(typeof (T), GetType(), _sourceType)
+                       : typeof (GridRunner<,,,>).MakeGenericType(typeof (T), GetType(), _sourceType, _queryType);
         }
 
-        public AddExpression Add
-        {
-            get
-            {
-                return new AddExpression(this);
-            }
-        }
+        #region Nested type: AddExpression
 
         public class AddExpression
         {
@@ -172,6 +180,6 @@ namespace FubuMVC.SlickGrid
             }
         }
 
-        public Projection<T> Projection { get; private set; }
+        #endregion
     }
 }

@@ -50,6 +50,24 @@ namespace FubuMVC.SlickGrid.Testing
         }
 
         [Test]
+        public void override_editor()
+        {
+            var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection);
+            column.Editor(SlickGridEditor.Text);
+
+            writeColumn(column).ShouldContain("editor: " + SlickGridEditor.Text.Name);
+        }
+
+        [Test]
+        public void override_editor_by_name()
+        {
+            var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection);
+            column.Editor(SlickGridEditor.Text.Name);
+
+            writeColumn(column).ShouldContain("editor: " + SlickGridEditor.Text.Name);
+        }
+
+        [Test]
         public void override_field()
         {
             var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection);

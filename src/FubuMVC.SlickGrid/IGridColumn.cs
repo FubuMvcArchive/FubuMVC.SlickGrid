@@ -16,5 +16,8 @@ namespace FubuMVC.SlickGrid
         void WriteColumn(StringBuilder builder);
 
         FieldType FieldType { get; }
+
+        void Editor(string editor);
+        void Editor(SlickGridEditor editor);
     }
 }

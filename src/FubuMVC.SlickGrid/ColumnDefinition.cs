@@ -13,10 +13,33 @@ namespace FubuMVC.SlickGrid
     {
         public static readonly SlickGridFormatter TypeFormatter = new SlickGridFormatter("Slick.Formatters.DotNetType");
         public static readonly SlickGridFormatter StringArray = new SlickGridFormatter("Slick.Formatters.StringArray");
+        
 
         private readonly string _name;
 
         public SlickGridFormatter(string name)
+        {
+            _name = name;
+        }
+
+        public override string ToString()
+        {
+            return _name;
+        }
+
+        public string Name
+        {
+            get { return _name; }
+        }
+    }
+
+    public class SlickGridEditor
+    {
+        public static readonly SlickGridEditor Text = new SlickGridEditor("Slick.Editors.Text");
+
+        private readonly string _name;
+
+        public SlickGridEditor(string name)
         {
             _name = name;
         }
@@ -85,6 +108,27 @@ namespace FubuMVC.SlickGrid
         public FieldType FieldType
         {
             get { return _fieldType; }
+        }
+
+        void IGridColumn<T>.Editor(string editor)
+        {
+            Editor(new SlickGridEditor(editor));
+        }
+
+        void IGridColumn<T>.Editor(SlickGridEditor editor)
+        {
+            Editor(editor);
+        }
+
+        public ColumnDefinition<T, TProp> Editor(string editor)
+        {
+            return Editor(new SlickGridEditor(editor));
+        }
+
+        public ColumnDefinition<T, TProp> Editor(SlickGridEditor editor)
+        {
+            _cache["editor"] = editor;
+            return this;
         }
 
         /// <summary>
