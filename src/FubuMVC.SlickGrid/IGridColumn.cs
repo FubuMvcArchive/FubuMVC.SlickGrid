@@ -1,23 +1,15 @@
-using System.Collections.Generic;
 using System.Text;
+using FubuCore.Reflection;
 
 namespace FubuMVC.SlickGrid
 {
-    public enum FieldType
-    {
-        column,
-        dataOnly
-    }
-
-
-
     public interface IGridColumn<T>
     {
+        SlickGridEditor Editor { get; set; }
+
+        bool IsEditable { get; }
+
+        Accessor Accessor { get; }
         void WriteColumn(StringBuilder builder);
-
-        FieldType FieldType { get; }
-
-        void Editor(string editor);
-        void Editor(SlickGridEditor editor);
     }
 }

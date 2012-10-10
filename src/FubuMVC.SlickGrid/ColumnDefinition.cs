@@ -9,71 +9,24 @@ using FubuMVC.Media.Projections;
 
 namespace FubuMVC.SlickGrid
 {
-    public class SlickGridFormatter
-    {
-        public static readonly SlickGridFormatter TypeFormatter = new SlickGridFormatter("Slick.Formatters.DotNetType");
-        public static readonly SlickGridFormatter StringArray = new SlickGridFormatter("Slick.Formatters.StringArray");
-        
-
-        private readonly string _name;
-
-        public SlickGridFormatter(string name)
-        {
-            _name = name;
-        }
-
-        public override string ToString()
-        {
-            return _name;
-        }
-
-        public string Name
-        {
-            get { return _name; }
-        }
-    }
-
-    public class SlickGridEditor
-    {
-        public static readonly SlickGridEditor Text = new SlickGridEditor("Slick.Editors.Text");
-
-        private readonly string _name;
-
-        public SlickGridEditor(string name)
-        {
-            _name = name;
-        }
-
-        public override string ToString()
-        {
-            return _name;
-        }
-
-        public string Name
-        {
-            get { return _name; }
-        }
-    }
-
     public class ColumnDefinition<T, TProp> : IGridColumn<T>
     {
-        private readonly FieldType _fieldType;
-        private readonly Accessor _accessor;
+        private const string EditorField = "editor";
         private readonly Cache<string, object> _cache;
         private readonly AccessorProjection<T, TProp> _projection;
+        private bool _isEditable;
 
-        public ColumnDefinition(FieldType fieldType, Expression<Func<T, TProp>> property, Projection<T> projection)
+        public ColumnDefinition(Expression<Func<T, TProp>> property, Projection<T> projection)
         {
-            _fieldType = fieldType;
             _cache = new Cache<string, object>();
 
-            _accessor = ReflectionHelper.GetAccessor(property);
+            Accessor = ReflectionHelper.GetAccessor(property);
 
             _projection = projection.Value(property);
 
-            Title(_accessor.Name);
-            Field(_accessor.Name);
-            Id(_accessor.Name);
+            Title(Accessor.Name);
+            Field(Accessor.Name);
+            Id(Accessor.Name);
 
             Sortable(true);
         }
@@ -88,7 +41,9 @@ namespace FubuMVC.SlickGrid
         {
             configuration(_projection);
             return this;
-        } 
+        }
+
+        public Accessor Accessor { get; private set; }
 
         void IGridColumn<T>.WriteColumn(StringBuilder builder)
         {
@@ -105,19 +60,26 @@ namespace FubuMVC.SlickGrid
             builder.Append("}");
         }
 
-        public FieldType FieldType
+        public ColumnDefinition<T, TProp> Editable(bool isEditable)
         {
-            get { return _fieldType; }
+            _isEditable = isEditable;
+            return this;
         }
 
-        void IGridColumn<T>.Editor(string editor)
+        public bool Editable()
         {
-            Editor(new SlickGridEditor(editor));
+            return _isEditable;
         }
 
-        void IGridColumn<T>.Editor(SlickGridEditor editor)
+        SlickGridEditor IGridColumn<T>.Editor
         {
-            Editor(editor);
+            get { return _cache[EditorField] as SlickGridEditor; }
+            set { _cache[EditorField] = value; }
+        }
+
+        bool IGridColumn<T>.IsEditable
+        {
+            get { return _isEditable; }
         }
 
         public ColumnDefinition<T, TProp> Editor(string editor)
@@ -127,7 +89,7 @@ namespace FubuMVC.SlickGrid
 
         public ColumnDefinition<T, TProp> Editor(SlickGridEditor editor)
         {
-            _cache["editor"] = editor;
+            _cache[EditorField] = editor;
             return this;
         }
 
@@ -223,7 +185,7 @@ namespace FubuMVC.SlickGrid
 
         public override string ToString()
         {
-            return string.Format("Accessor: {0}, FieldType: {1}", _accessor.PropertyNames.Join("."), _fieldType);
+            return string.Format("Accessor: {0}", Accessor.PropertyNames.Join("."));
         }
     }
 }

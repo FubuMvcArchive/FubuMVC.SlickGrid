@@ -35,8 +35,6 @@ namespace FubuMVC.SlickGrid
             get { return new AddExpression(this); }
         }
 
-        #region IFubuRegistryExtension Members
-
         void IFubuRegistryExtension.Configure(FubuRegistry registry)
         {
             registry.Configure(graph => {
@@ -58,24 +56,19 @@ namespace FubuMVC.SlickGrid
             });
         }
 
-        #endregion
-
-        #region IGridDefinition<T> Members
-
         string IGridDefinition.ToColumnJson()
         {
             var builder = new StringBuilder();
             builder.Append("[");
 
-            List<IGridColumn<T>> columns = _columns.Where(x => x.FieldType == FieldType.column).ToList();
-            for (int i = 0; i < columns.Count - 1; i++)
+            for (int i = 0; i < _columns.Count - 1; i++)
             {
-                IGridColumn<T> column = columns[i];
+                IGridColumn<T> column = _columns[i];
                 column.WriteColumn(builder);
                 builder.Append(", ");
             }
 
-            columns.Last().WriteColumn(builder);
+            _columns.Last().WriteColumn(builder);
 
             builder.Append("]");
 
@@ -97,8 +90,6 @@ namespace FubuMVC.SlickGrid
         }
 
         public Projection<T> Projection { get; private set; }
-
-        #endregion
 
         /// <summary>
         /// Source type must implement either IGridDataSource<T> or IGridDataSource<T, TQuery>
@@ -140,19 +131,16 @@ namespace FubuMVC.SlickGrid
 
         public ColumnDefinition<T, TProp> Column<TProp>(Expression<Func<T, TProp>> property)
         {
-            var column = new ColumnDefinition<T, TProp>(FieldType.column, property, Projection);
+            var column = new ColumnDefinition<T, TProp>(property, Projection);
             _columns.Add(column);
 
             return column;
         }
 
-        public ColumnDefinition<T, TProp> Data<TProp>(Expression<Func<T, TProp>> property)
+        public AccessorProjection<T, TProp> Data<TProp>(Expression<Func<T, TProp>> property)
         {
-            var column = new ColumnDefinition<T, TProp>(FieldType.dataOnly, property, Projection);
-            _columns.Add(column);
-
-            return column;
-        }
+            return Projection.Value(property);
+        } 
 
         public Type DetermineRunnerType()
         {
@@ -160,6 +148,8 @@ namespace FubuMVC.SlickGrid
                        ? typeof (GridRunner<,,>).MakeGenericType(typeof (T), GetType(), _sourceType)
                        : typeof (GridRunner<,,,>).MakeGenericType(typeof (T), GetType(), _sourceType, _queryType);
         }
+
+       
 
         #region Nested type: AddExpression
 

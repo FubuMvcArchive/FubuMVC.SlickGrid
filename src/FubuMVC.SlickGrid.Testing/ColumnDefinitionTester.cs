@@ -25,9 +25,24 @@ namespace FubuMVC.SlickGrid.Testing
         }
 
         [Test]
+        public void is_editable_is_false_by_default()
+        {
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
+            column.Editable().ShouldBeFalse();
+        }
+
+        [Test]
+        public void can_set_the_editable()
+        {
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
+            column.Editable(true);
+            column.Editable().ShouldBeTrue();
+        }
+
+        [Test]
         public void adds_an_accessor_projection_to_the_projection()
         {
-            var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection);
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
             column.ProjectBy(x => {
                 x.Name().ShouldEqual("Name");
             });
@@ -36,14 +51,14 @@ namespace FubuMVC.SlickGrid.Testing
         [Test]
         public void sortable_by_default()
         {
-            var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection);
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
             writeColumn(column).ShouldContain("sortable: true");
         }
 
         [Test]
         public void override_title()
         {
-            var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection);
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
             column.Title("else");
 
             writeColumn(column).ShouldContain("name: \"else\"");
@@ -52,7 +67,7 @@ namespace FubuMVC.SlickGrid.Testing
         [Test]
         public void override_editor()
         {
-            var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection);
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
             column.Editor(SlickGridEditor.Text);
 
             writeColumn(column).ShouldContain("editor: " + SlickGridEditor.Text.Name);
@@ -61,7 +76,7 @@ namespace FubuMVC.SlickGrid.Testing
         [Test]
         public void override_editor_by_name()
         {
-            var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection);
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
             column.Editor(SlickGridEditor.Text.Name);
 
             writeColumn(column).ShouldContain("editor: " + SlickGridEditor.Text.Name);
@@ -70,7 +85,7 @@ namespace FubuMVC.SlickGrid.Testing
         [Test]
         public void override_field()
         {
-            var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection);
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
             column.Field("else");
 
             writeColumn(column).ShouldEqual("{name: \"Name\", field: \"else\", id: \"Name\", sortable: true}");
@@ -79,7 +94,7 @@ namespace FubuMVC.SlickGrid.Testing
         [Test]
         public void override_id()
         {
-            var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection);
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
             column.Id("else");
 
             writeColumn(column).ShouldEqual("{name: \"Name\", field: \"Name\", id: \"else\", sortable: true}");  
@@ -88,14 +103,14 @@ namespace FubuMVC.SlickGrid.Testing
         [Test]
         public void overwrite_sortable()
         {
-            var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection).Sortable(false);
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection).Sortable(false);
             writeColumn(column).ShouldContain("sortable: false"); 
         }
 
         [Test]
         public void override_resizable()
         {
-            var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection).Resizable(false);
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection).Resizable(false);
 
             writeColumn(column).ShouldContain("resizable: false");
         }
@@ -103,7 +118,7 @@ namespace FubuMVC.SlickGrid.Testing
         [Test]
         public void override_resizable_2()
         {
-            var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection).Resizable(true);
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection).Resizable(true);
 
             writeColumn(column).ShouldContain("resizable: true");
         }
@@ -111,7 +126,7 @@ namespace FubuMVC.SlickGrid.Testing
         [Test]
         public void write_column_basic_with_defaults()
         {
-            var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection);
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
 
             writeColumn(column).ShouldEqual("{name: \"Name\", field: \"Name\", id: \"Name\", sortable: true}");           
         }
@@ -119,7 +134,7 @@ namespace FubuMVC.SlickGrid.Testing
         [Test]
         public void write_column_for_widths()
         {
-            var column = new ColumnDefinition<ColumnDefTarget, string>(FieldType.column, x => x.Name, theProjection);
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
             column.Width(100, 80, 120);
 
             writeColumn(column).ShouldContain("width: 100, minWidth: 80, maxWidth: 120");

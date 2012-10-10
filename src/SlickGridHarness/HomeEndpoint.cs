@@ -83,7 +83,7 @@ namespace SlickGridHarness
             Column(x => x.Location);
             Column(x => x.Genre);
 
-            Data(x => x.Url);
+            Projection.Value(x => x.Url);
         }
     }
 }
