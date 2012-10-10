@@ -75,6 +75,10 @@ namespace FubuMVC.SlickGrid.Testing
             throw new NotImplementedException();
         }
 
+        public bool UsesHtmlConventions { get; set; }
+        public bool AllColumnsAreEditable { get; set; }
+        public IEnumerable<IGridColumn> Columns { get; private set; }
+
         public Projection<Foo> Projection { get
         {
             var projection = new Projection<Foo>();

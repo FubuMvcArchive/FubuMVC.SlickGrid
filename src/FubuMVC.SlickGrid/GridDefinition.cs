@@ -89,6 +89,10 @@ namespace FubuMVC.SlickGrid
             return urls.UrlFor(runnerType);
         }
 
+        public bool UsesHtmlConventions { get; set; }
+        public bool AllColumnsAreEditable { get; set; }
+        public IEnumerable<IGridColumn> Columns { get { return _columns; } }
+
         public Projection<T> Projection { get; private set; }
 
         /// <summary>

@@ -14,7 +14,10 @@ namespace FubuMVC.SlickGrid
         string ToColumnJson();
         string SelectDataSourceUrl(IUrlRegistry urls);
 
-        
+        bool UsesHtmlConventions { get; set; }
+        bool AllColumnsAreEditable { get; set; }
+
+        IEnumerable<IGridColumn> Columns { get; } 
     }
 
     
