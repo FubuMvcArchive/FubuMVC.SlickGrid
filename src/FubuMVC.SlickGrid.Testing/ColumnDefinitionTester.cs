@@ -16,7 +16,7 @@ namespace FubuMVC.SlickGrid.Testing
             theProjection = new Projection<ColumnDefTarget>();
         }
 
-        private string writeColumn(IGridColumn<ColumnDefTarget> column)
+        private string writeColumn(IGridColumn column)
         {
             var builder = new StringBuilder();
             column.WriteColumn(builder);

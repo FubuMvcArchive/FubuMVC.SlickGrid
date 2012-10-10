@@ -9,7 +9,7 @@ using FubuMVC.Media.Projections;
 
 namespace FubuMVC.SlickGrid
 {
-    public class ColumnDefinition<T, TProp> : IGridColumn<T>
+    public class ColumnDefinition<T, TProp> : IGridColumn
     {
         private const string EditorField = "editor";
         private readonly Cache<string, object> _cache;
@@ -45,7 +45,7 @@ namespace FubuMVC.SlickGrid
 
         public Accessor Accessor { get; private set; }
 
-        void IGridColumn<T>.WriteColumn(StringBuilder builder)
+        void IGridColumn.WriteColumn(StringBuilder builder)
         {
             builder.Append("{");
 
@@ -71,13 +71,13 @@ namespace FubuMVC.SlickGrid
             return _isEditable;
         }
 
-        SlickGridEditor IGridColumn<T>.Editor
+        SlickGridEditor IGridColumn.Editor
         {
             get { return _cache[EditorField] as SlickGridEditor; }
             set { _cache[EditorField] = value; }
         }
 
-        bool IGridColumn<T>.IsEditable
+        bool IGridColumn.IsEditable
         {
             get { return _isEditable; }
         }

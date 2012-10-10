@@ -3,7 +3,7 @@ using FubuCore.Reflection;
 
 namespace FubuMVC.SlickGrid
 {
-    public interface IGridColumn<T>
+    public interface IGridColumn
     {
         SlickGridEditor Editor { get; set; }
 

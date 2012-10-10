@@ -16,7 +16,7 @@ namespace FubuMVC.SlickGrid
 {
     public abstract class GridDefinition<T> : IGridDefinition<T>, IFubuRegistryExtension
     {
-        private readonly IList<IGridColumn<T>> _columns = new List<IGridColumn<T>>();
+        private readonly IList<IGridColumn> _columns = new List<IGridColumn>();
         private Type _queryType;
         private Type _sourceType;
 
@@ -63,7 +63,7 @@ namespace FubuMVC.SlickGrid
 
             for (int i = 0; i < _columns.Count - 1; i++)
             {
-                IGridColumn<T> column = _columns[i];
+                IGridColumn column = _columns[i];
                 column.WriteColumn(builder);
                 builder.Append(", ");
             }
@@ -162,7 +162,7 @@ namespace FubuMVC.SlickGrid
                 _parent = parent;
             }
 
-            public static AddExpression operator +(AddExpression original, IGridColumn<T> column)
+            public static AddExpression operator +(AddExpression original, IGridColumn column)
             {
                 original._parent._columns.Add(column);
 
