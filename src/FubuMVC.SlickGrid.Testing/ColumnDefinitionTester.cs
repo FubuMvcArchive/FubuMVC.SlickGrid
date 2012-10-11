@@ -143,6 +143,37 @@ namespace FubuMVC.SlickGrid.Testing
 
             writeColumn(column).ShouldContain("width: 100, minWidth: 80, maxWidth: 120");
         }
+
+        [Test]
+        public void select_formatter_uses_the_default_formatter_if_one_exists()
+        {
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
+
+            var grid = MockRepository.GenerateMock<IGridDefinition>();
+
+            var defaultFormatter = new SlickGridFormatter("default");
+            grid.Stub(x => x.DefaultFormatter).Return(defaultFormatter);
+
+            column.SelectFormatterAndEditor(grid, new ColumnPolicies());
+
+            column.Formatter().ShouldBeTheSameAs(defaultFormatter);
+        }
+
+        [Test]
+        public void does_not_override_an_explicit_formatter_with_the_default()
+        {
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
+            column.Formatter(SlickGridFormatter.TypeFormatter);
+
+            var grid = MockRepository.GenerateMock<IGridDefinition>();
+
+            var defaultFormatter = new SlickGridFormatter("default");
+            grid.Stub(x => x.DefaultFormatter).Return(defaultFormatter);
+
+            column.SelectFormatterAndEditor(grid, new ColumnPolicies());
+
+            column.Formatter().ShouldEqual(SlickGridFormatter.TypeFormatter);
+        }
     }
 
     [TestFixture]

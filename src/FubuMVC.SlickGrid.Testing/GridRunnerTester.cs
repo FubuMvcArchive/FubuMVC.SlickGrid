@@ -88,6 +88,7 @@ namespace FubuMVC.SlickGrid.Testing
         }
 
         public bool AllColumnsAreEditable { get; set; }
+        public SlickGridFormatter DefaultFormatter { get; set; }
         public IEnumerable<IGridColumn> Columns { get; private set; }
 
         public Projection<Foo> Projection { get

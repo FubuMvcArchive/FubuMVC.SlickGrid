@@ -91,6 +91,11 @@ namespace FubuMVC.SlickGrid
                 }
             }
 
+            if (Formatter() == null && grid.DefaultFormatter != null)
+            {
+                Formatter(grid.DefaultFormatter);
+            }
+
             if (Formatter() == null && grid.UsesHtmlConventions)
             {
                 Property("displaySubject", TemplateWriter.SubjectFor(Accessor, ElementConstants.Display));

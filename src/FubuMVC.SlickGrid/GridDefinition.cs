@@ -103,6 +103,7 @@ namespace FubuMVC.SlickGrid
         }
 
         public bool AllColumnsAreEditable { get; set; }
+        public SlickGridFormatter DefaultFormatter { get; set; }
 
         public Projection<T> Projection { get; private set; }
 

@@ -20,6 +20,8 @@ namespace FubuMVC.SlickGrid
         void WriteAnyTemplates(ITemplateWriter writer);
         bool UsesHtmlConventions { get; set; }
         bool AllColumnsAreEditable { get; set; }
+
+        SlickGridFormatter DefaultFormatter { get; set; }
     }
 
     
