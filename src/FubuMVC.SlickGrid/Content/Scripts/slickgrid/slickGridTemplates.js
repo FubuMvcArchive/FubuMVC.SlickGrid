@@ -16,7 +16,7 @@
 
 
     function UnderscoreTemplateFormatter(row, cell, value, columnDef, dataContext) {
-        var subject = columnDef["display-subject"];
+        var subject = columnDef["displaySubject"];
 
         return Slick.Templates.apply(subject, dataContext);
     }

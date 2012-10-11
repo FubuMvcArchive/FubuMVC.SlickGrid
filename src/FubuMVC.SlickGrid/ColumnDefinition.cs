@@ -83,7 +83,7 @@ namespace FubuMVC.SlickGrid
                 if (grid.UsesHtmlConventions)
                 {
                     Editor(SlickGridEditor.Underscore);
-                    Property("editor-subject", TemplateWriter.SubjectFor(Accessor, ElementConstants.Editor));
+                    Property("editorSubject", TemplateWriter.SubjectFor(Accessor, ElementConstants.Editor));
                 }
                 else
                 {
@@ -93,7 +93,7 @@ namespace FubuMVC.SlickGrid
 
             if (Formatter() == null && grid.UsesHtmlConventions)
             {
-                Property("display-subject", TemplateWriter.SubjectFor(Accessor, ElementConstants.Display));
+                Property("displaySubject", TemplateWriter.SubjectFor(Accessor, ElementConstants.Display));
                 Formatter(SlickGridFormatter.Underscore);
             }
         }

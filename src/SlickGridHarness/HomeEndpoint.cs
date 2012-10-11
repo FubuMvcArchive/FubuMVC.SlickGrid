@@ -76,6 +76,7 @@ namespace SlickGridHarness
     {
         public ConcertsGrid()
         {
+            UsesHtmlConventions = true;
             SourceIs<ConcertsSource>();
 
             Column(x => x.Date);

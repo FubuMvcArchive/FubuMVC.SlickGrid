@@ -43,8 +43,7 @@ namespace FubuMVC.SlickGrid
             _assets.Require("slickgrid_styles", "slickgrid/SlickGridActivator.js");
             if (_grid.UsesHtmlConventions)
             {
-                _assets.Require("underscore");
-                // TODO -- the script for underscore templates(?)
+                _assets.Require("underscore", "slickgrid/slickGridTemplates.js");
             }
 
             _grid.SelectFormattersAndEditors(new ColumnPolicies());

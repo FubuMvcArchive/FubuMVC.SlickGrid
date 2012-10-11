@@ -82,7 +82,7 @@ namespace FubuMVC.SlickGrid.Testing
 
             // This is a big, big problem!!!!  Not unique!!!  Needs to be better namespaced on the 
             // html conventions side of things!!!!
-            column.Property("editor-subject").ShouldEqual("editor-GridDefTarget-Name");
+            column.Property("editorSubject").ShouldEqual("editor-GridDefTarget-Name");
         }
 
         [Test]
@@ -98,7 +98,7 @@ namespace FubuMVC.SlickGrid.Testing
 
             // This is a big, big problem!!!!  Not unique!!!  Needs to be better namespaced on the 
             // html conventions side of things!!!!
-            column.Property("display-subject").ShouldEqual("display-GridDefTarget-Name");
+            column.Property("displaySubject").ShouldEqual("display-GridDefTarget-Name");
         }
 
         [Test]

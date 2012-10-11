@@ -14,7 +14,7 @@
     {
       columns: {
         Date: {width: 400},
-        Band: {width: 300, subject:'band', formatter: Slick.Formatters.UnderscoreTemplate },
+        Band: {width: 300, subject:'band' },
         Location: {width: 300},
         Genre: {displayed: false}
       },
