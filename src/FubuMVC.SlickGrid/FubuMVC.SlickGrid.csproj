@@ -81,6 +81,7 @@
     <Compile Include="GridFubuPageExtensions.cs" />
     <Compile Include="GridRunner.cs" />
     <Compile Include="GridTagWriter.cs" />
+    <Compile Include="IColumnPolicies.cs" />
     <Compile Include="IGridColumn.cs" />
     <Compile Include="IGridDataSource.cs" />
     <Compile Include="IGridDefinition.cs" />

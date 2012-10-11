@@ -40,7 +40,7 @@ namespace FubuMVC.SlickGrid
         {
             registry.Configure(graph => {
                 Type runnerType = DetermineRunnerType();
-
+                if (runnerType == null) return;
 
                 MethodInfo method = runnerType.GetMethod("Run");
 
@@ -160,6 +160,8 @@ namespace FubuMVC.SlickGrid
 
         public Type DetermineRunnerType()
         {
+            if (_sourceType == null) return null;
+
             return _queryType == null
                        ? typeof (GridRunner<,,>).MakeGenericType(typeof (T), GetType(), _sourceType)
                        : typeof (GridRunner<,,,>).MakeGenericType(typeof (T), GetType(), _sourceType, _queryType);

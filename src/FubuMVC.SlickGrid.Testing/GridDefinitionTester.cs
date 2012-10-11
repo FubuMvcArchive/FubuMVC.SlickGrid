@@ -12,7 +12,21 @@ namespace FubuMVC.SlickGrid.Testing
     [TestFixture]
     public class GridDefinitionTester
     {
-        public class TargetGrid : GridDefinition<GridDefTarget>{}
+        public class TargetGrid : GridDefinition<GridDefTarget>
+        {
+            public TargetGrid()
+            {
+
+            }
+        }
+
+        public class TargetSource : IGridDataSource<GridDefTarget>
+        {
+            public IEnumerable<GridDefTarget> GetData()
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         [Test]
         public void create_column_json()

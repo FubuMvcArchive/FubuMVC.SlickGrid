@@ -95,6 +95,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColumnDefinitionTester.cs" />
+    <Compile Include="ColumnPoliciesTester.cs" />
+    <Compile Include="column_policies_is_registered.cs" />
     <Compile Include="GridDefinitionTester.cs" />
     <Compile Include="GridDefinition_selecting_editors_specs.cs" />
     <Compile Include="GridRunnerTester.cs" />

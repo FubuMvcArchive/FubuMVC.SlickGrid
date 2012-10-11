@@ -9,29 +9,19 @@ using HtmlTags;
 
 namespace FubuMVC.SlickGrid
 {
-    public interface IColumnPolicies
-    {
-        SlickGridEditor EditorFor(Accessor accessor);
-    }
 
-    // TODO -- make this thing smarter later
-    public class ColumnPolicies : IColumnPolicies
-    {
-        public SlickGridEditor EditorFor(Accessor accessor)
-        {
-            return SlickGridEditor.Text;
-        }
-    }
 
     public class GridTagWriter<T> where T : IGridDefinition
     {
+        private readonly IColumnPolicies _policies;
         private readonly ITemplateWriter _templates;
         private readonly IAssetRequirements _assets;
         private readonly IUrlRegistry _urls;
         private readonly T _grid;
 
-        public GridTagWriter(ITemplateWriter templates, IAssetRequirements assets, IUrlRegistry urls, T grid)
+        public GridTagWriter(IColumnPolicies policies, ITemplateWriter templates, IAssetRequirements assets, IUrlRegistry urls, T grid)
         {
+            _policies = policies;
             _templates = templates;
             _assets = assets;
             _urls = urls;
@@ -46,7 +36,7 @@ namespace FubuMVC.SlickGrid
                 _assets.Require("underscore", "slickgrid/slickGridTemplates.js");
             }
 
-            _grid.SelectFormattersAndEditors(new ColumnPolicies());
+            _grid.SelectFormattersAndEditors(_policies);
             _grid.WriteAnyTemplates(_templates);
 
             var div = new HtmlTag("div").Id(id).AddClass("slick-grid");
