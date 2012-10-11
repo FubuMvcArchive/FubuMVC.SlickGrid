@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using FubuCore;
+using FubuMVC.Core.UI.Templates;
 using FubuMVC.Core.Urls;
 using FubuMVC.Media.Projections;
 using NUnit.Framework;
@@ -76,6 +77,16 @@ namespace FubuMVC.SlickGrid.Testing
         }
 
         public bool UsesHtmlConventions { get; set; }
+        public void SelectFormattersAndEditors(IColumnPolicies editors)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WriteAnyTemplates(ITemplateWriter writer)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool AllColumnsAreEditable { get; set; }
         public IEnumerable<IGridColumn> Columns { get; private set; }
 

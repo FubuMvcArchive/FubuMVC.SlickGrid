@@ -11,5 +11,7 @@ namespace FubuMVC.SlickGrid
 
         Accessor Accessor { get; }
         void WriteColumn(StringBuilder builder);
+
+        void SelectFormatterAndEditor(IGridDefinition grid, IColumnPolicies editors);
     }
 }

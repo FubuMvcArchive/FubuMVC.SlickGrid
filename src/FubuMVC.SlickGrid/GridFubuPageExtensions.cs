@@ -10,22 +10,7 @@ namespace FubuMVC.SlickGrid
     {
         public static HtmlTag RenderGrid<T>(this IFubuPage page, string id) where T : IGridDefinition, new()
         {
-            var grid = new T();
-
-            var div = new HtmlTag("div").Id(id).AddClass("slick-grid");
-            div.Data("columns", grid.ToColumnJson());
-
-            page.Asset("slickgrid_styles");
-            page.Asset("slickgrid/SlickGridActivator.js");
-
-
-            var url = grid.SelectDataSourceUrl(page.Urls);
-            if (url.IsNotEmpty())
-            {
-                div.Data("url", url);
-            }
-
-            return div;
+            return page.Get<GridTagWriter<T>>().Write(id);
         }
     }
 }

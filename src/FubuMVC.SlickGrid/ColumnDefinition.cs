@@ -5,6 +5,8 @@ using System.Text;
 using FubuCore;
 using FubuCore.Reflection;
 using FubuCore.Util;
+using FubuMVC.Core.UI.Elements;
+using FubuMVC.Core.UI.Templates;
 using FubuMVC.Media.Projections;
 
 namespace FubuMVC.SlickGrid
@@ -12,6 +14,7 @@ namespace FubuMVC.SlickGrid
     public class ColumnDefinition<T, TProp> : IGridColumn
     {
         private const string EditorField = "editor";
+        public const string FormatterField = "formatter";
         private readonly Cache<string, object> _cache;
         private readonly AccessorProjection<T, TProp> _projection;
         private bool _isEditable;
@@ -60,6 +63,28 @@ namespace FubuMVC.SlickGrid
             builder.Append("}");
         }
 
+        public void SelectFormatterAndEditor(IGridDefinition grid, IColumnPolicies editors)
+        {
+            if (Editor() == null && grid.AllColumnsAreEditable)
+            {
+                if (grid.UsesHtmlConventions)
+                {
+                    Editor(SlickGridEditor.Underscore);
+                    Property("editor-subject", TemplateWriter.SubjectFor(Accessor, ElementConstants.Editor));
+                }
+                else
+                {
+                    Editor(editors.EditorFor(Accessor));
+                }
+            }
+
+            if (Formatter() == null && grid.UsesHtmlConventions)
+            {
+                Property("display-subject", TemplateWriter.SubjectFor(Accessor, ElementConstants.Display));
+                Formatter(SlickGridFormatter.Underscore);
+            }
+        }
+
         public ColumnDefinition<T, TProp> Editable(bool isEditable)
         {
             _isEditable = isEditable;
@@ -68,13 +93,13 @@ namespace FubuMVC.SlickGrid
 
         public bool Editable()
         {
-            return _isEditable;
+            return _isEditable || Editor() != null;
         }
 
         SlickGridEditor IGridColumn.Editor
         {
-            get { return _cache[EditorField] as SlickGridEditor; }
-            set { _cache[EditorField] = value; }
+            get { return Editor(); }
+            set { Editor(value); }
         }
 
         bool IGridColumn.IsEditable
@@ -171,21 +196,36 @@ namespace FubuMVC.SlickGrid
             return this;
         }
 
+        public object Property(string property)
+        {
+            return _cache.Has(property) ? _cache[property] : null;
+        }
+
         public ColumnDefinition<T, TProp> Formatter(string formatter)
         {
-            _cache["formatter"] = new SlickGridFormatter(formatter);
+            _cache[FormatterField] = new SlickGridFormatter(formatter);
             return this;
         }
 
         public ColumnDefinition<T, TProp> Formatter(SlickGridFormatter formatter)
         {
-            _cache["formatter"] = formatter;
+            _cache[FormatterField] = formatter;
             return this;
         }
 
         public override string ToString()
         {
             return string.Format("Accessor: {0}", Accessor.PropertyNames.Join("."));
+        }
+
+        public SlickGridEditor Editor()
+        {
+            return _cache.Has(EditorField) ? _cache[EditorField] as SlickGridEditor : null;
+        }
+
+        public SlickGridFormatter Formatter()
+        {
+            return _cache.Has(FormatterField) ? _cache[FormatterField] as SlickGridFormatter : null;
         }
     }
 }

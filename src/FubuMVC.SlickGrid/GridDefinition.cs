@@ -7,6 +7,7 @@ using System.Text;
 using FubuMVC.Core;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.Routes;
+using FubuMVC.Core.UI.Templates;
 using FubuMVC.Core.Urls;
 using FubuMVC.Media.Projections;
 using FubuCore;
@@ -90,8 +91,18 @@ namespace FubuMVC.SlickGrid
         }
 
         public bool UsesHtmlConventions { get; set; }
+
+        void IGridDefinition.SelectFormattersAndEditors(IColumnPolicies editors)
+        {
+            _columns.Each(x => x.SelectFormatterAndEditor(this, editors));
+        }
+
+        void IGridDefinition.WriteAnyTemplates(ITemplateWriter writer)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool AllColumnsAreEditable { get; set; }
-        public IEnumerable<IGridColumn> Columns { get { return _columns; } }
 
         public Projection<T> Projection { get; private set; }
 
