@@ -99,7 +99,7 @@ namespace FubuMVC.SlickGrid
 
         void IGridDefinition.WriteAnyTemplates(ITemplateWriter writer)
         {
-            throw new NotImplementedException();
+            _columns.Each(x => x.WriteTemplates(writer));
         }
 
         public bool AllColumnsAreEditable { get; set; }

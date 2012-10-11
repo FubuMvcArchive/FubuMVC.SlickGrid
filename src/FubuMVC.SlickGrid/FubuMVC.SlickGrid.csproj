@@ -107,6 +107,7 @@
     <Content Include="Content\Scripts\slickgrid\slick.formatters.js" />
     <Content Include="Content\Scripts\slickgrid\slick.grid.js" />
     <Content Include="Content\Scripts\slickgrid\SlickGridActivator.js" />
+    <Content Include="Content\Scripts\slickgrid\slickGridTemplates.js" />
     <Content Include="Content\Scripts\slickgrid\specs\SlickGridActivator.spec.js" />
     <Content Include="Content\Styles\slickgrid\examples.css" />
     <Content Include="Content\Styles\slickgrid\slick-default-theme.css" />

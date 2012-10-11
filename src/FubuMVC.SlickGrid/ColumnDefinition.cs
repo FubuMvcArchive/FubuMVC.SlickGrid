@@ -63,6 +63,19 @@ namespace FubuMVC.SlickGrid
             builder.Append("}");
         }
 
+        void IGridColumn.WriteTemplates(ITemplateWriter writer)
+        {
+            if (Editor() == SlickGridEditor.Underscore)
+            {
+                writer.AddElement(Accessor, ElementConstants.Editor);
+            }
+
+            if (Formatter() == SlickGridFormatter.Underscore)
+            {
+                writer.AddElement(Accessor, ElementConstants.Display);
+            }
+        }
+
         public void SelectFormatterAndEditor(IGridDefinition grid, IColumnPolicies editors)
         {
             if (Editor() == null && grid.AllColumnsAreEditable)

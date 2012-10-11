@@ -1,5 +1,6 @@
 using System.Text;
 using FubuCore.Reflection;
+using FubuMVC.Core.UI.Templates;
 
 namespace FubuMVC.SlickGrid
 {
@@ -12,6 +13,7 @@ namespace FubuMVC.SlickGrid
         Accessor Accessor { get; }
         void WriteColumn(StringBuilder builder);
 
+        void WriteTemplates(ITemplateWriter writer);
         void SelectFormatterAndEditor(IGridDefinition grid, IColumnPolicies editors);
     }
 }

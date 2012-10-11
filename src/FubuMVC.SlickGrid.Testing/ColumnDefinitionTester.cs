@@ -1,7 +1,11 @@
 using System.Text;
+using FubuMVC.Core.UI.Elements;
+using FubuMVC.Core.UI.Templates;
 using FubuMVC.Media.Projections;
 using NUnit.Framework;
 using FubuTestingSupport;
+using Rhino.Mocks;
+using FubuCore;
 
 namespace FubuMVC.SlickGrid.Testing
 {
@@ -138,6 +142,58 @@ namespace FubuMVC.SlickGrid.Testing
             column.Width(100, 80, 120);
 
             writeColumn(column).ShouldContain("width: 100, minWidth: 80, maxWidth: 120");
+        }
+    }
+
+    [TestFixture]
+    public class when_writing_templates
+    {
+        private ColumnDefinition<ColumnDefTarget, string> theColumn;
+        private ITemplateWriter theTemplates;
+
+        [SetUp]
+        public void SetUp()
+        {
+            theColumn = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, new Projection<ColumnDefTarget>());
+            theTemplates = MockRepository.GenerateMock<ITemplateWriter>();
+        }
+
+        [Test]
+        public void do_nothing_if_not_using_any_kind_of_template()
+        {
+            theColumn.As<IGridColumn>().WriteTemplates(theTemplates);
+            theTemplates.AssertWasNotCalled(x => x.AddElement(theColumn.Accessor, ElementConstants.Display));
+            theTemplates.AssertWasNotCalled(x => x.AddElement(theColumn.Accessor, ElementConstants.Editor));
+        }
+
+        [Test]
+        public void do_nothing_if_using_explicit_formatters_that_are_not_the_underscores()
+        {
+            theColumn.Editor(SlickGridEditor.Text);
+            theColumn.Formatter(SlickGridFormatter.TypeFormatter);
+
+            theColumn.As<IGridColumn>().WriteTemplates(theTemplates);
+            theTemplates.AssertWasNotCalled(x => x.AddElement(theColumn.Accessor, ElementConstants.Display));
+            theTemplates.AssertWasNotCalled(x => x.AddElement(theColumn.Accessor, ElementConstants.Editor));
+        }
+
+        [Test]
+        public void write_the_display_template_if_using_underscore_formatter()
+        {
+            theColumn.Formatter(SlickGridFormatter.Underscore);
+
+            theColumn.As<IGridColumn>().WriteTemplates(theTemplates);
+            theTemplates.AssertWasCalled(x => x.AddElement(theColumn.Accessor, ElementConstants.Display));
+        }
+
+        [Test]
+        public void write_the_editor_template_if_using_underscore_formatter()
+        {
+            theColumn.Editor(SlickGridEditor.Underscore);
+            theColumn.As<IGridColumn>().WriteTemplates(theTemplates);
+            theTemplates.AssertWasCalled(x => x.AddElement(theColumn.Accessor, ElementConstants.Editor));
+
+
         }
     }
 
