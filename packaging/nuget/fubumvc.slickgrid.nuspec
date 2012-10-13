@@ -13,6 +13,7 @@
     <tags>fubumvc slickgrid</tags>
     <dependencies>
       <dependency id="FubuMVC.References" version="0.9.8.993" />
+      <dependency id="FubuMVC.Media"  />
     </dependencies>
   </metadata>
   <files>
