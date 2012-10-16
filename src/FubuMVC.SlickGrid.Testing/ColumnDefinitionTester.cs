@@ -174,6 +174,59 @@ namespace FubuMVC.SlickGrid.Testing
 
             column.Formatter().ShouldEqual(SlickGridFormatter.TypeFormatter);
         }
+
+        [Test]
+        public void does_not_override_an_explicit_formatter_with_one_from_rules()
+        {
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
+            column.Formatter(SlickGridFormatter.TypeFormatter);
+
+            var grid = MockRepository.GenerateMock<IGridDefinition>();
+
+            var policies = new ColumnPolicies();
+            policies.If(a => true).FormatWith(new SlickGridFormatter("Foo"));
+
+            column.SelectFormatterAndEditor(grid, policies);
+
+            column.Formatter().ShouldEqual(SlickGridFormatter.TypeFormatter);
+        }
+
+        [Test]
+        public void will_apply_a_formatter_chosen_from_default_policy()
+        {
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
+
+            var grid = MockRepository.GenerateMock<IGridDefinition>();
+
+            var policies = new ColumnPolicies();
+            policies.If(a => true).FormatWith(new SlickGridFormatter("Foo"));
+
+            column.SelectFormatterAndEditor(grid, policies);
+
+            column.Formatter().ShouldEqual(new SlickGridFormatter("Foo"));
+        }
+
+        [Test]
+        public void apply_any_rules()
+        {
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
+            var column2 = new ColumnDefinition<ColumnDefTarget, bool>(x => x.IsCool, theProjection);
+
+            var grid = MockRepository.GenerateMock<IGridDefinition>();
+
+            var policies = new ColumnPolicies();
+            policies.If(a => a.Name == "Name").SetProperty("foo", 1).SetProperty("bar", 2);
+
+            column.SelectFormatterAndEditor(grid, policies);
+
+            column.Property("foo", 1);
+            column.Property("bar", 2);
+
+            column2.SelectFormatterAndEditor(grid, policies);
+
+            column2.Property("foo").ShouldBeNull();
+            column2.Property("bar").ShouldBeNull();
+        }
     }
 
     [TestFixture]

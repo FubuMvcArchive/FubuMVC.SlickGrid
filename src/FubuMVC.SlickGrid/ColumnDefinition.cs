@@ -76,7 +76,7 @@ namespace FubuMVC.SlickGrid
             }
         }
 
-        public void SelectFormatterAndEditor(IGridDefinition grid, IColumnPolicies editors)
+        public void SelectFormatterAndEditor(IGridDefinition grid, IColumnPolicies policies)
         {
             if (Editor() == null && grid.AllColumnsAreEditable)
             {
@@ -87,20 +87,33 @@ namespace FubuMVC.SlickGrid
                 }
                 else
                 {
-                    Editor(editors.EditorFor(Accessor));
+                    Editor(policies.EditorFor(Accessor));
                 }
             }
 
-            if (Formatter() == null && grid.DefaultFormatter != null)
+            if (Formatter() == null)
             {
-                Formatter(grid.DefaultFormatter);
+                Formatter(determineFormatter(grid, policies));
             }
 
-            if (Formatter() == null && grid.UsesHtmlConventions)
+        }
+
+        private SlickGridFormatter determineFormatter(IGridDefinition grid, IColumnPolicies policies)
+        {
+            if (grid.DefaultFormatter != null) return grid.DefaultFormatter;
+
+            if (grid.UsesHtmlConventions)
             {
                 Property("displaySubject", TemplateWriter.SubjectFor(Accessor, ElementConstants.Display));
-                Formatter(SlickGridFormatter.Underscore);
+                return SlickGridFormatter.Underscore;
             }
+
+            return policies.FormatterFor(Accessor);
+        }
+
+        Cache<string, object> IGridColumn.Properties
+        {
+            get { return _cache; }
         }
 
         public ColumnDefinition<T, TProp> Editable(bool isEditable)

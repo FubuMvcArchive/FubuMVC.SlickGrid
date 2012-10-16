@@ -129,6 +129,11 @@ namespace FubuMVC.SlickGrid.Testing
         {
             return new SlickGridEditor(accessor.Name);
         }
+
+        public SlickGridFormatter FormatterFor(Accessor accessor)
+        {
+            return null;
+        }
     }
 
 
