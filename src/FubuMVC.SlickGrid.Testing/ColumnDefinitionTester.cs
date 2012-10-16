@@ -29,6 +29,16 @@ namespace FubuMVC.SlickGrid.Testing
         }
 
         [Test]
+        public void will_not_write_a_null_property_because_that_wigs_out_at_runtime()
+        {
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
+            column.Property("something", null);
+
+            // just wanna see it not blow up
+            writeColumn(column);
+        }
+
+        [Test]
         public void is_editable_is_false_by_default()
         {
             var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);

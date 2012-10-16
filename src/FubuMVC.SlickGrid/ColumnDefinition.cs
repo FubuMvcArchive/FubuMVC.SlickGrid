@@ -93,9 +93,9 @@ namespace FubuMVC.SlickGrid
 
             if (Formatter() == null)
             {
-                Formatter(determineFormatter(grid, policies));
+                var formatter = determineFormatter(grid, policies);
+                if (formatter != null) Formatter(formatter);
             }
-
         }
 
         private SlickGridFormatter determineFormatter(IGridDefinition grid, IColumnPolicies policies)

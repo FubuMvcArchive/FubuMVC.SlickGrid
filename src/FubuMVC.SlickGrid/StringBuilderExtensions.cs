@@ -6,8 +6,12 @@ namespace FubuMVC.SlickGrid
     {
         public static void WriteJsonProp(this StringBuilder builder, object key, object value)
         {
+            if (value == null) return;
+            
             builder.Append(key);
             builder.Append(": ");
+
+
 
             if (value is string)
             {
