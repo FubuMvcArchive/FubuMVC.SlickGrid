@@ -41,6 +41,8 @@
 
             return columns;
         }
+        
+
 
         this.getAllColumns = function(grid){
             var allColumns = {displayed:[], hidden:[]};
@@ -174,6 +176,24 @@ function makeSlickGrid(div) {
 
         grid.setColumns(displayed);
         grid.render();
+    }
+    
+    div.findRowIndex = function (search) {
+        var data = grid.getData();
+        
+        var filter = function (row) {
+            for (prop in search) {
+                if (row[prop] != search[prop]) return false;
+            }
+
+            return true;
+        }
+        
+        for (var i = 0; i < data.length; i++) {
+            if (filter(data[i])) return i;
+        }
+
+        return -1;
     }
 
     div.update = function (query) {

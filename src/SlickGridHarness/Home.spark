@@ -57,6 +57,7 @@
   <button id="btn2">Show Location, Time</button>
   <button id="btn3">Show me what all the columns are</button>
   <button id="btn4">Do a template</button>
+  <button id="btn5">Find index</button>
 
   <div style="display:none">
     <div data-subject="fake">
@@ -90,7 +91,10 @@
       alert(text);
     });
     
-
+    $('#btn5').click(function(){
+      var search = {Genre:"Texas Country", Band:"Charlie Robison"};
+      alert($('#concertGrid').get(0).findRowIndex(search));
+    });
 
 
 
