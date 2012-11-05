@@ -197,13 +197,16 @@ function makeSlickGrid(div) {
     }
     
     div.findColumnIndex = function (name) {
-        var displayed = columns.getDisplayedColumns();
-        
-        for (var i = 0; i < displayed.length; i++) {
-            if (displayed[i].name == name) return i;
-        }
+        return grid.getColumnIndex(name);
+    }
+    
+    div.activateCell = function (search, columnName) {
+        var row = div.findRowIndex(search);
+        grid.scrollRowIntoView(row);
 
-        return -1;
+        var column = grid.getColumnIndex(columnName);
+
+        grid.setActiveCell(row, column);
     }
 
     div.update = function (query) {

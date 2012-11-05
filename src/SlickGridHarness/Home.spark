@@ -58,6 +58,7 @@
   <button id="btn3">Show me what all the columns are</button>
   <button id="btn4">Do a template</button>
   <button id="btn5">Find index</button>
+  <button id="btn6">Set Active</button>
 
   <div style="display:none">
     <div data-subject="fake">
@@ -99,7 +100,10 @@
       alert($('#concertGrid').get(0).findColumnIndex("Band"));
     });
 
-
+    $('#btn6').click(function(){
+      var search = {Genre:"Texas Country", Band:"Charlie Robison"};
+      $('#concertGrid').get(0).activateCell(search, 'Location');
+    });
 
   </script>
 </content:footer>
