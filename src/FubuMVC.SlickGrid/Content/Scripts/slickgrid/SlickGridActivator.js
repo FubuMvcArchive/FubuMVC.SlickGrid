@@ -195,6 +195,16 @@ function makeSlickGrid(div) {
 
         return -1;
     }
+    
+    div.findColumnIndex = function (name) {
+        var displayed = columns.getDisplayedColumns();
+        
+        for (var i = 0; i < displayed.length; i++) {
+            if (displayed[i].name == name) return i;
+        }
+
+        return -1;
+    }
 
     div.update = function (query) {
         if (query == null) {

@@ -92,8 +92,11 @@
     });
     
     $('#btn5').click(function(){
-      var search = {Genre:"Texas Country", Band:"Charlie Robison"};
-      alert($('#concertGrid').get(0).findRowIndex(search));
+      //var search = {Genre:"Texas Country", Band:"Charlie Robison"};
+      //alert($('#concertGrid').get(0).findRowIndex(search));
+      
+      
+      alert($('#concertGrid').get(0).findColumnIndex("Band"));
     });
 
 
