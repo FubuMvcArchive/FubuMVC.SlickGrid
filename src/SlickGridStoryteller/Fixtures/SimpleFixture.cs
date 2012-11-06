@@ -7,9 +7,13 @@ using FubuMVC.SlickGrid.Serenity;
 
 namespace SlickGridStoryteller.Fixtures
 {
-    public class SimpleFixture : ScreenFixture
+    public class SimpleFixture : SlickGridFixture<Concert>
     {
         private IWebElement _editor;
+
+        public SimpleFixture() : base("concertGrid")
+        {
+        }
 
         protected override void beforeRunning()
         {
@@ -19,8 +23,7 @@ namespace SlickGridStoryteller.Fixtures
         [FormatAs("Click on the row with band {band}")]
         public void ClickBand(string band)
         {
-            Driver.GridAction<Concert>("concertGrid")
-                .Where(x => x.Band).Is(band).ClickOnRow();
+            Where(x => x.Band).Is(band).ClickOnRow();
         }
 
         [FormatAs("The band name selected is {band}")]
@@ -32,18 +35,15 @@ namespace SlickGridStoryteller.Fixtures
         [FormatAs("The concert date for {band} playing at {location} should be {date}")]
         public string TheDateIs(string band, string location)
         {
-            return Driver.GridAction<Concert>("concertGrid")
-                .Where(x => x.Band).Is(band)
-                .Where(x => x.Location).Is(location)
+            return Where(x => x.Band).Is(band)
+                .And(x => x.Location).Is(location)
                 .TextFor(x => x.Date);
         }
 
         [FormatAs("Edit the genre for the band {band}")]
         public void EditGenreForBand(string band)
         {
-            _editor = Driver.GridAction<Concert>("concertGrid")
-                .Where(x => x.Band).Is(band)
-                .Editor(x => x.Genre);
+            _editor = Where(x => x.Band).Is(band).Editor(x => x.Genre);
         }
 
         [FormatAs("The value of the genre in the editor should be {genre}")]
@@ -55,6 +55,8 @@ namespace SlickGridStoryteller.Fixtures
         [FormatAs("Change the genre to {genre}")]
         public void ChangeGenre(string genre)
         {
+
+
             Serenity.Fixtures.Handlers.ElementHandlers.FindHandler(_editor).EnterData(Driver, _editor, genre);
         
             _editor.SendKeys(Keys.Tab);

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>FubuMVC.SlickGrid.Serenity</id>
+    <version>0.0</version>
+    <authors>Jeremy Miller, et al.</authors>
+    <owners>Jeremy Miller, Joshua Arnold</owners>
+    <licenseUrl>https://github.com/DarthFubuMVC/fubumvc/raw/master/license.txt</licenseUrl>
+    <projectUrl>http://mvc.fubu-project.org/</projectUrl>
+    <iconUrl>https://github.com/DarthFubuMVC/fubu-collateral/raw/master/Icons/FubuMvc_256.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Serenity/WebDriver/Storyteller test helpers for FubuMVC.SlickGrid</description>
+    <tags>fubumvc slickgrid</tags>
+    <dependencies>
+      <dependency id="FubuMVC.SlickGrid" />
+      <dependency id="Serenity" version="0.9.8.87" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\src\FubuMVC.SlickGrid.Serenity\bin\release\FubuMVC.SlickGrid.Serenity.*" target="lib\net40" />
+  </files>
+</package>

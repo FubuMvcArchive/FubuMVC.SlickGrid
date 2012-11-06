@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TestResult xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ExecutionTime="0.2366322" ExceptionText="" WasCancelled="false" Locator="Simple/Reading text directly from a cell with complex row search">
+<TestResult xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ExecutionTime="0.2311686" ExceptionText="" WasCancelled="false" Locator="Simple/Reading text directly from a cell with complex row search">
   <Html>&lt;!DOCTYPE html&gt;
 &lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;style&gt;body
 {

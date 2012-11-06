@@ -20,7 +20,7 @@ namespace FubuMVC.SlickGrid.Serenity
         } 
     }
 
-    public class GridAction<T>
+    public class GridAction<T> : IGridAction<T>
     {
         private readonly string _gridId;
         private readonly IWebDriver _driver;
@@ -37,6 +37,11 @@ namespace FubuMVC.SlickGrid.Serenity
             return new SearchExpression(this, expression);
         }
 
+        SearchExpression IGridAction<T>.And(Expression<Func<T, object>> expression)
+        {
+            return new SearchExpression(this, expression);
+        }
+
         public class SearchExpression
         {
             private readonly GridAction<T> _parent;
@@ -48,7 +53,7 @@ namespace FubuMVC.SlickGrid.Serenity
                 _expression = expression;
             }
 
-            public GridAction<T> Is(string searchTerm)
+            public IGridAction<T> Is(string searchTerm)
             {
                 _parent._search.Add(_expression, searchTerm);
                 return _parent;
@@ -102,6 +107,16 @@ namespace FubuMVC.SlickGrid.Serenity
 
 
 
+    }
+
+    public interface IGridAction<T>
+    {
+        void ClickOnRow();
+        string TextFor(Expression<Func<T, object>> expression);
+        IWebElement Formatter(Expression<Func<T, object>> expression);
+        void Activate(Expression<Func<T, object>> expression);
+        IWebElement Editor(Expression<Func<T, object>> expression);
+        GridAction<T>.SearchExpression And(Expression<Func<T, object>> expression);
     }
 
     public class RowSearch<T>
