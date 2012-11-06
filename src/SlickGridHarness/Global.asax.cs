@@ -13,4 +13,12 @@ namespace SlickGridHarness
             FubuApplication.For<SlickGridHarnessRegistry>().StructureMap(new Container()).Bootstrap();
         }
     }
+
+    public class HarnessApplication : IApplicationSource
+    {
+        public FubuApplication BuildApplication()
+        {
+            return FubuApplication.For<SlickGridHarnessRegistry>().StructureMap(new Container());
+        }
+    }
 }

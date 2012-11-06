@@ -1,4 +1,4 @@
-﻿<viewdata model="SlickGridHarness.HomeViewModel"/>
+﻿<viewdata model="SlickGridHarness.Simple.SimpleViewModel"/>
 
 <content:title>FubuMVC.SlickGrid Demonstration</content:title>
 <content:head>
@@ -6,10 +6,15 @@
 <content:main>
   <h1>FubuMVC.SlickGrid Demonstration</h1>
   <br></br>
-  
+
   
 
   !{this.RenderGrid<ConcertsGrid>("concertGrid").Attr("style", "width:100%;height:500px;")}
+  
+  <div>The band selected is <span id="band"></span></div>
+
+    <pre id="trace"></pre>  
+    
   <script id="concertGrid-custom">
     {
       columns: {
@@ -21,10 +26,23 @@
       options: {
         enableColumnReorder: true,
         //autoresize: true
+      },
+      
+      modify: function(grid, div){
+        grid.onClick.subscribe(function (e) {
+          var cell = grid.getCellFromEvent(e);
+          var item = grid.getDataItem(cell.row);
+          
+          
+          $('#band').text(item.Band);
+          
+        });
       }
     }
   </script>
 </content:main>
+
+
 
 <content:footer>
   

@@ -2,5 +2,11 @@
 <Test name="Reading cells in a grid by row search" lifecycle="Acceptance">
   <Simple>
     <Comment><![CDATA[Everything should come up]]></Comment>
+    <ClickBand isStep="True" band="Joe Ely Band" />
+    <TheSelectedBandIs isStep="True" band="Joe Ely Band" />
+    <ClickBand isStep="True" band="Charlie Robison" />
+    <TheSelectedBandIs isStep="True" band="Charlie Robison" />
+    <ClickBand isStep="True" band="Billy Joe Shaver" />
+    <TheSelectedBandIs isStep="True" band="Billy Joe Shaver" />
   </Simple>
 </Test>

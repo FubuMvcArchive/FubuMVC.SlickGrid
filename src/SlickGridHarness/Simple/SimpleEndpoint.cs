@@ -2,9 +2,11 @@
 {
     public class SimpleEndpoint
     {
-        public HomeViewModel get_simple()
+        public SimpleViewModel get_simple()
         {
-            return new HomeViewModel();
+            return new SimpleViewModel();
         }
     }
+
+    public class SimpleViewModel{}
 }

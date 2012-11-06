@@ -65,7 +65,7 @@
       <HintPath>..\packages\Selenium.WebDriverBackedSelenium.2.25.1\lib\net40\Selenium.WebDriverBackedSelenium.dll</HintPath>
     </Reference>
     <Reference Include="Serenity">
-      <HintPath>..\packages\Serenity.0.9.8.84\lib\net40\Serenity.dll</HintPath>
+      <HintPath>..\packages\Serenity.0.9.8.85\lib\net40\Serenity.dll</HintPath>
     </Reference>
     <Reference Include="StoryTeller">
       <HintPath>..\packages\Storyteller2.2.0.0.6\lib\net40\StoryTeller.dll</HintPath>
@@ -107,7 +107,10 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="GridDriver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RowSearch.cs" />
+    <Compile Include="WebDriverExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

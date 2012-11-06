@@ -177,10 +177,10 @@ function makeSlickGrid(div) {
         grid.setColumns(displayed);
         grid.render();
     }
-    
+
     div.findRowIndex = function (search) {
         var data = grid.getData();
-        
+
         var filter = function (row) {
             for (prop in search) {
                 if (row[prop] != search[prop]) return false;
@@ -188,8 +188,9 @@ function makeSlickGrid(div) {
 
             return true;
         }
-        
+
         for (var i = 0; i < data.length; i++) {
+            $('#trace').text(JSON.stringify(data[i]));
             if (filter(data[i])) return i;
         }
 
@@ -199,15 +200,20 @@ function makeSlickGrid(div) {
     div.findColumnIndex = function (name) {
         return grid.getColumnIndex(name);
     }
-    
+
     div.activateCell = function (search, columnName) {
         var row = div.findRowIndex(search);
         grid.scrollRowIntoView(row);
 
-        var column = grid.getColumnIndex(columnName);
+        var column = 0;
+        if (columnName) {
+            column = grid.getColumnIndex(columnName);
+        }
 
         grid.setActiveCell(row, column);
     }
+    
+
 
     div.update = function (query) {
         if (query == null) {
