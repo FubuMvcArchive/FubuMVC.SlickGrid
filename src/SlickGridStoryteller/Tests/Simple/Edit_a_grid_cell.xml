@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Test name="Edit a grid cell" lifecycle="Acceptance">
+  <Simple>
+    <EditGenreForBand isStep="True" band="Joe Ely Band" />
+    <TheEditorText isStep="True" genre="Texas Country" />
+    <ChangeGenre isStep="True" genre="Americana" />
+    <ClickBand isStep="True" band="Charlie Robison" />
+    <EditGenreForBand isStep="True" band="Joe Ely Band" />
+    <TheEditorText isStep="True" genre="Americana" />
+  </Simple>
+</Test>

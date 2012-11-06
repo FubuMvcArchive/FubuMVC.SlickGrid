@@ -2,6 +2,7 @@
 
 <content:title>FubuMVC.SlickGrid Demonstration</content:title>
 <content:head>
+  <Script src="slickgrid/slick.editors.js" />
 </content:head>
 <content:main>
   <h1>FubuMVC.SlickGrid Demonstration</h1>
@@ -19,12 +20,14 @@
     {
       columns: {
         Date: {width: 400},
-        Band: {width: 300, subject:'band' },
+        Band: {width: 300, subject:'band', editor: Slick.Editors.Text },
         Location: {width: 300},
-        Genre: {displayed: false}
+        Genre: {displayed: true, editor: Slick.Editors.Text}
       },
       options: {
         enableColumnReorder: true,
+        autoEdit: true,
+        editable: true,
         //autoresize: true
       },
       

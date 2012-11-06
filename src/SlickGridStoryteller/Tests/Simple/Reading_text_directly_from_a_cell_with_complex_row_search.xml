@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Test name="Reading text directly from a cell with complex row search" lifecycle="Acceptance">
+  <Simple>
+    <TheDateIs isStep="True" band="Billy Joe Shaver" location="Antones" date="8/4/2012 5:00:00 AM" />
+    <TheDateIs isStep="True" band="Billy Joe Shaver" location="Greune Hall" date="9/3/2012 5:00:00 AM" />
+  </Simple>
+</Test>

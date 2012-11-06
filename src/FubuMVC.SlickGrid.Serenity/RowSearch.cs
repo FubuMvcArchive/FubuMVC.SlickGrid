@@ -6,7 +6,9 @@ using HtmlTags;
 using OpenQA.Selenium;
 using FubuCore.Reflection;
 using FubuCore;
+using Serenity;
 using Serenity.Fixtures;
+using System.Linq;
 
 namespace FubuMVC.SlickGrid.Serenity
 {
@@ -55,12 +57,50 @@ namespace FubuMVC.SlickGrid.Serenity
 
         public void ClickOnRow()
         {
-            var js = "$('#{0}').get(0).activateCell({1})".ToFormat(_gridId, _search.SearchTerm());
+            Retry.Twice(() => {
+                var js = "$('#{0}').get(0).activateCell({1})".ToFormat(_gridId, _search.SearchTerm());
+                _driver.InjectJavascript(js);
+
+                var css = "#{0} .slick-cell.active".ToFormat(_gridId);
+                _driver.FindElement(By.CssSelector(css)).Click();
+            });
+        }
+
+        public string TextFor(Expression<Func<T, object>> expression)
+        {
+            return Formatter(expression).Text;
+        }
+
+        public IWebElement Formatter(Expression<Func<T, object>> expression)
+        {
+            var id = Guid.NewGuid().ToString();
+
+            var js = "$('#{0}').get(0).markCell({1}, '{2}', '{3}')".ToFormat(_gridId, _search.SearchTerm(), expression.ToAccessor().Name, id);
             _driver.InjectJavascript(js);
 
-            var css = "#{0} .slick-cell.active".ToFormat(_gridId);
-            _driver.FindElement(By.CssSelector(css)).Click();
+
+            return _driver.FindElement(By.Id(id));
         }
+
+        public void Activate(Expression<Func<T, object>> expression)
+        {
+            var js = "$('#{0}').get(0).activateCell({1}, '{2}')".ToFormat(_gridId, _search.SearchTerm(), expression.ToAccessor().Name);
+            _driver.InjectJavascript(js);
+        }
+
+        public IWebElement Editor(Expression<Func<T, object>> expression)
+        {
+            return Retry.Twice(() => {
+                var js = "$('#{0}').get(0).editCell({1}, '{2}')".ToFormat(_gridId, _search.SearchTerm(),
+                                                                          expression.ToAccessor().Name);
+                _driver.InjectJavascript(js);
+
+                var css = "#{0} .slick-cell.active".ToFormat(_gridId);
+                return _driver.FindElement(By.CssSelector(css)).FindElements(By.CssSelector("*")).FirstOrDefault();
+            });
+        }
+
+
 
     }
 

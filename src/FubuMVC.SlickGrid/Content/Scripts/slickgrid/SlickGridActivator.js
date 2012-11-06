@@ -190,7 +190,6 @@ function makeSlickGrid(div) {
         }
 
         for (var i = 0; i < data.length; i++) {
-            $('#trace').text(JSON.stringify(data[i]));
             if (filter(data[i])) return i;
         }
 
@@ -212,8 +211,23 @@ function makeSlickGrid(div) {
 
         grid.setActiveCell(row, column);
     }
-    
 
+    div.editCell = function (search, columnName) {
+        div.activateCell(search, columnName);
+        grid.editActiveCell();
+    }
+
+    div.markCell = function (search, columnName, id) {
+        var row = div.findRowIndex(search);
+        grid.scrollRowIntoView(row);
+
+        var column = 0;
+        if (columnName) {
+            column = grid.getColumnIndex(columnName);
+        }
+        $('#trace').text(row + ", " + column);
+        grid.getCellNode(row, column).id = id;
+    }
 
     div.update = function (query) {
         if (query == null) {
