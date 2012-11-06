@@ -1,0 +1,417 @@
+<?xml version="1.0"?>
+<TestResult xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ExecutionTime="0" ExceptionText="FubuCore.FubuException: FubuCore Error 0:  &#xA;&#xD;&#xA;Restarted            11/6/2012 7:54:53 AM                          &#xD;&#xA;Application Path     C:\code\FubuMVC.SlickGrid\src\SlickGridHarness&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Errors&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Lambda expression at: Serenity.FubuMvcSystem`1.&lt;.ctor&gt;b__0(),  line 0&#xD;&#xA;System.TypeLoadException: Could not load type 'FubuMVC.Core.CurrentRequest' from assembly 'FubuMVC.Core, Version=0.9.8.1268, Culture=neutral, PublicKeyToken=null'.&#xD;&#xA;&#xD;&#xA;Server stack trace: &#xD;&#xA;   at FubuMVC.StructureMap.StructureMapFubuRegistry..ctor()&#xD;&#xA;   at FubuMVC.StructureMap.BootstrappingExtensions.&lt;&gt;c__DisplayClass9.&lt;StructureMap&gt;b__8() in c:\BuildAgent\work\e5cfff0cc125d023\src\FubuMVC.StructureMap\BootstrappingExtensions.cs:line 35&#xD;&#xA;   at FubuMVC.Core.FubuApplication.&lt;.ctor&gt;b__0() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 66&#xD;&#xA;   at System.Lazy`1.CreateValue()&#xD;&#xA;&#xD;&#xA;Exception rethrown at [0]: &#xD;&#xA;   at FubuMVC.StructureMap.StructureMapFubuRegistry..ctor()&#xD;&#xA;   at FubuMVC.StructureMap.BootstrappingExtensions.&lt;&gt;c__DisplayClass9.&lt;StructureMap&gt;b__8() in c:\BuildAgent\work\e5cfff0cc125d023\src\FubuMVC.StructureMap\BootstrappingExtensions.cs:line 35&#xD;&#xA;   at FubuMVC.Core.FubuApplication.&lt;.ctor&gt;b__0() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 66&#xD;&#xA;   at System.Lazy`1.CreateValue()&#xD;&#xA;   at System.Lazy`1.LazyInitValue()&#xD;&#xA;   at FubuMVC.Core.FubuApplication.&lt;&gt;c__DisplayClass10.&lt;&gt;c__DisplayClass12.&lt;Bootstrap&gt;b__b(IPackageLog log) in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 142&#xD;&#xA;   at Bottles.LambdaBootstrapper.Bootstrap(IPackageLog log)&#xD;&#xA;   at Bottles.PackagingRuntimeGraph.&lt;&gt;c__DisplayClass4.&lt;collectAllActivatorsFromBootstrappers&gt;b__3(IBootstrapper currentBootstrapper, IPackageLog log)&#xD;&#xA;   at Bottles.Diagnostics.PackageLog.Execute(Action continuation)&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------&#xD;&#xA;Assemblies&#xD;&#xA;-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------&#xD;&#xA;mscorlib                             4.0.0.0        file:///C:/Windows/Microsoft.NET/Framework64/v4.0.30319/mscorlib.dll                                                             &#xD;&#xA;StoryTeller                          2.0.0.6        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/StoryTeller.DLL                                             &#xD;&#xA;FubuCore                             0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuCore.DLL                                                &#xD;&#xA;SlickGridStoryteller                 1.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/SlickGridStoryteller.DLL                                    &#xD;&#xA;Serenity                             0.9.8.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Serenity.DLL                                                &#xD;&#xA;SlickGridHarness                     1.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/SlickGridHarness.DLL                                        &#xD;&#xA;FubuMVC.Core                         0.9.8.1268     file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Core.DLL                                            &#xD;&#xA;System.Core                          4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Core/v4.0_4.0.0.0__b77a5c561934e089/System.Core.dll                    &#xD;&#xA;Bottles                              0.9.9.399      file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Bottles.DLL                                                 &#xD;&#xA;Castle.Core                          3.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Castle.Core.DLL                                             &#xD;&#xA;System.Xml                           4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Xml/v4.0_4.0.0.0__b77a5c561934e089/System.Xml.dll                      &#xD;&#xA;System                               4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll                              &#xD;&#xA;FubuLocalization                     1.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuLocalization.DLL                                        &#xD;&#xA;FubuMVC.Core.Assets                  0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Core.Assets.DLL                                     &#xD;&#xA;HtmlTags                             1.2.0.127      file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/HtmlTags.DLL                                                &#xD;&#xA;System.Web                           4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_64/System.Web/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Web.dll                        &#xD;&#xA;FubuMVC.Core.UI                      0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Core.UI.DLL                                         &#xD;&#xA;FubuMVC.Core.View                    0.9.9.38       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Core.View.DLL                                       &#xD;&#xA;FubuMVC.Media                        1.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Media.DLL                                           &#xD;&#xA;FubuMVC.SelfHost                     0.9.8.1268     file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.SelfHost.DLL                                        &#xD;&#xA;System.Net.Http                      2.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Net.Http.DLL                                         &#xD;&#xA;FubuMVC.SlickGrid                    0.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.SlickGrid.DLL                                       &#xD;&#xA;FubuMVC.StructureMap                 0.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.StructureMap.DLL                                    &#xD;&#xA;StructureMap                         2.6.3.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/StructureMap.DLL                                            &#xD;&#xA;System.Web.Extensions                4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Web.Extensions/v4.0_4.0.0.0__31bf3856ad364e35/System.Web.Extensions.dll&#xD;&#xA;Ionic.Zip                            1.9.1.8        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Ionic.Zip.DLL                                               &#xD;&#xA;Newtonsoft.Json                      4.5.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Newtonsoft.Json.DLL                                         &#xD;&#xA;Selenium.WebDriverBackedSelenium     2.25.1.0       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Selenium.WebDriverBackedSelenium.DLL                        &#xD;&#xA;System.Net.Http.Formatting           4.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Net.Http.Formatting.DLL                              &#xD;&#xA;System.Net.Http.WebRequest           2.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Net.Http.WebRequest.DLL                              &#xD;&#xA;System.Web.Http                      4.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Web.Http.DLL                                         &#xD;&#xA;System.Web.Http.SelfHost             4.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Web.Http.SelfHost.DLL                                &#xD;&#xA;System.ServiceModel                  4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.ServiceModel/v4.0_4.0.0.0__b77a5c561934e089/System.ServiceModel.dll    &#xD;&#xA;ThoughtWorks.Selenium.Core           2.21.0.0       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/ThoughtWorks.Selenium.Core.DLL                              &#xD;&#xA;WebDriver                            2.25.1.0       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/WebDriver.DLL                                               &#xD;&#xA;System.Drawing                       4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Drawing/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Drawing.dll              &#xD;&#xA;WebDriver.Support                    2.25.1.0       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/WebDriver.Support.DLL                                       &#xD;&#xA;System.Configuration                 4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Configuration/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Configuration.dll  &#xD;&#xA;kxsx13nl                             0.9.9.399      file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll                              &#xD;&#xA;osu0pgc5                             0.9.9.399      file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll                              &#xD;&#xA;FubuKayak                            0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/FubuKayak.dll                                                         &#xD;&#xA;FubuMVC.JQueryUI                     0.5.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/FubuMVC.JQueryUI.dll                                                  &#xD;&#xA;FubuMVC.OwinHost                     0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/FubuMVC.OwinHost.dll                                                  &#xD;&#xA;FubuMVC.Spark                        0.9.9.38       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/FubuMVC.Spark.dll                                                     &#xD;&#xA;Gate                                 0.1.4.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/Gate.dll                                                              &#xD;&#xA;Gate.Kayak                           0.1.4.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/Gate.Kayak.dll                                                        &#xD;&#xA;Kayak                                0.7.2.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/Kayak.dll                                                             &#xD;&#xA;Spark                                1.7.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/Spark.dll                                                             &#xD;&#xA;-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Logs&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Bottling Process finished on 11/6/2012 at 7:54:53 AM&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;FubuMVC Packaging Facility&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Bottles.PackageLoaders.LinkedFolders.LinkedFolderPackageLoader&#xD;&#xA;Loading linked folders via the package manifest at C:\code\FubuMVC.SlickGrid\src\SlickGridHarness&#xD;&#xA;  - linking folder C:\code\FubuMVC.SlickGrid\src\FubuMVC.SlickGrid&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;FubuMVC.Core.Packaging.ZipFilePackageLoader&#xD;&#xA;Searching for zip files in package directory C:\code\FubuMVC.SlickGrid\src\SlickGridHarness\bin\fubu-packages&#xD;&#xA;Searching for zip files in package directory C:\code\FubuMVC.SlickGrid\src\SlickGridHarness\fubu-content&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;FubuMVC.Core.Packaging.StandaloneAssemblyPackageLoader&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;FubuMVC.Core.FubuModuleAttributePackageLoader&#xD;&#xA;Looking for assemblies marked with the [FubuModule] attribute in C:\code\FubuMVC.SlickGrid\src\SlickGridStoryteller\bin\debug&#xD;&#xA;Looking for assemblies marked with the [FubuModule] attribute in C:\code\FubuMVC.SlickGrid\src\SlickGridHarness\bin&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Adding package web content folders to the virtual path provider (VirtualPathProviderActivator)&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;FubuMVC.SlickGrid (C:\code\FubuMVC.SlickGrid\src\FubuMVC.SlickGrid)&#xD;&#xA;Loaded assembly 'FubuMVC.SlickGrid, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' v0.0.0.51550&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo&#xD;&#xA;Loaded assembly 'FubuMVC.Core.Assets, Version=0.9.9.0, Culture=neutral, PublicKeyToken=null' v0.9.9.38&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo&#xD;&#xA;Loaded assembly 'FubuMVC.Core.UI, Version=0.9.9.0, Culture=neutral, PublicKeyToken=null' v0.9.9.43&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo&#xD;&#xA;Loaded assembly 'FubuMVC.Core.View, Version=0.9.9.38, Culture=neutral, PublicKeyToken=null' v0.9.9.38&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo&#xD;&#xA;Loaded assembly 'FubuMVC.Media, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' v1.0.0.0&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo&#xD;&#xA;Bottle named FubuMVC.SlickGrid already found by a previous loader.  Ignoring.&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo&#xD;&#xA;Bottle named FubuMVC.Core.Assets already found by a previous loader.  Ignoring.&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo&#xD;&#xA;Bottle named FubuMVC.Core.UI already found by a previous loader.  Ignoring.&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo&#xD;&#xA;Bottle named FubuMVC.Core.View already found by a previous loader.  Ignoring.&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo&#xD;&#xA;Loaded assembly 'FubuMVC.JQueryUI, Version=0.5.0.0, Culture=neutral, PublicKeyToken=null' v0.5.0.133&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo&#xD;&#xA;Bottle named FubuMVC.Media already found by a previous loader.  Ignoring.&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo&#xD;&#xA;Bottle named FubuMVC.SlickGrid already found by a previous loader.  Ignoring.&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo&#xD;&#xA;Loaded assembly 'FubuMVC.Spark, Version=0.9.9.38, Culture=neutral, PublicKeyToken=null' v0.9.9.38&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;FubuMVC.Core.Assets, Version=0.9.9.0, Culture=neutral, PublicKeyToken=null&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;FubuMVC.Core.UI, Version=0.9.9.0, Culture=neutral, PublicKeyToken=null&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;FubuMVC.Core.View, Version=0.9.9.38, Culture=neutral, PublicKeyToken=null&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;FubuMVC.JQueryUI, Version=0.5.0.0, Culture=neutral, PublicKeyToken=null&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;FubuMVC.Media, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;FubuMVC.SlickGrid, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;FubuMVC.Spark, Version=0.9.9.38, Culture=neutral, PublicKeyToken=null&#xD;&#xA;&#xD;&#xA;------------------------------------------------------------------------------------------------&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Server stack trace: &#xD;&#xA;   at FubuMVC.Core.FubuApplication.&lt;Bootstrap&gt;b__c() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 162&#xD;&#xA;   at FubuMVC.Core.FubuApplication.Bootstrap() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 165&#xD;&#xA;   at Serenity.FubuMvcSystem`1.&lt;.ctor&gt;b__0()&#xD;&#xA;   at Serenity.FubuMvcSystem.buildApplication()&#xD;&#xA;   at System.Lazy`1.CreateValue()&#xD;&#xA;&#xD;&#xA;Exception rethrown at [0]: &#xD;&#xA;   at FubuMVC.Core.FubuApplication.&lt;Bootstrap&gt;b__c() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 162&#xD;&#xA;   at FubuMVC.Core.FubuApplication.Bootstrap() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 165&#xD;&#xA;   at Serenity.FubuMvcSystem`1.&lt;.ctor&gt;b__0()&#xD;&#xA;   at Serenity.FubuMvcSystem.buildApplication()&#xD;&#xA;   at System.Lazy`1.CreateValue()&#xD;&#xA;   at System.Lazy`1.LazyInitValue()&#xD;&#xA;   at Serenity.FubuMvcSystem.CreateContext()&#xD;&#xA;   at StoryTeller.Engine.TestRun.Execute()" WasCancelled="false" Locator="Simple/Reading cells in a grid by row search">
+  <Html>&lt;!DOCTYPE html&gt;
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Catastrophic Failure!&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;pre&gt;FubuCore.FubuException: FubuCore Error 0:  
+
+Restarted            11/6/2012 7:54:53 AM                          
+Application Path     C:\code\FubuMVC.SlickGrid\src\SlickGridHarness
+
+------------------------------------------------------------------------------------------------
+Errors
+------------------------------------------------------------------------------------------------
+Lambda expression at: Serenity.FubuMvcSystem`1.&amp;lt;.ctor&amp;gt;b__0(),  line 0
+System.TypeLoadException: Could not load type &amp;#39;FubuMVC.Core.CurrentRequest&amp;#39; from assembly &amp;#39;FubuMVC.Core, Version=0.9.8.1268, Culture=neutral, PublicKeyToken=null&amp;#39;.
+
+Server stack trace: 
+   at FubuMVC.StructureMap.StructureMapFubuRegistry..ctor()
+   at FubuMVC.StructureMap.BootstrappingExtensions.&amp;lt;&amp;gt;c__DisplayClass9.&amp;lt;StructureMap&amp;gt;b__8() in c:\BuildAgent\work\e5cfff0cc125d023\src\FubuMVC.StructureMap\BootstrappingExtensions.cs:line 35
+   at FubuMVC.Core.FubuApplication.&amp;lt;.ctor&amp;gt;b__0() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 66
+   at System.Lazy`1.CreateValue()
+
+Exception rethrown at [0]: 
+   at FubuMVC.StructureMap.StructureMapFubuRegistry..ctor()
+   at FubuMVC.StructureMap.BootstrappingExtensions.&amp;lt;&amp;gt;c__DisplayClass9.&amp;lt;StructureMap&amp;gt;b__8() in c:\BuildAgent\work\e5cfff0cc125d023\src\FubuMVC.StructureMap\BootstrappingExtensions.cs:line 35
+   at FubuMVC.Core.FubuApplication.&amp;lt;.ctor&amp;gt;b__0() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 66
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at FubuMVC.Core.FubuApplication.&amp;lt;&amp;gt;c__DisplayClass10.&amp;lt;&amp;gt;c__DisplayClass12.&amp;lt;Bootstrap&amp;gt;b__b(IPackageLog log) in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 142
+   at Bottles.LambdaBootstrapper.Bootstrap(IPackageLog log)
+   at Bottles.PackagingRuntimeGraph.&amp;lt;&amp;gt;c__DisplayClass4.&amp;lt;collectAllActivatorsFromBootstrappers&amp;gt;b__3(IBootstrapper currentBootstrapper, IPackageLog log)
+   at Bottles.Diagnostics.PackageLog.Execute(Action continuation)
+
+------------------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Assemblies
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+mscorlib                             4.0.0.0        file:///C:/Windows/Microsoft.NET/Framework64/v4.0.30319/mscorlib.dll                                                             
+StoryTeller                          2.0.0.6        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/StoryTeller.DLL                                             
+FubuCore                             0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuCore.DLL                                                
+SlickGridStoryteller                 1.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/SlickGridStoryteller.DLL                                    
+Serenity                             0.9.8.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Serenity.DLL                                                
+SlickGridHarness                     1.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/SlickGridHarness.DLL                                        
+FubuMVC.Core                         0.9.8.1268     file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Core.DLL                                            
+System.Core                          4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Core/v4.0_4.0.0.0__b77a5c561934e089/System.Core.dll                    
+Bottles                              0.9.9.399      file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Bottles.DLL                                                 
+Castle.Core                          3.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Castle.Core.DLL                                             
+System.Xml                           4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Xml/v4.0_4.0.0.0__b77a5c561934e089/System.Xml.dll                      
+System                               4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll                              
+FubuLocalization                     1.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuLocalization.DLL                                        
+FubuMVC.Core.Assets                  0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Core.Assets.DLL                                     
+HtmlTags                             1.2.0.127      file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/HtmlTags.DLL                                                
+System.Web                           4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_64/System.Web/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Web.dll                        
+FubuMVC.Core.UI                      0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Core.UI.DLL                                         
+FubuMVC.Core.View                    0.9.9.38       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Core.View.DLL                                       
+FubuMVC.Media                        1.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Media.DLL                                           
+FubuMVC.SelfHost                     0.9.8.1268     file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.SelfHost.DLL                                        
+System.Net.Http                      2.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Net.Http.DLL                                         
+FubuMVC.SlickGrid                    0.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.SlickGrid.DLL                                       
+FubuMVC.StructureMap                 0.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.StructureMap.DLL                                    
+StructureMap                         2.6.3.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/StructureMap.DLL                                            
+System.Web.Extensions                4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Web.Extensions/v4.0_4.0.0.0__31bf3856ad364e35/System.Web.Extensions.dll
+Ionic.Zip                            1.9.1.8        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Ionic.Zip.DLL                                               
+Newtonsoft.Json                      4.5.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Newtonsoft.Json.DLL                                         
+Selenium.WebDriverBackedSelenium     2.25.1.0       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Selenium.WebDriverBackedSelenium.DLL                        
+System.Net.Http.Formatting           4.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Net.Http.Formatting.DLL                              
+System.Net.Http.WebRequest           2.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Net.Http.WebRequest.DLL                              
+System.Web.Http                      4.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Web.Http.DLL                                         
+System.Web.Http.SelfHost             4.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Web.Http.SelfHost.DLL                                
+System.ServiceModel                  4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.ServiceModel/v4.0_4.0.0.0__b77a5c561934e089/System.ServiceModel.dll    
+ThoughtWorks.Selenium.Core           2.21.0.0       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/ThoughtWorks.Selenium.Core.DLL                              
+WebDriver                            2.25.1.0       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/WebDriver.DLL                                               
+System.Drawing                       4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Drawing/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Drawing.dll              
+WebDriver.Support                    2.25.1.0       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/WebDriver.Support.DLL                                       
+System.Configuration                 4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Configuration/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Configuration.dll  
+kxsx13nl                             0.9.9.399      file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll                              
+osu0pgc5                             0.9.9.399      file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll                              
+FubuKayak                            0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/FubuKayak.dll                                                         
+FubuMVC.JQueryUI                     0.5.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/FubuMVC.JQueryUI.dll                                                  
+FubuMVC.OwinHost                     0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/FubuMVC.OwinHost.dll                                                  
+FubuMVC.Spark                        0.9.9.38       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/FubuMVC.Spark.dll                                                     
+Gate                                 0.1.4.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/Gate.dll                                                              
+Gate.Kayak                           0.1.4.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/Gate.Kayak.dll                                                        
+Kayak                                0.7.2.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/Kayak.dll                                                             
+Spark                                1.7.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/Spark.dll                                                             
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------
+Logs
+------------------------------------------------------------------------------------------------
+Bottling Process finished on 11/6/2012 at 7:54:53 AM
+
+------------------------------------------------------------------------------------------------
+FubuMVC Packaging Facility
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.LinkedFolders.LinkedFolderPackageLoader
+Loading linked folders via the package manifest at C:\code\FubuMVC.SlickGrid\src\SlickGridHarness
+  - linking folder C:\code\FubuMVC.SlickGrid\src\FubuMVC.SlickGrid
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Core.Packaging.ZipFilePackageLoader
+Searching for zip files in package directory C:\code\FubuMVC.SlickGrid\src\SlickGridHarness\bin\fubu-packages
+Searching for zip files in package directory C:\code\FubuMVC.SlickGrid\src\SlickGridHarness\fubu-content
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Core.Packaging.StandaloneAssemblyPackageLoader
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Core.FubuModuleAttributePackageLoader
+Looking for assemblies marked with the [FubuModule] attribute in C:\code\FubuMVC.SlickGrid\src\SlickGridStoryteller\bin\debug
+Looking for assemblies marked with the [FubuModule] attribute in C:\code\FubuMVC.SlickGrid\src\SlickGridHarness\bin
+
+------------------------------------------------------------------------------------------------
+Adding package web content folders to the virtual path provider (VirtualPathProviderActivator)
+
+------------------------------------------------------------------------------------------------
+FubuMVC.SlickGrid (C:\code\FubuMVC.SlickGrid\src\FubuMVC.SlickGrid)
+Loaded assembly &amp;#39;FubuMVC.SlickGrid, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null&amp;#39; v0.0.0.51550
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Loaded assembly &amp;#39;FubuMVC.Core.Assets, Version=0.9.9.0, Culture=neutral, PublicKeyToken=null&amp;#39; v0.9.9.38
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Loaded assembly &amp;#39;FubuMVC.Core.UI, Version=0.9.9.0, Culture=neutral, PublicKeyToken=null&amp;#39; v0.9.9.43
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Loaded assembly &amp;#39;FubuMVC.Core.View, Version=0.9.9.38, Culture=neutral, PublicKeyToken=null&amp;#39; v0.9.9.38
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Loaded assembly &amp;#39;FubuMVC.Media, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null&amp;#39; v1.0.0.0
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Bottle named FubuMVC.SlickGrid already found by a previous loader.  Ignoring.
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Bottle named FubuMVC.Core.Assets already found by a previous loader.  Ignoring.
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Bottle named FubuMVC.Core.UI already found by a previous loader.  Ignoring.
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Bottle named FubuMVC.Core.View already found by a previous loader.  Ignoring.
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Loaded assembly &amp;#39;FubuMVC.JQueryUI, Version=0.5.0.0, Culture=neutral, PublicKeyToken=null&amp;#39; v0.5.0.133
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Bottle named FubuMVC.Media already found by a previous loader.  Ignoring.
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Bottle named FubuMVC.SlickGrid already found by a previous loader.  Ignoring.
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Loaded assembly &amp;#39;FubuMVC.Spark, Version=0.9.9.38, Culture=neutral, PublicKeyToken=null&amp;#39; v0.9.9.38
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Core.Assets, Version=0.9.9.0, Culture=neutral, PublicKeyToken=null
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Core.UI, Version=0.9.9.0, Culture=neutral, PublicKeyToken=null
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Core.View, Version=0.9.9.38, Culture=neutral, PublicKeyToken=null
+
+------------------------------------------------------------------------------------------------
+FubuMVC.JQueryUI, Version=0.5.0.0, Culture=neutral, PublicKeyToken=null
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Media, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+
+------------------------------------------------------------------------------------------------
+FubuMVC.SlickGrid, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Spark, Version=0.9.9.38, Culture=neutral, PublicKeyToken=null
+
+------------------------------------------------------------------------------------------------
+
+
+
+Server stack trace: 
+   at FubuMVC.Core.FubuApplication.&amp;lt;Bootstrap&amp;gt;b__c() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 162
+   at FubuMVC.Core.FubuApplication.Bootstrap() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 165
+   at Serenity.FubuMvcSystem`1.&amp;lt;.ctor&amp;gt;b__0()
+   at Serenity.FubuMvcSystem.buildApplication()
+   at System.Lazy`1.CreateValue()
+
+Exception rethrown at [0]: 
+   at FubuMVC.Core.FubuApplication.&amp;lt;Bootstrap&amp;gt;b__c() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 162
+   at FubuMVC.Core.FubuApplication.Bootstrap() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 165
+   at Serenity.FubuMvcSystem`1.&amp;lt;.ctor&amp;gt;b__0()
+   at Serenity.FubuMvcSystem.buildApplication()
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at Serenity.FubuMvcSystem.CreateContext()
+   at StoryTeller.Engine.TestRun.Execute()&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</Html>
+  <Counts Rights="0" Wrongs="0" Exceptions="1" SyntaxErrors="0" />
+  <FullExceptionText>FubuCore.FubuException: FubuCore Error 0:  
+
+Restarted            11/6/2012 7:54:53 AM                          
+Application Path     C:\code\FubuMVC.SlickGrid\src\SlickGridHarness
+
+------------------------------------------------------------------------------------------------
+Errors
+------------------------------------------------------------------------------------------------
+Lambda expression at: Serenity.FubuMvcSystem`1.&lt;.ctor&gt;b__0(),  line 0
+System.TypeLoadException: Could not load type 'FubuMVC.Core.CurrentRequest' from assembly 'FubuMVC.Core, Version=0.9.8.1268, Culture=neutral, PublicKeyToken=null'.
+
+Server stack trace: 
+   at FubuMVC.StructureMap.StructureMapFubuRegistry..ctor()
+   at FubuMVC.StructureMap.BootstrappingExtensions.&lt;&gt;c__DisplayClass9.&lt;StructureMap&gt;b__8() in c:\BuildAgent\work\e5cfff0cc125d023\src\FubuMVC.StructureMap\BootstrappingExtensions.cs:line 35
+   at FubuMVC.Core.FubuApplication.&lt;.ctor&gt;b__0() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 66
+   at System.Lazy`1.CreateValue()
+
+Exception rethrown at [0]: 
+   at FubuMVC.StructureMap.StructureMapFubuRegistry..ctor()
+   at FubuMVC.StructureMap.BootstrappingExtensions.&lt;&gt;c__DisplayClass9.&lt;StructureMap&gt;b__8() in c:\BuildAgent\work\e5cfff0cc125d023\src\FubuMVC.StructureMap\BootstrappingExtensions.cs:line 35
+   at FubuMVC.Core.FubuApplication.&lt;.ctor&gt;b__0() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 66
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at FubuMVC.Core.FubuApplication.&lt;&gt;c__DisplayClass10.&lt;&gt;c__DisplayClass12.&lt;Bootstrap&gt;b__b(IPackageLog log) in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 142
+   at Bottles.LambdaBootstrapper.Bootstrap(IPackageLog log)
+   at Bottles.PackagingRuntimeGraph.&lt;&gt;c__DisplayClass4.&lt;collectAllActivatorsFromBootstrappers&gt;b__3(IBootstrapper currentBootstrapper, IPackageLog log)
+   at Bottles.Diagnostics.PackageLog.Execute(Action continuation)
+
+------------------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Assemblies
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+mscorlib                             4.0.0.0        file:///C:/Windows/Microsoft.NET/Framework64/v4.0.30319/mscorlib.dll                                                             
+StoryTeller                          2.0.0.6        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/StoryTeller.DLL                                             
+FubuCore                             0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuCore.DLL                                                
+SlickGridStoryteller                 1.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/SlickGridStoryteller.DLL                                    
+Serenity                             0.9.8.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Serenity.DLL                                                
+SlickGridHarness                     1.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/SlickGridHarness.DLL                                        
+FubuMVC.Core                         0.9.8.1268     file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Core.DLL                                            
+System.Core                          4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Core/v4.0_4.0.0.0__b77a5c561934e089/System.Core.dll                    
+Bottles                              0.9.9.399      file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Bottles.DLL                                                 
+Castle.Core                          3.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Castle.Core.DLL                                             
+System.Xml                           4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Xml/v4.0_4.0.0.0__b77a5c561934e089/System.Xml.dll                      
+System                               4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll                              
+FubuLocalization                     1.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuLocalization.DLL                                        
+FubuMVC.Core.Assets                  0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Core.Assets.DLL                                     
+HtmlTags                             1.2.0.127      file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/HtmlTags.DLL                                                
+System.Web                           4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_64/System.Web/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Web.dll                        
+FubuMVC.Core.UI                      0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Core.UI.DLL                                         
+FubuMVC.Core.View                    0.9.9.38       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Core.View.DLL                                       
+FubuMVC.Media                        1.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.Media.DLL                                           
+FubuMVC.SelfHost                     0.9.8.1268     file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.SelfHost.DLL                                        
+System.Net.Http                      2.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Net.Http.DLL                                         
+FubuMVC.SlickGrid                    0.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.SlickGrid.DLL                                       
+FubuMVC.StructureMap                 0.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/FubuMVC.StructureMap.DLL                                    
+StructureMap                         2.6.3.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/StructureMap.DLL                                            
+System.Web.Extensions                4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Web.Extensions/v4.0_4.0.0.0__31bf3856ad364e35/System.Web.Extensions.dll
+Ionic.Zip                            1.9.1.8        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Ionic.Zip.DLL                                               
+Newtonsoft.Json                      4.5.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Newtonsoft.Json.DLL                                         
+Selenium.WebDriverBackedSelenium     2.25.1.0       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/Selenium.WebDriverBackedSelenium.DLL                        
+System.Net.Http.Formatting           4.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Net.Http.Formatting.DLL                              
+System.Net.Http.WebRequest           2.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Net.Http.WebRequest.DLL                              
+System.Web.Http                      4.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Web.Http.DLL                                         
+System.Web.Http.SelfHost             4.0.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/System.Web.Http.SelfHost.DLL                                
+System.ServiceModel                  4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.ServiceModel/v4.0_4.0.0.0__b77a5c561934e089/System.ServiceModel.dll    
+ThoughtWorks.Selenium.Core           2.21.0.0       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/ThoughtWorks.Selenium.Core.DLL                              
+WebDriver                            2.25.1.0       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/WebDriver.DLL                                               
+System.Drawing                       4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Drawing/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Drawing.dll              
+WebDriver.Support                    2.25.1.0       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridStoryteller/bin/debug/WebDriver.Support.DLL                                       
+System.Configuration                 4.0.0.0        file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.Configuration/v4.0_4.0.0.0__b03f5f7f11d50a3a/System.Configuration.dll  
+kxsx13nl                             0.9.9.399      file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll                              
+osu0pgc5                             0.9.9.399      file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System/v4.0_4.0.0.0__b77a5c561934e089/System.dll                              
+FubuKayak                            0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/FubuKayak.dll                                                         
+FubuMVC.JQueryUI                     0.5.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/FubuMVC.JQueryUI.dll                                                  
+FubuMVC.OwinHost                     0.9.9.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/FubuMVC.OwinHost.dll                                                  
+FubuMVC.Spark                        0.9.9.38       file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/FubuMVC.Spark.dll                                                     
+Gate                                 0.1.4.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/Gate.dll                                                              
+Gate.Kayak                           0.1.4.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/Gate.Kayak.dll                                                        
+Kayak                                0.7.2.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/Kayak.dll                                                             
+Spark                                1.7.0.0        file:///C:/code/FubuMVC.SlickGrid/src/SlickGridHarness/bin/Spark.dll                                                             
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------
+Logs
+------------------------------------------------------------------------------------------------
+Bottling Process finished on 11/6/2012 at 7:54:53 AM
+
+------------------------------------------------------------------------------------------------
+FubuMVC Packaging Facility
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.LinkedFolders.LinkedFolderPackageLoader
+Loading linked folders via the package manifest at C:\code\FubuMVC.SlickGrid\src\SlickGridHarness
+  - linking folder C:\code\FubuMVC.SlickGrid\src\FubuMVC.SlickGrid
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Core.Packaging.ZipFilePackageLoader
+Searching for zip files in package directory C:\code\FubuMVC.SlickGrid\src\SlickGridHarness\bin\fubu-packages
+Searching for zip files in package directory C:\code\FubuMVC.SlickGrid\src\SlickGridHarness\fubu-content
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Core.Packaging.StandaloneAssemblyPackageLoader
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Core.FubuModuleAttributePackageLoader
+Looking for assemblies marked with the [FubuModule] attribute in C:\code\FubuMVC.SlickGrid\src\SlickGridStoryteller\bin\debug
+Looking for assemblies marked with the [FubuModule] attribute in C:\code\FubuMVC.SlickGrid\src\SlickGridHarness\bin
+
+------------------------------------------------------------------------------------------------
+Adding package web content folders to the virtual path provider (VirtualPathProviderActivator)
+
+------------------------------------------------------------------------------------------------
+FubuMVC.SlickGrid (C:\code\FubuMVC.SlickGrid\src\FubuMVC.SlickGrid)
+Loaded assembly 'FubuMVC.SlickGrid, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' v0.0.0.51550
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Loaded assembly 'FubuMVC.Core.Assets, Version=0.9.9.0, Culture=neutral, PublicKeyToken=null' v0.9.9.38
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Loaded assembly 'FubuMVC.Core.UI, Version=0.9.9.0, Culture=neutral, PublicKeyToken=null' v0.9.9.43
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Loaded assembly 'FubuMVC.Core.View, Version=0.9.9.38, Culture=neutral, PublicKeyToken=null' v0.9.9.38
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Loaded assembly 'FubuMVC.Media, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' v1.0.0.0
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Bottle named FubuMVC.SlickGrid already found by a previous loader.  Ignoring.
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Bottle named FubuMVC.Core.Assets already found by a previous loader.  Ignoring.
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Bottle named FubuMVC.Core.UI already found by a previous loader.  Ignoring.
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Bottle named FubuMVC.Core.View already found by a previous loader.  Ignoring.
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Loaded assembly 'FubuMVC.JQueryUI, Version=0.5.0.0, Culture=neutral, PublicKeyToken=null' v0.5.0.133
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Bottle named FubuMVC.Media already found by a previous loader.  Ignoring.
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Bottle named FubuMVC.SlickGrid already found by a previous loader.  Ignoring.
+
+------------------------------------------------------------------------------------------------
+Bottles.PackageLoaders.Assemblies.AssemblyPackageInfo
+Loaded assembly 'FubuMVC.Spark, Version=0.9.9.38, Culture=neutral, PublicKeyToken=null' v0.9.9.38
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Core.Assets, Version=0.9.9.0, Culture=neutral, PublicKeyToken=null
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Core.UI, Version=0.9.9.0, Culture=neutral, PublicKeyToken=null
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Core.View, Version=0.9.9.38, Culture=neutral, PublicKeyToken=null
+
+------------------------------------------------------------------------------------------------
+FubuMVC.JQueryUI, Version=0.5.0.0, Culture=neutral, PublicKeyToken=null
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Media, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+
+------------------------------------------------------------------------------------------------
+FubuMVC.SlickGrid, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+
+------------------------------------------------------------------------------------------------
+FubuMVC.Spark, Version=0.9.9.38, Culture=neutral, PublicKeyToken=null
+
+------------------------------------------------------------------------------------------------
+
+
+
+Server stack trace: 
+   at FubuMVC.Core.FubuApplication.&lt;Bootstrap&gt;b__c() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 162
+   at FubuMVC.Core.FubuApplication.Bootstrap() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 165
+   at Serenity.FubuMvcSystem`1.&lt;.ctor&gt;b__0()
+   at Serenity.FubuMvcSystem.buildApplication()
+   at System.Lazy`1.CreateValue()
+
+Exception rethrown at [0]: 
+   at FubuMVC.Core.FubuApplication.&lt;Bootstrap&gt;b__c() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 162
+   at FubuMVC.Core.FubuApplication.Bootstrap() in c:\BuildAgent\work\d04402a39b52ee0f\src\FubuMVC.Core\FubuApplication.cs:line 165
+   at Serenity.FubuMvcSystem`1.&lt;.ctor&gt;b__0()
+   at Serenity.FubuMvcSystem.buildApplication()
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at Serenity.FubuMvcSystem.CreateContext()
+   at StoryTeller.Engine.TestRun.Execute()</FullExceptionText>
+</TestResult>

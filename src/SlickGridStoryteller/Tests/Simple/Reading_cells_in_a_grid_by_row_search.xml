@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Test name="Reading cells in a grid by row search" lifecycle="Acceptance">
+  <Simple>
+    <Comment><![CDATA[Everything should come up]]></Comment>
+  </Simple>
+</Test>

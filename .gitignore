@@ -30,3 +30,9 @@ src/FubuMVC.SlickGrid/pak-WebContent.zip
 src/SlickGridHarness/fubu-content/
 storyteller.cmd
 run_st.cmd
+Controls
+Core
+External
+editor.htm
+history.xml
+testEditor.css
