@@ -49,15 +49,13 @@ namespace SlickGridStoryteller.Fixtures
         [FormatAs("The value of the genre in the editor should be {genre}")]
         public string TheEditorText()
         {
-            return Serenity.Fixtures.Handlers.ElementHandlers.FindHandler(_editor).GetData(Driver, _editor);
+            return GetData(_editor);
         }
 
         [FormatAs("Change the genre to {genre}")]
         public void ChangeGenre(string genre)
         {
-
-
-            Serenity.Fixtures.Handlers.ElementHandlers.FindHandler(_editor).EnterData(Driver, _editor, genre);
+            SetData(_editor, genre);
         
             _editor.SendKeys(Keys.Tab);
         }

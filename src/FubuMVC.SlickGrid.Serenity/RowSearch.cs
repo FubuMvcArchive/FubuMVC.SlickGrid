@@ -37,10 +37,9 @@ namespace FubuMVC.SlickGrid.Serenity
             return new SearchExpression(this, expression);
         }
 
-        SearchExpression IGridAction<T>.And(Expression<Func<T, object>> expression)
-        {
-            return new SearchExpression(this, expression);
-        }
+
+
+
 
         public class SearchExpression
         {
@@ -78,9 +77,15 @@ namespace FubuMVC.SlickGrid.Serenity
 
         public IWebElement Formatter(Expression<Func<T, object>> expression)
         {
-            var id = Guid.NewGuid().ToString();
+            var name = expression.ToAccessor().Name;
 
-            var js = "$('#{0}').get(0).markCell({1}, '{2}', '{3}')".ToFormat(_gridId, _search.SearchTerm(), expression.ToAccessor().Name, id);
+            return Formatter(name);
+        }
+
+        public IWebElement Formatter(string name)
+        {
+            var id = Guid.NewGuid().ToString();
+            var js = "$('#{0}').get(0).markCell({1}, '{2}', '{3}')".ToFormat(_gridId, _search.SearchTerm(), name, id);
             _driver.InjectJavascript(js);
 
 
@@ -95,14 +100,28 @@ namespace FubuMVC.SlickGrid.Serenity
 
         public IWebElement Editor(Expression<Func<T, object>> expression)
         {
-            return Retry.Twice(() => {
+            var name = expression.ToAccessor().Name;
+
+            return Editor(name);
+        }
+
+        public IWebElement Editor(string name)
+        {
+            return Retry.Twice(() =>
+            {
+
                 var js = "$('#{0}').get(0).editCell({1}, '{2}')".ToFormat(_gridId, _search.SearchTerm(),
-                                                                          expression.ToAccessor().Name);
+                                                                          name);
                 _driver.InjectJavascript(js);
 
                 var css = "#{0} .slick-cell.active".ToFormat(_gridId);
                 return _driver.FindElement(By.CssSelector(css)).FindElements(By.CssSelector("*")).FirstOrDefault();
             });
+        }
+
+        SearchExpression IGridAction<T>.And(Expression<Func<T, object>> expression)
+        {
+            return new SearchExpression(this, expression);
         }
 
 
@@ -117,6 +136,9 @@ namespace FubuMVC.SlickGrid.Serenity
         void Activate(Expression<Func<T, object>> expression);
         IWebElement Editor(Expression<Func<T, object>> expression);
         GridAction<T>.SearchExpression And(Expression<Func<T, object>> expression);
+
+        IWebElement Formatter(string name);
+        IWebElement Editor(string name);
     }
 
     public class RowSearch<T>
