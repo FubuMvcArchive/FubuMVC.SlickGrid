@@ -12,8 +12,8 @@
     <description>Helpers to integrate the SlickGrid library into FubuMVC applications</description>
     <tags>fubumvc slickgrid</tags>
     <dependencies>
-      <dependency id="FubuMVC.Core" version="0.9.8.993" />
-      <dependency id="FubuMVC.Media"  />
+      <dependency id="FubuMVC.Core" version="0.9.9.1274" />
+      <dependency id="FubuMVC.Media" version="0.9.5.225" />
     </dependencies>
   </metadata>
   <files>

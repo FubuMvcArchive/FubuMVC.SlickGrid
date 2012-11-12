@@ -2,6 +2,7 @@ using System;
 using FubuMVC.Core;
 using FubuCore;
 using System.Collections.Generic;
+using FubuMVC.Core.Registration;
 
 namespace FubuMVC.SlickGrid
 {
@@ -11,11 +12,14 @@ namespace FubuMVC.SlickGrid
 
         public void Configure(FubuRegistry registry)
         {
+            var types = new TypePool();
+            types.AddAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+            types.IgnoreExportTypeFailures = true;
+
             // Some ugly Generic trickery
-            registry.WithTypes(
-                types =>
-                types.TypesMatching(IsGridDefinitionType).Each(
-                    type => { typeof (Loader<>).CloseAndBuildAs<ILoader>(type).Apply(registry); }));
+            types.TypesMatching(IsGridDefinitionType).Each(type => {
+                typeof (Loader<>).CloseAndBuildAs<ILoader>(type).Apply(registry);
+            });
 
 
             var policies = new ColumnPolicies();
