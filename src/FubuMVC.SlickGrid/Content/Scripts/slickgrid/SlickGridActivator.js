@@ -180,6 +180,11 @@ function makeSlickGrid(div) {
 
     div.findRowIndex = function (search) {
         var data = grid.getData();
+        
+        // Allow for DataView usage
+        if (typeof (data.getItems) == 'function') {
+            data = data.getItems();
+        }
 
         var filter = function (row) {
             for (prop in search) {
