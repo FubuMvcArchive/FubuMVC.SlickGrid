@@ -171,6 +171,12 @@ function makeSlickGrid(div) {
         return columns.getAllColumns(grid);
     }
 
+    div.getDisplayedColumnFields = function () {
+        return _.map(div.getAllColumns().displayed, function (item) {
+            return item.id;
+        });
+    }
+
     div.setDisplayedColumns = function(names){
         var displayed = columns.displayColumns(names);
 

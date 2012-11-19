@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Test name="Can verify the displayed columns by name" lifecycle="Regression">
+  <Simple>
+    <TheDisplayedColumnFieldsAre isStep="True">
+      <Rows>
+        <row isStep="True" expected="Date" />
+        <row isStep="True" expected="Band" />
+        <row isStep="True" expected="Location" />
+        <row isStep="True" expected="Genre" />
+      </Rows>
+    </TheDisplayedColumnFieldsAre>
+  </Simple>
+</Test>

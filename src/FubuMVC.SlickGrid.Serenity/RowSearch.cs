@@ -37,10 +37,6 @@ namespace FubuMVC.SlickGrid.Serenity
             return new SearchExpression(this, expression);
         }
 
-
-
-
-
         public class SearchExpression
         {
             private readonly GridAction<T> _parent;
@@ -84,12 +80,14 @@ namespace FubuMVC.SlickGrid.Serenity
 
         public IWebElement Formatter(string name)
         {
-            var id = Guid.NewGuid().ToString();
-            var js = "$('#{0}').get(0).markCell({1}, '{2}', '{3}')".ToFormat(_gridId, _search.SearchTerm(), name, id);
-            _driver.InjectJavascript(js);
+            return Retry.FiveTimes(() => {
+                var id = Guid.NewGuid().ToString();
+                var js = "$('#{0}').get(0).markCell({1}, '{2}', '{3}')".ToFormat(_gridId, _search.SearchTerm(), name, id);
+                _driver.InjectJavascript(js);
 
 
-            return _driver.FindElement(By.Id(id));
+                return _driver.FindElement(By.Id(id));
+            });
         }
 
         public void Activate(Expression<Func<T, object>> expression)
@@ -107,7 +105,7 @@ namespace FubuMVC.SlickGrid.Serenity
 
         public IWebElement Editor(string name)
         {
-            return Retry.Twice(() =>
+            return Retry.FiveTimes(() =>
             {
 
                 var js = "$('#{0}').get(0).editCell({1}, '{2}')".ToFormat(_gridId, _search.SearchTerm(),

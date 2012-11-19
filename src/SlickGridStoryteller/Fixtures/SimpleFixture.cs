@@ -2,6 +2,7 @@
 using Serenity.Fixtures;
 using SlickGridHarness;
 using SlickGridHarness.Simple;
+using StoryTeller;
 using StoryTeller.Engine;
 using FubuMVC.SlickGrid.Serenity;
 

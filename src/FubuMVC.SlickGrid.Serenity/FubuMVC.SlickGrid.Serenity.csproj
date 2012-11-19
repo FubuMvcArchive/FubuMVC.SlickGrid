@@ -65,7 +65,7 @@
       <HintPath>..\packages\Selenium.WebDriverBackedSelenium.2.25.1\lib\net40\Selenium.WebDriverBackedSelenium.dll</HintPath>
     </Reference>
     <Reference Include="Serenity">
-      <HintPath>..\packages\Serenity.0.9.8.93\lib\net40\Serenity.dll</HintPath>
+      <HintPath>..\packages\Serenity.0.9.8.94\lib\net40\Serenity.dll</HintPath>
     </Reference>
     <Reference Include="StoryTeller">
       <HintPath>..\packages\Storyteller2.2.0.0.8\lib\net40\StoryTeller.dll</HintPath>

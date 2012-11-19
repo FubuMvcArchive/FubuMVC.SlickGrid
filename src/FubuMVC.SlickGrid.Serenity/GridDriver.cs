@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using Serenity;
+using Serenity.Fixtures;
+using FubuCore;
 
 namespace FubuMVC.SlickGrid.Serenity
 {
     public class GridDriver
     {
+        private readonly string _id;
         private readonly By _finder;
         private readonly Lazy<IWebElement> _grid;
         public const string CellClass = "slick-cell";
 
         public GridDriver(IWebDriver driver, string id)
         {
+            _id = id;
             _finder = By.Id(id);
             Driver = driver;
 
@@ -28,6 +33,15 @@ namespace FubuMVC.SlickGrid.Serenity
         }
 
         protected IWebDriver Driver { get; private set; }
+
+        public IEnumerable<string> DisplayedColumnFields()
+        {
+            // getDisplayedColumnFields
+            var js = "return $('#{0}').get(0).getDisplayedColumnFields()".ToFormat(_id);
+            var intermediate = Driver.InjectJavascript<ReadOnlyCollection<object>>(js);
+
+            return intermediate.Select(x => x.ToString()).ToArray();
+        } 
 
         public IEnumerable<string> Columns
         {

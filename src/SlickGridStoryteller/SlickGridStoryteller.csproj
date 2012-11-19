@@ -49,9 +49,8 @@
     <Reference Include="FubuMVC.SelfHost">
       <HintPath>..\packages\FubuMVC.SelfHost.0.9.9.1283\lib\net40\FubuMVC.SelfHost.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FubuMVC.StructureMap.0.9.8.1268\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+    <Reference Include="FubuMVC.StructureMap">
+      <HintPath>..\packages\FubuMVC.StructureMap.0.9.9.1283\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="HtmlTags">
       <HintPath>..\packages\HtmlTags.1.2.0.130\lib\4.0\HtmlTags.dll</HintPath>
@@ -66,7 +65,7 @@
       <HintPath>..\packages\Selenium.WebDriverBackedSelenium.2.25.1\lib\net40\Selenium.WebDriverBackedSelenium.dll</HintPath>
     </Reference>
     <Reference Include="Serenity">
-      <HintPath>..\packages\Serenity.0.9.8.93\lib\net40\Serenity.dll</HintPath>
+      <HintPath>..\packages\Serenity.0.9.8.94\lib\net40\Serenity.dll</HintPath>
     </Reference>
     <Reference Include="Spark">
       <HintPath>..\packages\Spark.1.7.5.0\lib\NET40\Spark.dll</HintPath>
@@ -115,6 +114,7 @@
     <Compile Include="Fixtures\SimpleFixture.cs" />
     <Compile Include="HarnessSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoryTellerDebug.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
