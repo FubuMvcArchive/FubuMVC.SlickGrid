@@ -240,7 +240,7 @@ function makeSlickGrid(div) {
         grid.getCellNode(row, column).id = id;
     }
 
-    div.update = function (query) {
+    div.update = function (query, dataLoaded) {
         if (query == null) {
             query = {};
         }
@@ -258,6 +258,10 @@ function makeSlickGrid(div) {
 
                 if (gridOptions.autoresize) {
                     grid.autosizeColumns();
+                }
+
+                if ($.isFunction(dataLoaded)) {
+                    dataLoaded();
                 }
             }
         });
