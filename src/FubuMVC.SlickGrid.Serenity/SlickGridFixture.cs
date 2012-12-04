@@ -19,13 +19,18 @@ namespace FubuMVC.SlickGrid.Serenity
         protected GridAction<T>.SearchExpression Where(Expression<Func<T, object>> expression)
         {
             return Driver.GridAction<T>(_gridId).Where(expression);
-        } 
+        }
 
         public IGrammar TheDisplayedColumnFieldsAre()
         {
-            return
-                VerifyStringList(() => _driver.Value.DisplayedColumnFields()).Ordered().Titled("The displayed fields should be").
-                    Grammar();
+            return VerifyStringList(() => _driver.Value.DisplayedColumnFields()).Ordered().Titled("The displayed fields should be")
+                .Grammar();
+        }
+
+        public IGrammar TheFrozenColumnFieldsAre()
+        {
+            return VerifyStringList(() => _driver.Value.FrozenColumnFields()).Ordered().Titled("The frozen fields should be")
+                .Grammar();
         }
     }
 }

@@ -10,6 +10,7 @@ namespace FubuMVC.SlickGrid
         SlickGridEditor Editor { get; set; }
 
         bool IsEditable { get; }
+        bool IsFrozen { get; }
 
         Accessor Accessor { get; }
         void WriteColumn(StringBuilder builder);

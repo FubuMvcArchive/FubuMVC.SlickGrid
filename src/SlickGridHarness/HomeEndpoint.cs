@@ -1,7 +1,5 @@
 using System;
-using FubuMVC.Core.UI;
 using FubuMVC.SlickGrid;
-using HtmlTags;
 
 namespace SlickGridHarness
 {
@@ -33,8 +31,9 @@ namespace SlickGridHarness
         public string Band { get; set; }
         public string Location { get; set; }
         public string Genre { get; set; }
-
         public string Url { get; set; }
+        public string Tour { get; set; }
+        public string TourScheduleUrl { get; set; }
     }
 
     public class ConcertsGrid : GridDefinition<Concert>
@@ -45,9 +44,11 @@ namespace SlickGridHarness
             SourceIs<ConcertsSource>();
 
             Column(x => x.Date);
-            Column(x => x.Band);
+            Column(x => x.Band).Frozen(true);
             Column(x => x.Location);
             Column(x => x.Genre);
+            Column(x => x.Tour).Frozen(true);
+            Column(x => x.TourScheduleUrl);
 
             Projection.Value(x => x.Url);
         }

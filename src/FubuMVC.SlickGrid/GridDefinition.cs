@@ -61,15 +61,16 @@ namespace FubuMVC.SlickGrid
         {
             var builder = new StringBuilder();
             builder.Append("[");
+            var columns = _columns.OrderByDescending(x => x.IsFrozen).ToList();
 
-            for (int i = 0; i < _columns.Count - 1; i++)
+            for (var i = 0; i < columns.Count - 1; i++)
             {
-                IGridColumn column = _columns[i];
+                var column = columns[i];
                 column.WriteColumn(builder);
                 builder.Append(", ");
             }
 
-            _columns.Last().WriteColumn(builder);
+            columns.Last().WriteColumn(builder);
 
             builder.Append("]");
 

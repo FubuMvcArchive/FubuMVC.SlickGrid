@@ -57,9 +57,7 @@ namespace FubuMVC.SlickGrid.Testing
         public void adds_an_accessor_projection_to_the_projection()
         {
             var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
-            column.ProjectBy(x => {
-                x.Name().ShouldEqual("Name");
-            });
+            column.ProjectBy(x => x.Name().ShouldEqual("Name"));
         }
 
         [Test]
@@ -67,6 +65,14 @@ namespace FubuMVC.SlickGrid.Testing
         {
             var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
             writeColumn(column).ShouldContain("sortable: true");
+        }
+
+        [Test]
+        public void not_frozen_by_default()
+        {
+            IGridColumn column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection).Frozen(false);
+            column.IsFrozen.ShouldBeFalse();
+            writeColumn(column).ShouldContain("frozen: false");
         }
 
         [Test]
@@ -102,7 +108,15 @@ namespace FubuMVC.SlickGrid.Testing
             var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
             column.Field("else");
 
-            writeColumn(column).ShouldEqual("{name: \"Name\", field: \"else\", id: \"Name\", sortable: true}");
+            writeColumn(column).ShouldEqual("{name: \"Name\", field: \"else\", id: \"Name\", sortable: true, frozen: false}");
+        }
+
+        [Test]
+        public void override_frozen()
+        {
+            IGridColumn column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection).Frozen(true);
+            column.IsFrozen.ShouldBeTrue();
+            writeColumn(column).ShouldContain("frozen: true");
         }
 
         [Test]
@@ -111,7 +125,7 @@ namespace FubuMVC.SlickGrid.Testing
             var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
             column.Id("else");
 
-            writeColumn(column).ShouldEqual("{name: \"Name\", field: \"Name\", id: \"else\", sortable: true}");  
+            writeColumn(column).ShouldEqual("{name: \"Name\", field: \"Name\", id: \"else\", sortable: true, frozen: false}");  
         }
 
         [Test]
@@ -142,7 +156,7 @@ namespace FubuMVC.SlickGrid.Testing
         {
             var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
 
-            writeColumn(column).ShouldEqual("{name: \"Name\", field: \"Name\", id: \"Name\", sortable: true}");           
+            writeColumn(column).ShouldEqual("{name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}");           
         }
 
         [Test]

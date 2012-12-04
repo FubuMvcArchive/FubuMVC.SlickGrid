@@ -3,11 +3,19 @@
   <Simple>
     <TheDisplayedColumnFieldsAre isStep="True">
       <Rows>
-        <row isStep="True" expected="Date" />
         <row isStep="True" expected="Band" />
+        <row isStep="True" expected="Tour" />
+        <row isStep="True" expected="Date" />
         <row isStep="True" expected="Location" />
         <row isStep="True" expected="Genre" />
+        <row isStep="True" expected="TourScheduleUrl" />
       </Rows>
     </TheDisplayedColumnFieldsAre>
+    <TheFrozenColumnFieldsAre isStep="True">
+      <Rows>
+        <row isStep="True" expected="Band" />
+        <row isStep="True" expected="Tour" />
+      </Rows>
+    </TheFrozenColumnFieldsAre>
   </Simple>
 </Test>

@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
-using Serenity.Fixtures;
 using SlickGridHarness;
 using SlickGridHarness.Simple;
-using StoryTeller;
 using StoryTeller.Engine;
 using FubuMVC.SlickGrid.Serenity;
 
@@ -60,7 +58,5 @@ namespace SlickGridStoryteller.Fixtures
         
             _editor.SendKeys(Keys.Tab);
         }
-
-
     }
 }
