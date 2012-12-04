@@ -263,7 +263,6 @@ function makeSlickGrid(div) {
             contentType: 'text/json',
             data: JSON.stringify(query),
             success: function(data) {
-                grid.setData([]);
                 grid.setData(data); // A different, empty or sorted array.
                 grid.renderWithFrozenColumn();
 
