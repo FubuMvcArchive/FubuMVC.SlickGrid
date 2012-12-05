@@ -248,7 +248,7 @@ function makeSlickGrid(div) {
             column = grid.getColumnIndex(columnName);
         }
         $('#trace').text(row + ", " + column);
-        grid.getCellNode(row, column).id = id;
+        grid.getCellNode(row, column).attr('id', id);
     };
 
     div.update = function(query, dataLoaded) {
