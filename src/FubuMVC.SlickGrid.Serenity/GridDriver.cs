@@ -49,17 +49,6 @@ namespace FubuMVC.SlickGrid.Serenity
             return intermediate.Select(x => x.ToString()).ToArray();
         } 
 
-        public IEnumerable<string> Columns
-        {
-            get
-            {
-                return grid
-                    .FindElements(By.CssSelector(".slick-header .slick-header-column"))
-                    .Select(x => x.GetAttribute("title"))
-                    .ToArray();
-            }
-        }
-
         public IEnumerable<IWebElement> Rows
         {
             get { return grid.FindElement(By.ClassName("slick-viewport")).FindElements(By.ClassName("slick-row")); }
@@ -68,10 +57,8 @@ namespace FubuMVC.SlickGrid.Serenity
         public DataTable BuildGrid()
         {
             var table = new DataTable();
-            Columns.Each(col => table.Columns.Add(col, typeof(string)));
-
+            DisplayedColumnFields().Each(col => table.Columns.Add(col, typeof(string)));
             fillTable(table);
-
             return table;
         }
 
