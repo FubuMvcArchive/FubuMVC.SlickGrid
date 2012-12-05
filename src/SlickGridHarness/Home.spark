@@ -16,7 +16,9 @@
         Date: {width: 400},
         Band: {width: 300, subject:'band' },
         Location: {width: 300},
-        Genre: {displayed: false}
+        Genre: {displayed: false},
+        Tour: {width: 500},
+        TourScheduleUrl: {width: 600}
       },
       options: {
         enableColumnReorder: true,
@@ -54,12 +56,13 @@
   
   
   <button id="btn1">Show Bands, Genre</button>
-  <button id="btn2">Show Location, Time</button>
-  <button id="btn3">Show me what all the columns are</button>
-  <button id="btn4">Do a template</button>
-  <button id="btn5">Find index</button>
-  <button id="btn6">Set Active</button>
-  <button id="btn7">What are the displayed fields?</button>
+  <button id="btn2">Show Tour, Location, Time</button>
+  <button id="btn3">Show Genre, Location, Time</button>
+  <button id="btn4">Show me what all the columns are</button>
+  <button id="btn5">Do a template</button>
+  <button id="btn6">Find index</button>
+  <button id="btn7">Set Active</button>
+  <button id="btn8">What are the displayed fields?</button>
 
   <div style="display:none">
     <div data-subject="fake">
@@ -73,27 +76,29 @@
   
   <pre id="stuff"></pre>
   <script language="javascript">
-    
-    $('#btn3').click(function(){
-      var allColumns = $('#concertGrid').getSlickGridColumns();
-      $('#stuff').html(JSON.stringify(allColumns));
-    });
-    
-    
     $('#btn1').click(function(){
       $('#concertGrid').setSlickGridDisplayedColumns(['Band', 'Genre']);
     });
 
     $('#btn2').click(function(){
-      $('#concertGrid').setSlickGridDisplayedColumns(['Location', 'Date']);
+      $('#concertGrid').setSlickGridDisplayedColumns(['Tour', 'Location', 'Date']);
+    });
+
+    $('#btn3').click(function(){
+      $('#concertGrid').setSlickGridDisplayedColumns(['Genre', 'Location', 'Date']);
     });
     
     $('#btn4').click(function(){
+      var allColumns = $('#concertGrid').getSlickGridColumns();
+      $('#stuff').html(JSON.stringify(allColumns));
+    });
+    
+    $('#btn5').click(function(){
       var text = Slick.Templates.apply('fake', {name:'Jeremy', age:38});
       alert(text);
     });
     
-    $('#btn5').click(function(){
+    $('#btn6').click(function(){
       //var search = {Genre:"Texas Country", Band:"Charlie Robison"};
       //alert($('#concertGrid').get(0).findRowIndex(search));
       
@@ -101,12 +106,12 @@
       alert($('#concertGrid').get(0).findColumnIndex("Band"));
     });
 
-    $('#btn6').click(function(){
+    $('#btn7').click(function(){
       var search = {Genre:"Texas Country", Band:"Charlie Robison"};
       $('#concertGrid').get(0).activateCell(search, 'Location');
     });
     
-    $('#btn7').click(function(){
+    $('#btn8').click(function(){
       var fields = $('#concertGrid').get(0).getDisplayedColumnFields();
       alert(fields);
     });

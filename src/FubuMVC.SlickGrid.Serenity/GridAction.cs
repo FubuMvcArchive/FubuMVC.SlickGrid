@@ -127,8 +127,5 @@ namespace FubuMVC.SlickGrid.Serenity
         {
             return new SearchExpression(this, expression);
         }
-
-
-
     }
 }

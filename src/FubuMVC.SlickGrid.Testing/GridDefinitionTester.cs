@@ -39,7 +39,49 @@ namespace FubuMVC.SlickGrid.Testing
             var json = grid.As<IGridDefinition>().ToColumnJson();
 
             json
-                .ShouldEqual("[{name: \"Count\", field: \"Count\", id: \"Count\", sortable: true}, {name: \"IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true}]");
+                .ShouldEqual("[{name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: false}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
+        }
+
+        [Test]
+        public void create_frozen_column_first_json()
+        {
+            var grid = new TargetGrid();
+            grid.Column(x => x.Count);
+            grid.Column(x => x.IsCool).Frozen(true);
+            grid.Column(x => x.Name);
+
+            var json = grid.As<IGridDefinition>().ToColumnJson();
+
+            json
+                .ShouldEqual("[{name: \"IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: true}, {name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
+        }
+
+        [Test]
+        public void create_frozen_columns_first_json()
+        {
+            var grid = new TargetGrid();
+            grid.Column(x => x.Count);
+            grid.Column(x => x.IsCool).Frozen(true);
+            grid.Column(x => x.Name).Frozen(true);
+
+            var json = grid.As<IGridDefinition>().ToColumnJson();
+
+            json
+                .ShouldEqual("[{name: \"IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: true}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: true}, {name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}]");
+        }
+
+        [Test]
+        public void create_all_frozen_columns_json()
+        {
+            var grid = new TargetGrid();
+            grid.Column(x => x.Count).Frozen(true);
+            grid.Column(x => x.IsCool).Frozen(true);
+            grid.Column(x => x.Name).Frozen(true);
+
+            var json = grid.As<IGridDefinition>().ToColumnJson();
+
+            json
+                .ShouldEqual("[{name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: true}, {name: \"IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: true}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: true}]");
         }
 
         [Test]
@@ -53,7 +95,7 @@ namespace FubuMVC.SlickGrid.Testing
             var json = grid.As<IGridDefinition>().ToColumnJson();
 
             json
-                .ShouldEqual("[{name: \"Count\", field: \"Count\", id: \"Count\", sortable: true}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true}]");
+                .ShouldEqual("[{name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
         }
 
         [Test]

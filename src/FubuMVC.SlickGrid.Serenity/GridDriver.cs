@@ -4,8 +4,6 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using OpenQA.Selenium;
-using System.Collections.Generic;
-using Serenity;
 using Serenity.Fixtures;
 using FubuCore;
 
@@ -43,16 +41,13 @@ namespace FubuMVC.SlickGrid.Serenity
             return intermediate.Select(x => x.ToString()).ToArray();
         } 
 
-        public IEnumerable<string> Columns
+        public IEnumerable<string> FrozenColumnFields()
         {
-            get
-            {
-                return grid
-                    .FindElements(By.CssSelector(".slick-header .slick-header-column"))
-                    .Select(x => x.GetAttribute("title"))
-                    .ToArray();
-            }
-        }
+            var js = "return $('#{0}').get(0).getFrozenColumnFields()".ToFormat(_id);
+            var intermediate = Driver.InjectJavascript<ReadOnlyCollection<object>>(js);
+
+            return intermediate.Select(x => x.ToString()).ToArray();
+        } 
 
         public IEnumerable<IWebElement> Rows
         {
@@ -62,10 +57,8 @@ namespace FubuMVC.SlickGrid.Serenity
         public DataTable BuildGrid()
         {
             var table = new DataTable();
-            Columns.Each(col => table.Columns.Add(col, typeof(string)));
-
+            DisplayedColumnFields().Each(col => table.Columns.Add(col, typeof(string)));
             fillTable(table);
-
             return table;
         }
 
@@ -91,8 +84,4 @@ namespace FubuMVC.SlickGrid.Serenity
             });
         }
     }
-
-
-
-    
 }

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
-using FubuCore;
 using FubuCore.Reflection;
 using FubuCore.Util;
 using FubuMVC.Core.UI.Elements;
@@ -14,6 +13,7 @@ namespace FubuMVC.SlickGrid
     public class ColumnDefinition<T, TProp> : IGridColumn
     {
         private const string EditorField = "editor";
+        private const string FrozenField = "frozen";
         public const string FormatterField = "formatter";
         private readonly Cache<string, object> _cache;
         private readonly AccessorProjection<T, TProp> _projection;
@@ -32,6 +32,7 @@ namespace FubuMVC.SlickGrid
             Id(Accessor.Name);
 
             Sortable(true);
+            Frozen(false);
         }
 
         public ColumnDefinition<T, TProp> ProjectWith<TProjector>() where TProjector : IValueProjector<TProp>, new()
@@ -138,6 +139,14 @@ namespace FubuMVC.SlickGrid
             get { return _isEditable; }
         }
 
+        bool IGridColumn.IsFrozen
+        {
+            get {
+                var isFrozen = _cache[FrozenField];
+                return isFrozen is bool && (bool)isFrozen;
+            }
+        }
+
         public ColumnDefinition<T, TProp> Editor(string editor)
         {
             return Editor(new SlickGridEditor(editor));
@@ -198,6 +207,12 @@ namespace FubuMVC.SlickGrid
         public ColumnDefinition<T, TProp> Resizable(bool resizable)
         {
             _cache["resizable"] = resizable;
+            return this;
+        }
+
+        public ColumnDefinition<T, TProp> Frozen(bool value)
+        {
+            _cache[FrozenField] = value;
             return this;
         }
 
