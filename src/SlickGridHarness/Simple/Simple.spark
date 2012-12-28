@@ -1,21 +1,14 @@
 ﻿<viewdata model="SlickGridHarness.Simple.SimpleViewModel"/>
 
-<content:title>FubuMVC.SlickGrid Demonstration</content:title>
-<content:head>
-  <Script src="slickgrid/slick.editors.js" />
-</content:head>
-<content:main>
-  <h1>FubuMVC.SlickGrid Demonstration</h1>
-  <br></br>
+<Script src="slickgrid/slick.editors.js" />
+<br></br>
 
+!{this.RenderGrid<FrozenConcertsGrid>("concertGrid").Attr("style", "width:100%;height:500px;")}
+<div>The band selected is <span id="band"></span></div>
+
+<pre id="trace"></pre>  
   
-
-  !{this.RenderGrid<ConcertsGrid>("concertGrid").Attr("style", "width:100%;height:500px;")}
-  
-  <div>The band selected is <span id="band"></span></div>
-
-    <pre id="trace"></pre>  
-    
+<content:footer>
   <script id="concertGrid-custom">
     {
       columns: {
@@ -36,17 +29,9 @@
           var cell = grid.getCellFromEvent(e);
           var item = grid.getDataItem(cell.row);
           
-          
           $('#band').text(item.Band);
-          
         });
       }
     }
   </script>
-</content:main>
-
-
-
-<content:footer>
-  
 </content:footer>
