@@ -36,9 +36,9 @@ namespace SlickGridHarness
         public string TourScheduleUrl { get; set; }
     }
 
-    public class ConcertsGrid : GridDefinition<Concert>
+    public class FrozenConcertsGrid : GridDefinition<Concert>
     {
-        public ConcertsGrid()
+        public FrozenConcertsGrid()
         {
             UsesHtmlConventions = true;
             SourceIs<ConcertsSource>();
@@ -48,6 +48,24 @@ namespace SlickGridHarness
             Column(x => x.Location);
             Column(x => x.Genre);
             Column(x => x.Tour).Frozen(true);
+            Column(x => x.TourScheduleUrl);
+
+            Projection.Value(x => x.Url);
+        }
+    }
+
+    public class UnfrozenConcertsGrid : GridDefinition<Concert>
+    {
+        public UnfrozenConcertsGrid()
+        {
+            UsesHtmlConventions = true;
+            SourceIs<ConcertsSource>();
+
+            Column(x => x.Date);
+            Column(x => x.Band);
+            Column(x => x.Location);
+            Column(x => x.Genre);
+            Column(x => x.Tour);
             Column(x => x.TourScheduleUrl);
 
             Projection.Value(x => x.Url);
