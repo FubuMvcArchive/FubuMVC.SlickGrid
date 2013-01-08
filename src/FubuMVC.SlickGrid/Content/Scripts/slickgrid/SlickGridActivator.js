@@ -6,99 +6,104 @@
 });
 
 (function($) {
-    var slickGridColumns = function(columns) {
+    var SlickGridColumns = function(columns) {
         var columnHash = {};
+
         $(columns).each(function(i, col) {
             if (col.displayed == undefined) {
                 col.displayed = true;
             }
-
             columnHash[col.id] = col;
         });
 
-        this.applyCustomizations = function(customizations) {
-            if (customizations.columns) {
-                for (var columnId in customizations.columns) {
-                    var column = columnHash[columnId];
-                    $.extend(column, customizations.columns[columnId]);
-                }
+        this.__columnHash = columnHash;
+    };
+
+    SlickGridColumns.prototype.applyCustomizations = function(customizations) {
+        var columnHash = this.__columnHash;
+        var column, columnId;
+
+        if (customizations.columns) {
+            for (columnId in customizations.columns) {
+                column = columnHash[columnId];
+                $.extend(column, customizations.columns[columnId]);
             }
-        };
+        }
+    };
+    SlickGridColumns.prototype.getDisplayedColumns = function() {
+        var columnHash = this.__columnHash;
+        var columns = [];
+        var column, name;
 
-        this.getDisplayedColumns = function() {
-            var columns = [];
-            for (var name in columnHash) {
-                var column = columnHash[name];
-                if (column.displayed) {
-                    columns.push(column);
-                }
-            }
-
-            return columns;
-        };
-
-        this.getAllColumns = function(grid) {
-            var allColumns = {displayed:[], hidden:[]};
-
-            var displayed = grid.getColumns();
-            $(displayed).each(function(i, col) {
-                allColumns.displayed.push({id: col.id, name: col.name});
-            });
-
-            for (var name in columnHash) {
-                var col = columnHash[name];
-                if (!col.displayed) {
-                    allColumns.hidden.push({id: col.id, name: col.name});
-                }   
-            }
-
-            return allColumns;
-        };
-
-        this.displayColumns = function(names) {
-            for (var name in columnHash) {
-                var column = columnHash[name];
-                column.displayed = false;
-            }
-
-            var columns = [];
-
-            for (var i = 0; i < names.length; i++) {
-                var column = columnHash[names[i]];
-                column.displayed = true;
-
+        for (name in columnHash) {
+            column = columnHash[name];
+            if (column.displayed) {
                 columns.push(column);
             }
+        }
 
-            return columns;
-        };
+        return columns;
+    };
+    SlickGridColumns.prototype.getAllColumns = function(grid) {
+        var columnHash = this.__columnHash;
+        var allColumns = {displayed:[], hidden:[]};
+        var displayed = grid.getColumns();
+        var col, name;
+        
+        $(displayed).each(function (i, col) {
+            allColumns.displayed.push({ id: col.id, name: col.name });
+        });
 
-        this.getFrozenColumns = function() {
-            var i, column;
-            var columns = [];
-            var displayedColumns = this.getDisplayedColumns();
-
-            for (i = 0; i < displayedColumns.length; i++) {
-                column = displayedColumns[i];
-                if (!column.frozen) break;
-                columns.push(column)
+        for (name in columnHash) {
+            col = columnHash[name];
+            if (!col.displayed) {
+                allColumns.hidden.push({ id: col.id, name: col.name });
             }
+        }
 
-            return columns;
-        };
+        return allColumns;
+    };
+    SlickGridColumns.prototype.displayColumns = function(names) {
+        var columnHash = this.__columnHash;
+        var columns = [];
+        var column, name, i;
 
-        this.getFrozenColumnIndex = function() {
-            return this.getFrozenColumns().length - 1;
-        };
+        for (name in columnHash) {
+            column = columnHash[name];
+            column.displayed = false;
+        }
 
-        return this;
+        for (i = 0; i < names.length; i++) {
+            column = columnHash[names[i]];
+            column.displayed = true;
+
+            columns.push(column);
+        }
+
+        return columns;
+    };
+    SlickGridColumns.prototype.getFrozenColumns = function() {
+        var i, column;
+        var columns = [];
+        var displayedColumns = this.getDisplayedColumns();
+
+        for (i = 0; i < displayedColumns.length; i++) {
+            column = displayedColumns[i];
+            if (!column.frozen) break;
+            columns.push(column);
+        }
+
+        return columns;
+    };
+    SlickGridColumns.prototype.getFrozenColumnIndex = function() {
+        return this.getFrozenColumns().length - 1;
     };
 
     // register namespace
     $.extend(true, window, {
         "Slick": {
             "Formatters": { },
-            "GridColumns": slickGridColumns
+            "GridColumns": SlickGridColumns
         }
     });
 
@@ -117,22 +122,26 @@
 })(jQuery);
 
 function makeSlickGrid(div) {
+    var customJson = $('#' + div.id + "-custom").text().trim();
     var columnJson = $(div).data('columns');
-    eval('var columnData = ' + columnJson);
-
-    var columns = Slick.GridColumns(columnData);
-
+    var columnData = null;
+    var customizations = null;
     var url = $(div).data('url');
-
     var options = {};
     var modification = function() {
         // Do nothing.
     };
+    var defaultOptions = {
+        enableCellNavigation: true,
+        enableColumnReorder: true
+    };
+    var columns, gridOptions, grid;
 
-    var customJson = $('#' + div.id + "-custom").text().trim();
+    eval('columnData = ' + columnJson);
+    columns = new Slick.GridColumns(columnData);
+
     if (customJson) {
-
-        eval('var customizations = ' + customJson);
+        eval('customizations = ' + customJson);
         columns.applyCustomizations(customizations);
 
         if (customizations.options) {
@@ -142,29 +151,24 @@ function makeSlickGrid(div) {
         if (customizations.modify) {
             modification = customizations.modify;
         }
-
     }
 
-    var defaultOptions = {
-        enableCellNavigation: true,
-        enableColumnReorder: true
-    };
-
-    var gridOptions = $.extend({}, defaultOptions, options);
-    var grid = new Slick.Grid("#" + div.id, [], columns.getDisplayedColumns(), gridOptions);
+    gridOptions = $.extend({}, defaultOptions, options);
+    grid = new Slick.Grid("#" + div.id, [], columns.getDisplayedColumns(), gridOptions);
 
     grid.onSort.subscribe(function(e, args) {
-      var defaultSorter = function(a, b) {
-        var x = a[sortcol], y = b[sortcol];
-        return sortdir * (x == y ? 0 : (x > y ? 1 : -1));
-      };
+        var sortdir, sortcol;
+        var defaultSorter = function(a, b) {
+            var x = a[sortcol], y = b[sortcol];
+            return sortdir * (x == y ? 0 : (x > y ? 1 : -1));
+        };
 
-      sortdir = args.sortAsc ? 1 : -1;
-      sortcol = args.sortCol.field;
+        sortdir = args.sortAsc ? 1 : -1;
+        sortcol = args.sortCol.field;
 
-      args.grid.getData().sort(args.sortCol.sorter || defaultSorter, sortdir);
-      args.grid.invalidateAllRows();
-      args.grid.render();
+        args.grid.getData().sort(args.sortCol.sorter || defaultSorter, sortdir);
+        args.grid.invalidateAllRows();
+        args.grid.render();
     });
 
     grid.renderWithFrozenColumn = function() {
@@ -197,21 +201,21 @@ function makeSlickGrid(div) {
 
     div.findRowIndex = function(search) {
         var data = grid.getData();
-
-        // Allow for DataView usage
-        if (typeof (data.getItems) == 'function') {
-            data = data.getItems();
-        }
-
+        var prop, i;
         var filter = function(row) {
             for (prop in search) {
                 if (row[prop] != search[prop]) return false;
             }
 
             return true;
+        };
+
+        // Allow for DataView usage
+        if (typeof (data.getItems) == 'function') {
+            data = data.getItems();
         }
 
-        for (var i = 0; i < data.length; i++) {
+        for (i = 0; i < data.length; i++) {
             if (filter(data[i])) return i;
         }
 
@@ -224,9 +228,10 @@ function makeSlickGrid(div) {
 
     div.activateCell = function(search, columnName) {
         var row = div.findRowIndex(search);
+        var column = 0;
+
         grid.scrollRowIntoView(row);
 
-        var column = 0;
         if (columnName) {
             column = grid.getColumnIndex(columnName);
         }
@@ -241,12 +246,14 @@ function makeSlickGrid(div) {
 
     div.markCell = function(search, columnName, id) {
         var row = div.findRowIndex(search);
+        var column = 0;
+
         grid.scrollRowIntoView(row);
 
-        var column = 0;
         if (columnName) {
             column = grid.getColumnIndex(columnName);
         }
+
         $('#trace').text(row + ", " + column);
         grid.getCellNode(row, column).attr('id', id);
     };

@@ -2,7 +2,7 @@
     it('can tell me the initial columns without any customization and all columns displayed', function () {
         var data = [{ name: 'f1-name', id: 'f1' }, { name: 'f2-name', id: 'f2' }, { name: 'f3-name', id: 'f3'}];
 
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var initialData = columns.getDisplayedColumns();
 
@@ -15,7 +15,7 @@
     it('can tell me the initial columns without any customization and some columns are initially hidden', function () {
         var data = [{ name: 'f1-name', id: 'f1' }, { name: 'f2-name', id: 'f2', displayed: false }, { name: 'f3-name', id: 'f3'}];
 
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var initialData = columns.getDisplayedColumns();
 
@@ -27,7 +27,7 @@
     it('can tell me the initial columns with customization and some columns are initially hidden', function () {
         var data = [{ name: 'f1-name', id: 'f1' }, { name: 'f2-name', id: 'f2' }, { name: 'f3-name', id: 'f3'}];
 
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
         var customizations = {
             columns: {
                 'f1': { width: 100 },
@@ -48,7 +48,7 @@
     it('can configure a new arrangement of columns', function () {
         var data = [{ name: 'f1-name', id: 'f1' }, { name: 'f2-name', id: 'f2' }, { name: 'f3-name', id: 'f3'}];
 
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var newColumns = columns.displayColumns(['f3', 'f1']);
 
@@ -60,7 +60,7 @@
     it('can get all columns', function () {
         var data = [{ name: 'f1-name', id: 'f1' }, { name: 'f2-name', id: 'f2' }, { name: 'f3-name', id: 'f3' }, { name: 'f4-name', id: 'f4'}];
 
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var grid = {
             getColumns: function () {
@@ -97,7 +97,7 @@
 
     it('can tell me the freeze index with no frozen columns', function () {
         var data = [{ name: 'f1-name', id: 'f1' }, { name: 'f2-name', id: 'f2' }, { name: 'f3-name', id: 'f3' }];
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var index = columns.getFrozenColumnIndex();
 
@@ -106,7 +106,7 @@
 
     it('can tell me no frozen columns', function () {
         var data = [{ name: 'f1-name', id: 'f1' }, { name: 'f2-name', id: 'f2' }, { name: 'f3-name', id: 'f3' }];
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var actual = columns.getFrozenColumns();
 
@@ -115,7 +115,7 @@
 
     it('can tell me the freeze index with frozen hidden columns', function () {
         var data = [{ name: 'f1-name', id: 'f1', frozen: true, displayed: false }, { name: 'f2-name', id: 'f2' }, { name: 'f3-name', id: 'f3' }];
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var index = columns.getFrozenColumnIndex();
 
@@ -124,7 +124,7 @@
 
     it('can tell me the frozen columns with frozen hidden columns', function () {
         var data = [{ name: 'f1-name', id: 'f1', frozen: true, displayed: false }, { name: 'f2-name', id: 'f2' }, { name: 'f3-name', id: 'f3' }];
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var actual = columns.getFrozenColumns();
 
@@ -133,7 +133,7 @@
 
     it('can tell me the freeze index with consecutive frozen columns', function () {
         var data = [{ name: 'f1-name', id: 'f1', frozen: true }, { name: 'f2-name', id: 'f2', frozen: true }, { name: 'f3-name', id: 'f3' }];
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var index = columns.getFrozenColumnIndex();
 
@@ -142,7 +142,7 @@
 
     it('can tell me the frozen columns with consecutive frozen columns', function () {
         var data = [{ name: 'f1-name', id: 'f1', frozen: true }, { name: 'f2-name', id: 'f2', frozen: true }, { name: 'f3-name', id: 'f3' }];
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var actual = columns.getFrozenColumns();
 
@@ -153,7 +153,7 @@
 
     it('can tell me the freeze index with nonconsecutive frozen columns', function () {
         var data = [{ name: 'f1-name', id: 'f1', frozen: true }, { name: 'f2-name', id: 'f2' }, { name: 'f3-name', id: 'f3', frozen: true }];
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var index = columns.getFrozenColumnIndex();
 
@@ -162,7 +162,7 @@
 
     it('can tell me the frozen columns with nonconsecutive frozen columns', function () {
         var data = [{ name: 'f1-name', id: 'f1', frozen: true }, { name: 'f2-name', id: 'f2' }, { name: 'f3-name', id: 'f3', frozen: true }];
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var actual = columns.getFrozenColumns();
 
@@ -172,7 +172,7 @@
 
     it('can tell me the freeze index with consecutive frozen columns and hidden first column', function () {
         var data = [{ name: 'f1-name', id: 'f1', frozen: true, displayed: false }, { name: 'f2-name', id: 'f2', frozen: true }, { name: 'f3-name', id: 'f3', frozen: true }];
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var index = columns.getFrozenColumnIndex();
 
@@ -181,7 +181,7 @@
 
     it('can tell me the frozen columns with consecutive frozen columns and hidden first column', function () {
         var data = [{ name: 'f1-name', id: 'f1', frozen: true, displayed: false }, { name: 'f2-name', id: 'f2', frozen: true }, { name: 'f3-name', id: 'f3', frozen: true }];
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var actual = columns.getFrozenColumns();
 
@@ -192,7 +192,7 @@
 
     it('can tell me the freeze index with consecutive frozen columns and hidden second column', function () {
         var data = [{ name: 'f1-name', id: 'f1', frozen: true }, { name: 'f2-name', id: 'f2', frozen: true, displayed: false }, { name: 'f3-name', id: 'f3', frozen: true }];
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var index = columns.getFrozenColumnIndex();
 
@@ -201,7 +201,7 @@
 
     it('can tell me the frozen columns with consecutive frozen columns and hidden second column', function () {
         var data = [{ name: 'f1-name', id: 'f1', frozen: true }, { name: 'f2-name', id: 'f2', frozen: true, displayed: false }, { name: 'f3-name', id: 'f3', frozen: true }];
-        var columns = Slick.GridColumns(data);
+        var columns = new Slick.GridColumns(data);
 
         var actual = columns.getFrozenColumns();
 
