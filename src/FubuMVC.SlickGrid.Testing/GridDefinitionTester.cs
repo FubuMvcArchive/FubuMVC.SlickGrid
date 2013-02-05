@@ -62,7 +62,7 @@ namespace FubuMVC.SlickGrid.Testing
             grid.Column(x => x.IsCool);
             grid.Column(x => x.Name);
 
-            var json = grid.As<IGridDefinition>().ToColumnJson();
+            var json = grid.As<IGridDefinition>().ToColumnJson(new StubFieldAccessService());
 
             json
                 .ShouldEqual("[{name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: false}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
@@ -76,7 +76,7 @@ namespace FubuMVC.SlickGrid.Testing
             grid.Column(x => x.IsCool).Frozen(true);
             grid.Column(x => x.Name);
 
-            var json = grid.As<IGridDefinition>().ToColumnJson();
+            var json = grid.As<IGridDefinition>().ToColumnJson(new StubFieldAccessService());
 
             json
                 .ShouldEqual("[{name: \"IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: true}, {name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
@@ -90,7 +90,7 @@ namespace FubuMVC.SlickGrid.Testing
             grid.Column(x => x.IsCool).Frozen(true);
             grid.Column(x => x.Name).Frozen(true);
 
-            var json = grid.As<IGridDefinition>().ToColumnJson();
+            var json = grid.As<IGridDefinition>().ToColumnJson(new StubFieldAccessService());
 
             json
                 .ShouldEqual("[{name: \"IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: true}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: true}, {name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}]");
@@ -104,7 +104,7 @@ namespace FubuMVC.SlickGrid.Testing
             grid.Column(x => x.IsCool).Frozen(true);
             grid.Column(x => x.Name).Frozen(true);
 
-            var json = grid.As<IGridDefinition>().ToColumnJson();
+            var json = grid.As<IGridDefinition>().ToColumnJson(new StubFieldAccessService());
 
             json
                 .ShouldEqual("[{name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: true}, {name: \"IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: true}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: true}]");
@@ -118,11 +118,31 @@ namespace FubuMVC.SlickGrid.Testing
             grid.Data(x => x.IsCool);
             grid.Column(x => x.Name);
 
-            var json = grid.As<IGridDefinition>().ToColumnJson();
+            var json = grid.As<IGridDefinition>().ToColumnJson(new StubFieldAccessService());
 
             json
                 .ShouldEqual("[{name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
         }
+
+        [Test]
+        public void create_column_json_with_authorization_field_rights()
+        {
+            var grid = new TargetGrid();
+            grid.Column(x => x.Count);
+            grid.Data(x => x.IsCool);
+            grid.Column(x => x.Name);
+            grid.Column(x => x.Random);
+
+            var service = new StubFieldAccessService();
+            service.SetRights<GridDefTarget>(x => x.Random, AccessRight.None);
+            service.SetRights<GridDefTarget>(x => x.Name, AccessRight.ReadOnly);
+
+            var json = grid.As<IGridDefinition>().ToColumnJson(service);
+
+            json
+                .ShouldEqual("[{name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
+        }
+
 
         [Test]
         public void format_data_smoke_test()
@@ -265,6 +285,8 @@ namespace FubuMVC.SlickGrid.Testing
             public string Name { get; set; }
             public bool IsCool { get; set; }
             public int Count { get; set; }
+
+            public string Random { get; set; }
         }
     }
 

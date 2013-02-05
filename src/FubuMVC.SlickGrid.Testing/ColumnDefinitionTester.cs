@@ -1,5 +1,6 @@
 using System.Text;
 using FubuMVC.Core.UI.Elements;
+using FubuMVC.Core.UI.Security;
 using FubuMVC.Core.UI.Templates;
 using FubuMVC.Media.Projections;
 using NUnit.Framework;
@@ -23,7 +24,7 @@ namespace FubuMVC.SlickGrid.Testing
         private string writeColumn(IGridColumn column)
         {
             var builder = new StringBuilder();
-            column.WriteColumn(builder);
+            column.WriteColumn(builder, AccessRight.All);
 
             return builder.ToString();
         }
@@ -91,6 +92,18 @@ namespace FubuMVC.SlickGrid.Testing
             column.Editor(SlickGridEditor.Text);
 
             writeColumn(column).ShouldContain("editor: " + SlickGridEditor.Text.Name);
+        }
+
+        [Test]
+        public void read_only_sets_editable_off()
+        {
+            var builder = new StringBuilder();
+
+            var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
+            column.Editor(SlickGridEditor.Text);
+            column.As<IGridColumn>().WriteColumn(builder, AccessRight.ReadOnly);
+
+            builder.ToString().ShouldNotContain("editor:");
         }
 
         [Test]

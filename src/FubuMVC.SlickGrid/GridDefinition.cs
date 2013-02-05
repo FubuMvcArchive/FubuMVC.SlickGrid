@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using FubuCore.Reflection;
+using FubuCore.Util;
 using FubuMVC.Core;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.Routes;
@@ -65,20 +66,24 @@ namespace FubuMVC.SlickGrid
             return Projection.Filter(filter);
         }
 
-        string IGridDefinition.ToColumnJson()
+        string IGridDefinition.ToColumnJson(IFieldAccessService accessService)
         {
+            var rights =
+                new Cache<IGridColumn, AccessRight>(col => accessService.RightsFor(null, col.Accessor.InnerProperty));
+
             var builder = new StringBuilder();
             builder.Append("[");
-            var columns = _columns.OrderByDescending(x => x.IsFrozen).ToList();
+            var columns = _columns.Where(col => !rights[col].Equals(AccessRight.None)).OrderByDescending(x => x.IsFrozen).ToList();
 
             for (var i = 0; i < columns.Count - 1; i++)
             {
                 var column = columns[i];
-                column.WriteColumn(builder);
+                column.WriteColumn(builder, rights[column]);
                 builder.Append(", ");
             }
 
-            columns.Last().WriteColumn(builder);
+            var lastColumn = columns.Last();
+            lastColumn.WriteColumn(builder, rights[lastColumn]);
 
             builder.Append("]");
 

@@ -72,7 +72,7 @@ namespace FubuMVC.SlickGrid.Testing
             return Projection;
         }
 
-        public string ToColumnJson()
+        public string ToColumnJson(IFieldAccessService accessService)
         {
             throw new NotImplementedException();
         }

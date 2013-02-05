@@ -12,7 +12,7 @@ namespace FubuMVC.SlickGrid
 
     public interface IGridDefinition
     {
-        string ToColumnJson();
+        string ToColumnJson(IFieldAccessService accessService);
         string SelectDataSourceUrl(IUrlRegistry urls);
 
         void SelectFormattersAndEditors(IColumnPolicies editors);

@@ -5,6 +5,7 @@ using System.Text;
 using FubuCore.Reflection;
 using FubuCore.Util;
 using FubuMVC.Core.UI.Elements;
+using FubuMVC.Core.UI.Security;
 using FubuMVC.Core.UI.Templates;
 using FubuMVC.Media.Projections;
 
@@ -49,12 +50,17 @@ namespace FubuMVC.SlickGrid
 
         public Accessor Accessor { get; private set; }
 
-        void IGridColumn.WriteColumn(StringBuilder builder)
+        void IGridColumn.WriteColumn(StringBuilder builder, AccessRight rights)
         {
             builder.Append("{");
 
             _cache.Each((key, value) =>
             {
+                if (key == "editor" && !AccessRight.All.Equals(rights))
+                {
+                    return;
+                }
+
                 builder.WriteJsonProp(key, value);
                 builder.Append(", ");
             });
