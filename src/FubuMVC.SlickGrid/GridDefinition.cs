@@ -4,9 +4,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
+using FubuCore.Reflection;
 using FubuMVC.Core;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.Routes;
+using FubuMVC.Core.UI.Security;
 using FubuMVC.Core.UI.Templates;
 using FubuMVC.Core.Urls;
 using FubuMVC.Media.Projections;
@@ -55,6 +57,12 @@ namespace FubuMVC.SlickGrid
 
                 graph.AddChain(chain);
             });
+        }
+
+        public Projection<T> ToProjection(IFieldAccessService accessService)
+        {
+            Func<Accessor, bool> filter = a => !accessService.RightsFor(null, a.InnerProperty).Equals(AccessRight.None);
+            return Projection.Filter(filter);
         }
 
         string IGridDefinition.ToColumnJson()

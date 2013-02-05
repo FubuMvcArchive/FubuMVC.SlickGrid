@@ -1,3 +1,4 @@
+using FubuMVC.Core.UI.Security;
 using FubuMVC.Core.UI.Templates;
 using FubuMVC.Core.Urls;
 using FubuMVC.Media.Projections;
@@ -6,7 +7,7 @@ namespace FubuMVC.SlickGrid
 {
     public interface IGridDefinition<T> : IGridDefinition
     {
-        Projection<T> Projection { get; }
+        Projection<T> ToProjection(IFieldAccessService accessService);
     }
 
     public interface IGridDefinition

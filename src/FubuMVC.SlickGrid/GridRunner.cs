@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using FubuMVC.Core.UI.Security;
 using FubuMVC.Media.Projections;
 using System.Linq;
 
@@ -12,19 +13,23 @@ namespace FubuMVC.SlickGrid
         private readonly TGrid _grid;
         private readonly TDataSource _source;
         private readonly IProjectionRunner<T> _runner;
+        private readonly IFieldAccessService _accessService;
 
-        public GridRunner(TGrid grid, TDataSource source, IProjectionRunner<T> runner)
+        public GridRunner(TGrid grid, TDataSource source, IProjectionRunner<T> runner, IFieldAccessService accessService)
         {
             _grid = grid;
             _source = source;
             _runner = runner;
+            _accessService = accessService;
         }
 
         public IEnumerable<IDictionary<string, object>> Run()
         {
             var data = _source.GetData();
+            var projection = _grid.ToProjection(_accessService);
+
             return data.Select(x => {
-                return _runner.ProjectToJson(_grid.Projection, new SimpleValues<T>(x));
+                return _runner.ProjectToJson(projection, new SimpleValues<T>(x));
             });
         }
     }
@@ -36,20 +41,24 @@ namespace FubuMVC.SlickGrid
         private readonly TGrid _grid;
         private readonly TDataSource _source;
         private readonly IProjectionRunner<T> _runner;
+        private readonly IFieldAccessService _accessService;
 
-        public GridRunner(TGrid grid, TDataSource source, IProjectionRunner<T> runner)
+        public GridRunner(TGrid grid, TDataSource source, IProjectionRunner<T> runner, IFieldAccessService accessService)
         {
             _grid = grid;
             _source = source;
             _runner = runner;
+            _accessService = accessService;
         }
 
         public IEnumerable<IDictionary<string, object>> Run(TQuery query)
         {
             var data = _source.GetData(query);
+            var projection = _grid.ToProjection(_accessService);
+
             return data.Select(x =>
             {
-                return _runner.ProjectToJson(_grid.Projection, new SimpleValues<T>(x));
+                return _runner.ProjectToJson(projection, new SimpleValues<T>(x));
             });
         }
     }

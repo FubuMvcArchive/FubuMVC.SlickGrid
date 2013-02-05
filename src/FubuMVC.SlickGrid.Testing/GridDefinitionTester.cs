@@ -1,11 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Reflection;
+using FubuCore.Reflection;
+using FubuCore.Util;
+using FubuMVC.Core.UI.Elements;
+using FubuMVC.Core.UI.Security;
 using FubuMVC.Core.Urls;
 using FubuMVC.Media.Projections;
 using FubuTestingSupport;
 using NUnit.Framework;
 using FubuCore;
 using System.Linq;
+using Rhino.Mocks;
 
 namespace FubuMVC.SlickGrid.Testing
 {
@@ -26,6 +33,25 @@ namespace FubuMVC.SlickGrid.Testing
             {
                 throw new NotImplementedException();
             }
+        }
+
+        [Test]
+        public void projection_does_not_include_not_authorized_columns()
+        {
+            var grid = new TargetGrid();
+            grid.Column(x => x.Count);
+            grid.Column(x => x.Name);
+            grid.Column(x => x.IsCool);
+
+            var service = new StubFieldAccessService();
+            service.SetRights<GridDefTarget>(x => x.Count, AccessRight.ReadOnly);
+            service.SetRights<GridDefTarget>(x => x.Name, AccessRight.None);
+
+            var projection = grid.ToProjection(service);
+
+            projection.As<IProjection<GridDefTarget>>().Accessors()
+                .Select(x => x.Name)
+                .ShouldHaveTheSameElementsAs("Count", "IsCool");
         }
 
         [Test]
@@ -112,7 +138,7 @@ namespace FubuMVC.SlickGrid.Testing
                 new GridDefTarget{Count = 3, IsCool = true, Name = "Daphne"},
             };
 
-            IProjection<GridDefTarget> projection = grid.As<IGridDefinition<GridDefTarget>>().Projection.As<IProjection<GridDefTarget>>();
+            IProjection<GridDefTarget> projection = grid.As<IGridDefinition<GridDefTarget>>().ToProjection(new StubFieldAccessService()).As<IProjection<GridDefTarget>>();
             
 
             var dicts = data.Select(x => {
@@ -239,6 +265,28 @@ namespace FubuMVC.SlickGrid.Testing
             public string Name { get; set; }
             public bool IsCool { get; set; }
             public int Count { get; set; }
+        }
+    }
+
+    public class StubFieldAccessService : IFieldAccessService
+    {
+        private readonly Cache<Accessor, AccessRight> _rights = new Cache<Accessor, AccessRight>(a => AccessRight.All); 
+
+        public void SetRights<T>(Expression<Func<T, object>> property, AccessRight rights)
+        {
+            var accessor = property.ToAccessor();
+            _rights[accessor] = rights;
+        }
+
+        public AccessRight RightsFor(ElementRequest request)
+        {
+            return RightsFor(null, request.Accessor.InnerProperty);
+        }
+
+        public AccessRight RightsFor(object target, PropertyInfo property)
+        {
+            var accessor = new SingleProperty(property);
+            return _rights[accessor];
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using FubuCore;
+using FubuMVC.Core.UI.Security;
 using FubuMVC.Core.UI.Templates;
 using FubuMVC.Core.Urls;
 using FubuMVC.Media.Projections;
@@ -16,7 +17,7 @@ namespace FubuMVC.SlickGrid.Testing
         [Test]
         public void run_with_no_query()
         {
-            var runner = new GridRunner<Foo, FooGrid, FooSource>(new FooGrid(), new FooSource(), new ProjectionRunner<Foo>(new ProjectionRunner(new InMemoryServiceLocator())));
+            var runner = new GridRunner<Foo, FooGrid, FooSource>(new FooGrid(), new FooSource(), new ProjectionRunner<Foo>(new ProjectionRunner(new InMemoryServiceLocator())), new StubFieldAccessService());
             var dicts = runner.Run();
 
             dicts.Select(x => x["name"]).ShouldHaveTheSameElementsAs("Scooby", "Shaggy", "Velma");
@@ -25,7 +26,7 @@ namespace FubuMVC.SlickGrid.Testing
         [Test]
         public void run_with_query()
         {
-            var runner = new GridRunner<Foo, FooGrid, FancyFooSource, FooQuery>(new FooGrid(), new FancyFooSource(), new ProjectionRunner<Foo>(new ProjectionRunner(new InMemoryServiceLocator())));
+            var runner = new GridRunner<Foo, FooGrid, FancyFooSource, FooQuery>(new FooGrid(), new FancyFooSource(), new ProjectionRunner<Foo>(new ProjectionRunner(new InMemoryServiceLocator())), new StubFieldAccessService());
             var dicts = runner.Run(new FooQuery{Letter = "S"});
 
             dicts.Select(x => x["name"]).ShouldHaveTheSameElementsAs("Scooby", "Shaggy");
@@ -66,6 +67,11 @@ namespace FubuMVC.SlickGrid.Testing
 
     public class FooGrid : IGridDefinition<Foo>
     {
+        public Projection<Foo> ToProjection(IFieldAccessService accessService)
+        {
+            return Projection;
+        }
+
         public string ToColumnJson()
         {
             throw new NotImplementedException();
