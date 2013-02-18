@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Text;
 using FubuCore.Reflection;
 using FubuCore.Util;
+using FubuLocalization;
 using FubuMVC.Core.UI.Elements;
 using FubuMVC.Core.UI.Security;
 using FubuMVC.Core.UI.Templates;
@@ -28,7 +29,7 @@ namespace FubuMVC.SlickGrid
 
             _projection = projection.Value(property);
 
-            Title(Accessor.Name);
+            Title(LocalizationManager.GetHeader(Accessor.InnerProperty));
             Field(Accessor.Name);
             Id(Accessor.Name);
 

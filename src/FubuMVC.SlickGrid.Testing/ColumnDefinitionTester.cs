@@ -121,7 +121,7 @@ namespace FubuMVC.SlickGrid.Testing
             var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
             column.Field("else");
 
-            writeColumn(column).ShouldEqual("{name: \"Name\", field: \"else\", id: \"Name\", sortable: true, frozen: false}");
+            writeColumn(column).ShouldEqual("{name: \"en-US_Name\", field: \"else\", id: \"Name\", sortable: true, frozen: false}");
         }
 
         [Test]
@@ -138,7 +138,7 @@ namespace FubuMVC.SlickGrid.Testing
             var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
             column.Id("else");
 
-            writeColumn(column).ShouldEqual("{name: \"Name\", field: \"Name\", id: \"else\", sortable: true, frozen: false}");  
+            writeColumn(column).ShouldEqual("{name: \"en-US_Name\", field: \"Name\", id: \"else\", sortable: true, frozen: false}");  
         }
 
         [Test]
@@ -169,7 +169,7 @@ namespace FubuMVC.SlickGrid.Testing
         {
             var column = new ColumnDefinition<ColumnDefTarget, string>(x => x.Name, theProjection);
 
-            writeColumn(column).ShouldEqual("{name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}");           
+            writeColumn(column).ShouldEqual("{name: \"en-US_Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}");           
         }
 
         [Test]

@@ -65,7 +65,7 @@ namespace FubuMVC.SlickGrid.Testing
             var json = grid.As<IGridDefinition>().ToColumnJson(new StubFieldAccessService());
 
             json
-                .ShouldEqual("[{name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: false}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
+                .ShouldEqual("[{name: \"en-US_Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"en-US_IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: false}, {name: \"en-US_Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
         }
 
         [Test]
@@ -79,7 +79,7 @@ namespace FubuMVC.SlickGrid.Testing
             var json = grid.As<IGridDefinition>().ToColumnJson(new StubFieldAccessService());
 
             json
-                .ShouldEqual("[{name: \"IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: true}, {name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
+                .ShouldEqual("[{name: \"en-US_IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: true}, {name: \"en-US_Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"en-US_Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace FubuMVC.SlickGrid.Testing
             var json = grid.As<IGridDefinition>().ToColumnJson(new StubFieldAccessService());
 
             json
-                .ShouldEqual("[{name: \"IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: true}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: true}, {name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}]");
+                .ShouldEqual("[{name: \"en-US_IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: true}, {name: \"en-US_Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: true}, {name: \"en-US_Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}]");
         }
 
         [Test]
@@ -107,7 +107,7 @@ namespace FubuMVC.SlickGrid.Testing
             var json = grid.As<IGridDefinition>().ToColumnJson(new StubFieldAccessService());
 
             json
-                .ShouldEqual("[{name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: true}, {name: \"IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: true}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: true}]");
+                .ShouldEqual("[{name: \"en-US_Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: true}, {name: \"en-US_IsCool\", field: \"IsCool\", id: \"IsCool\", sortable: true, frozen: true}, {name: \"en-US_Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: true}]");
         }
 
         [Test]
@@ -121,7 +121,7 @@ namespace FubuMVC.SlickGrid.Testing
             var json = grid.As<IGridDefinition>().ToColumnJson(new StubFieldAccessService());
 
             json
-                .ShouldEqual("[{name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
+                .ShouldEqual("[{name: \"en-US_Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"en-US_Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
         }
 
         [Test]
@@ -140,7 +140,7 @@ namespace FubuMVC.SlickGrid.Testing
             var json = grid.As<IGridDefinition>().ToColumnJson(service);
 
             json
-                .ShouldEqual("[{name: \"Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
+                .ShouldEqual("[{name: \"en-US_Count\", field: \"Count\", id: \"Count\", sortable: true, frozen: false}, {name: \"en-US_Name\", field: \"Name\", id: \"Name\", sortable: true, frozen: false}]");
         }
 
 
