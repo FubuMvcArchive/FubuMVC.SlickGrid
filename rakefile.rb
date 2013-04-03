@@ -114,7 +114,7 @@ task :unit_test do
 end
 
 def self.bottles(args)
-  bottles = Platform.runtime(Nuget.tool("Bottles", "BottleRunner.exe"))
+  bottles = 'src/packages/Bottles/tools/BottleRunner.exe'
   sh "#{bottles} #{args}"
 end
 
@@ -124,34 +124,22 @@ def self.fubu(args)
   sh "#{fubu} #{args}"
 end
 
-task :enable_jasmine_jqueryui do
-	zipFile = File.join(nugetDir("FubuMVC.JQueryUI"), "lib", "net40", "FubuMVC.JQueryUI.dll")
-	bottlesDir = File.join(nugetDir("Serenity"), "tools")
-
-	Dir.mkdir bottlesDir unless exists?(bottlesDir)
-	FileUtils.cp_r(zipFile, File.join(bottlesDir, "FubuMVC.Coffee.dll"))
-end
-
 desc "Runs the Jasmine tests"
-task :open_jasmine => [:enable_jasmine_jqueryui] do
+task :open_jasmine do
 	serenity "jasmine interactive src/serenity.txt -b Firefox"
 end
 
 desc "Runs the Jasmine tests"
-task :run_jasmine => [:enable_jasmine_jqueryui] do
+task :run_jasmine do
 	serenity "jasmine run --timeout 15 src/serenity.txt -b Firefox"
 end
 
 desc "Runs the Jasmine tests and outputs the results for CI"
-task :run_jasmine_ci => [:enable_jasmine_jqueryui] do
+task :run_jasmine_ci do
 	serenity "jasmine run --verbose --timeout 15 src/serenity.txt -b Firefox"
 end
 
 def self.serenity(args)
-  serenity = Platform.runtime(Nuget.tool("Serenity", "SerenityRunner.exe"))
+  serenity = 'src/packages/Serenity/tools/SerenityRunner.exe'
   sh "#{serenity} #{args}"
-end
-
-def self.nugetDir(package)
-	Dir.glob(File.join(Nuget.package_root,"#{package}.*")).sort.last
 end
