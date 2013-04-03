@@ -92,9 +92,6 @@
     <Compile Include="StringBuilderExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
     <EmbeddedResource Include="pak-WebContent.zip" />
     <None Include="slickgrid.asset.config">
       <SubType>Designer</SubType>
@@ -108,6 +105,7 @@
     <Content Include="Content\Scripts\slickgrid\slick.formatters.js" />
     <Content Include="Content\Scripts\slickgrid\slick.grid.js" />
     <Content Include="Content\Scripts\slickgrid\SlickGridActivator.js" />
+    <Content Include="Content\Scripts\slickgrid\SlickGridDataLoader.js" />
     <Content Include="Content\Scripts\slickgrid\slickGridTemplates.js" />
     <Content Include="Content\Scripts\slickgrid\specs\SlickGridActivator.spec.js" />
     <Content Include="Content\Styles\slickgrid\examples.css" />

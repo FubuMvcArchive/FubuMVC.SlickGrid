@@ -116,6 +116,8 @@
 
 })(jQuery);
 
+
+
 function makeSlickGrid(div) {
     var columnJson = $(div).data('columns');
     eval('var columnData = ' + columnJson);
@@ -251,31 +253,20 @@ function makeSlickGrid(div) {
         grid.getCellNode(row, column).attr('id', id);
     };
 
-    div.update = function(query, dataLoaded) {
-        if (query == null) {
-            query = {};
-        }
+    div.resizeColumns = function() {
+        grid.renderWithFrozenColumn();
 
-        $.ajax({
-            url: url,
-            dataType: 'json',
-            type: 'POST',
-            contentType: 'text/json',
-            data: JSON.stringify(query),
-            success: function(data) {
-                grid.setData(data); // A different, empty or sorted array.
-                grid.renderWithFrozenColumn();
+        if (gridOptions.autoresize) grid.autosizeColumns();
+    };
 
-                if (gridOptions.autoresize) {
-                    grid.autosizeColumns();
-                }
+    var loader = new SlickGridDataLoader(div, grid, { url: url, paged: false });
 
-                if ($.isFunction(dataLoaded)) {
-                    dataLoaded();
-                }
-            }
-        });
+    div.update = function (query, dataLoaded) {
+        loader.changeQuery(query, dataLoaded);
 
         modification(grid, div);
     };
 }
+
+
+

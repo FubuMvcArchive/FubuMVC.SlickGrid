@@ -112,11 +112,6 @@
     <Compile Include="StringBuilderJsonExtensionsTester.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\FubuMVC.SlickGrid\FubuMVC.SlickGrid.csproj">
       <Project>{A67A0CE1-E4C2-45FC-9019-829D434B2CC4}</Project>
       <Name>FubuMVC.SlickGrid</Name>
