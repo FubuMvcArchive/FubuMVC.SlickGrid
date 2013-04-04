@@ -118,6 +118,12 @@ namespace FubuMVC.SlickGrid
 
         public bool AllColumnsAreEditable { get; set; }
         public SlickGridFormatter DefaultFormatter { get; set; }
+        public bool IsPaged()
+        {
+            if (_queryType == null) return false;
+
+            return _queryType.CanBeCastTo<PagedQuery>();
+        }
 
         public Projection<T> Projection { get; private set; }
 
@@ -156,6 +162,20 @@ namespace FubuMVC.SlickGrid
                 return;
             }
 
+            templateType = sourceType.FindInterfaceThatCloses(typeof (IPagedGridDataSource<,>));
+            if (templateType != null)
+            {
+                if (templateType.GetGenericArguments().First() != typeof(T))
+                {
+                    throw new ArgumentOutOfRangeException("Wrong type as the argument to IGridDataSource<>");
+                }
+
+                _queryType = templateType.GetGenericArguments().Last();
+                _sourceType = sourceType;
+
+                return;
+            }
+
             throw new ArgumentOutOfRangeException("TSource must be either IGridDataSource<T> or IGridDataSource<TQuery>");
         }
 
@@ -175,6 +195,11 @@ namespace FubuMVC.SlickGrid
         public Type DetermineRunnerType()
         {
             if (_sourceType == null) return null;
+
+            if (_queryType != null && _queryType.CanBeCastTo<PagedQuery>())
+            {
+                return typeof(PagedGridRunner<,,,>).MakeGenericType(typeof(T), GetType(), _sourceType, _queryType);
+            }
 
             return _queryType == null
                        ? typeof (GridRunner<,,>).MakeGenericType(typeof (T), GetType(), _sourceType)

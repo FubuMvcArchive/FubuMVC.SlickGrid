@@ -5,6 +5,8 @@ using System.Linq;
 
 namespace FubuMVC.SlickGrid
 {
+
+
     // Letting this be covered by more integrated tests
     public class GridRunner<T, TGrid, TDataSource>
         where TGrid : IGridDefinition<T>
@@ -23,14 +25,20 @@ namespace FubuMVC.SlickGrid
             _accessService = accessService;
         }
 
-        public IEnumerable<IDictionary<string, object>> Run()
+        public IDictionary<string, object> Run()
         {
             var data = _source.GetData();
             var projection = _grid.ToProjection(_accessService);
 
-            return data.Select(x => {
+            var results = data.Select(x =>
+            {
                 return _runner.ProjectToJson(projection, new SimpleValues<T>(x));
-            });
+            }).ToArray();
+
+            return new Dictionary<string, object>
+            {
+                {"data", results}
+            };
         }
     }
 
@@ -51,15 +59,20 @@ namespace FubuMVC.SlickGrid
             _accessService = accessService;
         }
 
-        public IEnumerable<IDictionary<string, object>> Run(TQuery query)
+        public IDictionary<string, object> Run(TQuery query)
         {
             var data = _source.GetData(query);
             var projection = _grid.ToProjection(_accessService);
 
-            return data.Select(x =>
+            var results = data.Select(x =>
             {
                 return _runner.ProjectToJson(projection, new SimpleValues<T>(x));
-            });
+            }).ToArray();
+
+            return new Dictionary<string, object>
+            {
+                {"data", results}
+            };
         }
     }
 }

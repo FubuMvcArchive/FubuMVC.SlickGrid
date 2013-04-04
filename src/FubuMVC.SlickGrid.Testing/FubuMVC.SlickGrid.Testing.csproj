@@ -108,6 +108,8 @@
     <Compile Include="GridRunnerTester.cs" />
     <Compile Include="JsonValueWriterTester.cs" />
     <Compile Include="LambdaColumnRuleTester.cs" />
+    <Compile Include="PagedData.cs" />
+    <Compile Include="PagedGridRunnerTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringBuilderJsonExtensionsTester.cs" />
   </ItemGroup>

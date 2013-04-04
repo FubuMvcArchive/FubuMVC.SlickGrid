@@ -44,6 +44,9 @@ namespace FubuMVC.SlickGrid
 
             var div = new HtmlTag("div").Id(id).AddClass("slick-grid");
             div.Data("columns", _grid.ToColumnJson(_accessService));
+
+            div.Data("paged", _grid.IsPaged());
+
             var url = _grid.SelectDataSourceUrl(_urls);
             if (url.IsNotEmpty())
             {

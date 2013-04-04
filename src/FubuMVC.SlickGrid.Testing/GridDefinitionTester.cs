@@ -36,6 +36,24 @@ namespace FubuMVC.SlickGrid.Testing
         }
 
         [Test]
+        public void is_paged_false_with_non_paged_source()
+        {
+            var grid = new TargetGrid();
+            grid.SourceIs<SimpleGoodSource>();
+
+            grid.IsPaged().ShouldBeFalse();
+        }
+
+        [Test]
+        public void is_paged_true_with_paged_source()
+        {
+            var grid = new TargetGrid();
+            grid.SourceIs<PagedSource>();
+
+            grid.IsPaged().ShouldBeTrue();
+        }
+
+        [Test]
         public void projection_does_not_include_not_authorized_columns()
         {
             var grid = new TargetGrid();
@@ -243,6 +261,15 @@ namespace FubuMVC.SlickGrid.Testing
             targetGrid.DetermineRunnerType().ShouldEqual(typeof(GridRunner<GridDefTarget, TargetGrid, QueryGoodSource, DifferentClass>));
         }
 
+        [Test]
+        public void select_data_source_url_with_paged_source()
+        {
+            var targetGrid = new TargetGrid();
+            targetGrid.SourceIs<PagedSource>();
+
+            targetGrid.DetermineRunnerType().ShouldEqual(typeof(PagedGridRunner<GridDefTarget, TargetGrid, PagedSource, SpecialPagedQuery>));
+        }
+
 
         public class NotASource{}
         public class WrongSource : IGridDataSource<DifferentClass>
@@ -256,6 +283,19 @@ namespace FubuMVC.SlickGrid.Testing
         public class MoreWrongSource : IGridDataSource<DifferentClass, DifferentClass>
         {
             public IEnumerable<DifferentClass> GetData(DifferentClass query)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public class SpecialPagedQuery : PagedQuery
+        {
+            
+        }
+
+        public class PagedSource : IPagedGridDataSource<GridDefTarget, SpecialPagedQuery>
+        {
+            public PagedResults<GridDefTarget> GetData(SpecialPagedQuery query)
             {
                 throw new NotImplementedException();
             }

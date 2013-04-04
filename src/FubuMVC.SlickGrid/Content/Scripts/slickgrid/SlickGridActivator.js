@@ -125,6 +125,7 @@ function makeSlickGrid(div) {
     var columns = Slick.GridColumns(columnData);
 
     var url = $(div).data('url');
+    var paged = $(div).data('paged');
 
     var options = {};
     var modification = function() {
@@ -259,7 +260,9 @@ function makeSlickGrid(div) {
         if (gridOptions.autoresize) grid.autosizeColumns();
     };
 
-    var loader = new SlickGridDataLoader(div, grid, { url: url, paged: false });
+    var loader = new SlickGridDataLoader(div, grid, { url: url, paged: paged });
+    div.onDataLoading = loader.onDataLoading;
+    div.onDataLoaded = loader.onDataLoaded;
 
     div.update = function (query, dataLoaded) {
         loader.changeQuery(query, dataLoaded);

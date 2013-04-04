@@ -21,5 +21,7 @@ namespace FubuMVC.SlickGrid
         bool AllColumnsAreEditable { get; set; }
 
         SlickGridFormatter DefaultFormatter { get; set; }
+
+        bool IsPaged();
     }
 }

@@ -18,7 +18,8 @@ namespace FubuMVC.SlickGrid.Testing
         public void run_with_no_query()
         {
             var runner = new GridRunner<Foo, FooGrid, FooSource>(new FooGrid(), new FooSource(), new ProjectionRunner<Foo>(new ProjectionRunner(new InMemoryServiceLocator())), new StubFieldAccessService());
-            var dicts = runner.Run();
+            var result = runner.Run()["data"];
+            var dicts = result.As<IDictionary<string, object>[]>();
 
             dicts.Select(x => x["name"]).ShouldHaveTheSameElementsAs("Scooby", "Shaggy", "Velma");
         }
@@ -27,7 +28,7 @@ namespace FubuMVC.SlickGrid.Testing
         public void run_with_query()
         {
             var runner = new GridRunner<Foo, FooGrid, FancyFooSource, FooQuery>(new FooGrid(), new FancyFooSource(), new ProjectionRunner<Foo>(new ProjectionRunner(new InMemoryServiceLocator())), new StubFieldAccessService());
-            var dicts = runner.Run(new FooQuery{Letter = "S"});
+            var dicts = runner.Run(new FooQuery { Letter = "S" })["data"].As<IDictionary<string, object>[]>(); ;
 
             dicts.Select(x => x["name"]).ShouldHaveTheSameElementsAs("Scooby", "Shaggy");
         }
@@ -95,6 +96,11 @@ namespace FubuMVC.SlickGrid.Testing
 
         public bool AllColumnsAreEditable { get; set; }
         public SlickGridFormatter DefaultFormatter { get; set; }
+        public bool IsPaged()
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<IGridColumn> Columns { get; private set; }
 
         public Projection<Foo> Projection { get

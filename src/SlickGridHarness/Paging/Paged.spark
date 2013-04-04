@@ -1,0 +1,18 @@
+﻿<viewdata model="SlickGridHarness.Paging.PagedTarget"/>
+
+<content:title>FubuMVC.SlickGrid Server Side Paging Demonstration</content:title>
+<content:head>
+</content:head>
+<content:main>
+  <h1>FubuMVC.SlickGrid Server Side Demonstration</h1>
+  <br></br>
+  
+  
+
+  !{this.RenderGrid<SlickGridHarness.Paging.ItemGrid>("itemGrid").Attr("style", "width:100%;height:500px;")}
+
+</content:main>
+
+<content:footer>
+
+</content:footer>
