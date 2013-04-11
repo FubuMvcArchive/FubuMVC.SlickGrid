@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using FubuMVC.Media.Projections;
 using NUnit.Framework;
 using FubuTestingSupport;
@@ -17,7 +18,7 @@ namespace FubuMVC.SlickGrid.Testing
             var result = runner.Run(new ItemQuery {page = 3});
             result["pageCount"].ShouldEqual(20); // 500 records, 25 per page
 
-            var dicts = result["data"].As<IDictionary<string, object>[]>();
+            var dicts = result["data"].As<IEnumerable<IDictionary<string, object>>>().ToArray().As<IDictionary<string, object>[]>();
             dicts.Length.ShouldEqual(ItemSource.PageSize);
         }
     }

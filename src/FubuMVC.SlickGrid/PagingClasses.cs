@@ -41,14 +41,12 @@ namespace FubuMVC.SlickGrid
         // Will need to add these as json
         public IDictionary<string, object> Run(TQuery query)
         {
-            var results = _source.GetData(query);
             var projection = _grid.ToProjection(_accessService);
-            var data = results.Data.Select(x => _runner.ProjectToJson(projection, new SimpleValues<T>(x))).ToArray();
 
             return new Dictionary<string, object>
             {
-                {"data", data}, 
-                {"pageCount", results.PageCount}
+                {"data", _source.GetData(query).Data.Select(x => _runner.ProjectToJson(projection, new SimpleValues<T>(x)))}, 
+                {"pageCount", _source.GetData(query).PageCount}
             };
         }
     }
