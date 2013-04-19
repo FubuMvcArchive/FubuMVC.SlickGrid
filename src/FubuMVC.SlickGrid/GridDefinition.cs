@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -42,7 +43,7 @@ namespace FubuMVC.SlickGrid
         void IFubuRegistryExtension.Configure(FubuRegistry registry)
         {
             registry.Configure(graph => {
-                Type runnerType = DetermineRunnerType();
+                Type runnerType = this.As<IGridDefinition>().DetermineRunnerType();
                 if (runnerType == null) return;
 
                 MethodInfo method = runnerType.GetMethod("Run");
@@ -99,7 +100,7 @@ namespace FubuMVC.SlickGrid
                 return urls.UrlFor(_queryType);
             }
 
-            Type runnerType = DetermineRunnerType();
+            Type runnerType = this.As<IGridDefinition>().DetermineRunnerType();
 
             return urls.UrlFor(runnerType);
         }
@@ -190,9 +191,14 @@ namespace FubuMVC.SlickGrid
         public AccessorProjection<T, TProp> Data<TProp>(Expression<Func<T, TProp>> property)
         {
             return Projection.Value(property);
-        } 
+        }
 
-        public Type DetermineRunnerType()
+        IEnumerable<IGridColumn> IGridDefinition.Columns()
+        {
+            return _columns;
+        }
+
+        Type IGridDefinition.DetermineRunnerType()
         {
             if (_sourceType == null) return null;
 

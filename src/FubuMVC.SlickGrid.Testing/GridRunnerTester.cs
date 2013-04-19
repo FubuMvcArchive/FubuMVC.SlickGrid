@@ -73,6 +73,16 @@ namespace FubuMVC.SlickGrid.Testing
             return Projection;
         }
 
+        IEnumerable<IGridColumn> IGridDefinition.Columns()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Type DetermineRunnerType()
+        {
+            throw new NotImplementedException();
+        }
+
         public string ToColumnJson(IFieldAccessService accessService)
         {
             throw new NotImplementedException();
