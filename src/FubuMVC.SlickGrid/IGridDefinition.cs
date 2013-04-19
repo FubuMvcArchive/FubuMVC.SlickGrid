@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using FubuMVC.Core.UI.Security;
 using FubuMVC.Core.UI.Templates;
 using FubuMVC.Core.Urls;
@@ -12,6 +14,8 @@ namespace FubuMVC.SlickGrid
 
     public interface IGridDefinition
     {
+        IEnumerable<IGridColumn> Columns();
+        Type DetermineRunnerType();
         string ToColumnJson(IFieldAccessService accessService);
         string SelectDataSourceUrl(IUrlRegistry urls);
 

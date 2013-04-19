@@ -35,6 +35,15 @@ namespace FubuMVC.SlickGrid.Testing
             }
         }
 
+        public class TargetGridWithColumns : GridDefinition<GridDefTarget>
+        {
+            public TargetGridWithColumns()
+            {
+                Column(c => c.Name);
+                Column(c => c.IsCool);
+            }
+        }
+
         [Test]
         public void is_paged_false_with_non_paged_source()
         {
@@ -249,7 +258,7 @@ namespace FubuMVC.SlickGrid.Testing
             var targetGrid = new TargetGrid();
             targetGrid.SourceIs<SimpleGoodSource>();
 
-            targetGrid.DetermineRunnerType().ShouldEqual(typeof(GridRunner<GridDefTarget, TargetGrid,SimpleGoodSource>));
+            targetGrid.As<IGridDefinition>().DetermineRunnerType().ShouldEqual(typeof(GridRunner<GridDefTarget, TargetGrid,SimpleGoodSource>));
         }
 
         [Test]
@@ -258,7 +267,7 @@ namespace FubuMVC.SlickGrid.Testing
             var targetGrid = new TargetGrid();
             targetGrid.SourceIs<QueryGoodSource>();
 
-            targetGrid.DetermineRunnerType().ShouldEqual(typeof(GridRunner<GridDefTarget, TargetGrid, QueryGoodSource, DifferentClass>));
+            targetGrid.As<IGridDefinition>().DetermineRunnerType().ShouldEqual(typeof(GridRunner<GridDefTarget, TargetGrid, QueryGoodSource, DifferentClass>));
         }
 
         [Test]
@@ -267,7 +276,14 @@ namespace FubuMVC.SlickGrid.Testing
             var targetGrid = new TargetGrid();
             targetGrid.SourceIs<PagedSource>();
 
-            targetGrid.DetermineRunnerType().ShouldEqual(typeof(PagedGridRunner<GridDefTarget, TargetGrid, PagedSource, SpecialPagedQuery>));
+            targetGrid.As<IGridDefinition>().DetermineRunnerType().ShouldEqual(typeof(PagedGridRunner<GridDefTarget, TargetGrid, PagedSource, SpecialPagedQuery>));
+        }
+
+        [Test]
+        public void exposes_available_columns()
+        {
+            IGridDefinition targetGrid = new TargetGridWithColumns();
+            targetGrid.Columns().Count().ShouldEqual(2);
         }
 
 
