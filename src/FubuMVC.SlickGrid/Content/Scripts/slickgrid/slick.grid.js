@@ -958,9 +958,9 @@ if (typeof Slick === "undefined") {
             minPageX: 0
         }
         var columnElements = $headers.children();
-        resizeDragStart(startEvent, 0, columnElements, columnElements.find(".slick-resizable-handle").parent(), columnState);
-        resizeDrag(dragEvent, 0, columnElements, columnState)
-        resizeDragEnd(columnElements);
+        resizeDragStart(startEvent, 1, columnElements, columnElements.find(".slick-resizable-handle").parent(), columnState);
+        resizeDrag(dragEvent, 1, columnElements, columnState)
+        resizeDragEnd(columnElements, columnElements.find(".slick-resizable-handle").parent());
     }
 
     function resizeDragStart(e, i, columnElements, columnHeader, columnState){
@@ -1030,60 +1030,60 @@ if (typeof Slick === "undefined") {
         return Math.max(testWidth || 0, absoluteMin);
     }
 
-    function setColumnWidth(d, shouldShrink, c) {
+    function setColumnWidth(shouldShrink, c, x) {
         if(!c.resizable){
             return;
         }
-        var x,
-            targetNumber,
+        var targetNumber,
             comparisonNumber,
             comparison,
             addition,
             newWidth;
-        x = d;
-        c.minWidth = c.minWidth || 0;
-        c.maxWidth = c.maxWidth || 0;
-        c.previousWidth = c.previousWidth || 0;
-        targetNumber = (shouldShrink) ? getMinWidth(c.minWidth || 0, absoluteColumnMinWidth) : x;
-        comparisonNumber = (shouldShrink) ? (c.previousWidth) + x : (c.maxWidth - c.previousWidth);
-        comparison = x && comparisonNumber < targetNumber && ((shouldShrink) ? true : c.maxWidth);
-        addition = (shouldShrink) ? c.previousWidth - targetNumber : -(c.maxWidth - c.previousWidth);
+        targetNumber = (shouldShrink) ? getMinWidth(c.minWidth, absoluteColumnMinWidth) : x;
+        comparisonNumber = (shouldShrink) ? c.previousWidth + x : (c.maxWidth - c.previousWidth);
+        comparison = x && ((shouldShrink) ? true : c.maxWidth) && comparisonNumber < targetNumber;
+        addition = (shouldShrink) ? c.previousWidth - targetNumber : -comparisonNumber;
         newWidth = (shouldShrink) ? targetNumber : c.maxWidth;
         if (!comparison) {
             c.width = c.previousWidth + x;
             x = 0;
-            return;
+            return x;
         }
         x += addition;
         c.width = newWidth;
+        return x;
     }
 
     function resizeColumns(d, shouldShrink, columnElements, i) {
         var j = i
-            x = 0,
+            x = d,
             c,
             newCanvasWidthL = 0,
             newCanvasWidthR = 0;
         for (j = i; j >= 0; j -= 1) {
             c = columns[j];
-            setColumnWidth(d, shouldShrink, c);
+            x = setColumnWidth(shouldShrink, c, x);
         }
         for (j = 0; j <= i; j++ ) {
             c = columns[j];
-
-            if ((options.frozenColumn > -1) && (j > options.frozenColumn) && c.resizable) {
+            if(!c.resizable)
+                continue
+            if ((options.frozenColumn > -1) && (j > options.frozenColumn)) {
                 newCanvasWidthR += c.width;
             } else {
                 newCanvasWidthL += c.width;
             }
         }
 
+        x = -d;
         for (j = i + 1; j < columnElements.length; j += 1) {
             c = columns[j];
-            if (c.resizable && options.forceFitColumns) {
-                setColumnWidth(-d, !shouldShrink, c);
+            if(!c.resizable)
+                continue
+            if (options.forceFitColumns) {
+                x = setColumnWidth(!shouldShrink, c, x);
             }
-            if ((options.frozenColumn > -1) && (j > options.frozenColumn) && c.resizable) {
+            if ((options.frozenColumn > -1) && (j > options.frozenColumn)) {
                 newCanvasWidthR += c.width;
             } else {
                 newCanvasWidthL += c.width;
