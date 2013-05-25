@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ProjectRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TagLine>Integrates slickgrid into a FubuMVC application</TagLine>
+  <Name>FubuMVC.SlickGrid</Name>
+  <GitHubPage>http://github.com/DarthFubuMVC/FubuMVC.SlickGrid</GitHubPage>
+  <UserGroupUrl>https://groups.google.com/forum/?fromgroups#!forum/fubumvc-devel</UserGroupUrl>
+  <BuildServerUrl>http://build.fubu-project.org/project.html?projectId=project26&amp;tab=projectOverview</BuildServerUrl>
+  <BottleName>FubuMVC.SlickGrid.Docs</BottleName>
+  <TeamCityBuildType>bt44</TeamCityBuildType>
+  <Nugets>
+    <PublishedNuget>
+      <Name>FubuMVC.SlickGrid</Name>
+      <Description>Helpers to integrate the SlickGrid library into FubuMVC applications</Description>
+    </PublishedNuget>
+    <PublishedNuget>
+      <Name>FubuMVC.SlickGrid.Serenity</Name>
+      <Description>Serenity/WebDriver/Storyteller test helpers for FubuMVC.SlickGrid</Description>
+    </PublishedNuget>
+  </Nugets>
+  <Url>fubumvc.slickgrid</Url>
+</ProjectRoot>
