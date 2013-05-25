@@ -116,7 +116,7 @@
     <Compile Include="SlickGridSerenityWebDriverExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="ripple.dependencies.config" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

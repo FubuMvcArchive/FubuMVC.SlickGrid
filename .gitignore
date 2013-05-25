@@ -38,3 +38,4 @@ history.xml
 testEditor.css
 *.stresult
 logs
+Gemfile.lock
