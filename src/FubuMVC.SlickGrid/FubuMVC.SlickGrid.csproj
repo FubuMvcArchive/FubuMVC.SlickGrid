@@ -110,8 +110,8 @@
     <Content Include="Content\Scripts\slickgrid\slickGridTemplates.js" />
     <Content Include="Content\Scripts\slickgrid\specs\SlickGridActivator.spec.js" />
     <Content Include="Content\Styles\slickgrid\examples.css" />
-    <Content Include="Content\Styles\slickgrid\slick-default-theme.css" />
     <Content Include="Content\Styles\slickgrid\slick.grid.css" />
+    <Content Include="Content\Styles\slickgrid\slick-default-theme.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\" />
@@ -125,9 +125,5 @@
   </Target>
   -->
   <ItemGroup>
-    <EmbeddedResource Include="pak-Data.zip" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="pak-Config.zip" />
   </ItemGroup>
 </Project>
